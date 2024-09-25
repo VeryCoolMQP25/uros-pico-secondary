@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Change your executable name to something creative!
-set(NAME RosServo) # <-- Name your project/executable here!
+set(NAME TourBotPico) # <-- Name your project/executable here!
 
 include(pico_sdk_import.cmake)
 
@@ -9,7 +9,6 @@ include(pico_sdk_import.cmake)
 project(${NAME} C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-
 # Initialize the SDK
 pico_sdk_init()
 

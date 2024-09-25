@@ -1,0 +1,44 @@
+[0.667s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_flake8': AMENT_PREFIX_PATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_lint PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_lint/lib/python3.10/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_flake8 build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/install.log --single-version-externally-managed install_data
+[0.980s] running egg_info
+[0.981s] creating ../../../build/ament_flake8/ament_flake8.egg-info
+[0.981s] writing ../../../build/ament_flake8/ament_flake8.egg-info/PKG-INFO
+[0.982s] writing dependency_links to ../../../build/ament_flake8/ament_flake8.egg-info/dependency_links.txt
+[0.982s] writing entry points to ../../../build/ament_flake8/ament_flake8.egg-info/entry_points.txt
+[0.982s] writing requirements to ../../../build/ament_flake8/ament_flake8.egg-info/requires.txt
+[0.982s] writing top-level names to ../../../build/ament_flake8/ament_flake8.egg-info/top_level.txt
+[0.983s] writing manifest file '../../../build/ament_flake8/ament_flake8.egg-info/SOURCES.txt'
+[0.986s] reading manifest file '../../../build/ament_flake8/ament_flake8.egg-info/SOURCES.txt'
+[0.987s] writing manifest file '../../../build/ament_flake8/ament_flake8.egg-info/SOURCES.txt'
+[0.988s] running build
+[0.988s] running build_py
+[0.988s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build
+[0.988s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib
+[0.988s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8
+[0.988s] copying ament_flake8/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8
+[0.988s] copying ament_flake8/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8
+[0.988s] copying ament_flake8/pytest_marker.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8
+[0.989s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/configuration
+[0.989s] copying ament_flake8/configuration/ament_flake8.ini -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/configuration
+[0.989s] running install
+[0.990s] running install_lib
+[0.991s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8
+[0.991s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8
+[0.992s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8
+[0.992s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/pytest_marker.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8
+[0.992s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8/configuration
+[0.992s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build/lib/ament_flake8/configuration/ament_flake8.ini -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8/configuration
+[0.993s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8/__init__.py to __init__.cpython-310.pyc
+[0.994s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8/main.py to main.cpython-310.pyc
+[0.997s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8/pytest_marker.py to pytest_marker.cpython-310.pyc
+[0.997s] running install_data
+[0.998s] copying package.xml -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/share/ament_flake8
+[0.998s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/share/ament_index
+[0.998s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/share/ament_index/resource_index
+[0.999s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/share/ament_index/resource_index/packages
+[0.999s] copying resource/ament_flake8 -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/share/ament_index/resource_index/packages
+[0.999s] running install_egg_info
+[1.001s] Copying ../../../build/ament_flake8/ament_flake8.egg-info to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages/ament_flake8-0.12.11-py3.10.egg-info
+[1.003s] running install_scripts
+[1.036s] Installing ament_flake8 script to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/bin
+[1.037s] writing list of installed files to '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/install.log'
+[1.080s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_flake8' returned '0': AMENT_PREFIX_PATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_lint PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_flake8/lib/python3.10/site-packages:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_lint/lib/python3.10/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_flake8 build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_flake8/install.log --single-version-externally-managed install_data

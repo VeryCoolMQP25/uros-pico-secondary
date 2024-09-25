@@ -1,0 +1,117 @@
+[0.199s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr': /bin/cmake /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR --no-warn-unused-cli -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF -DTHIRDPARTY=ON -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/my_toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DUCDR_ISOLATED_INSTALL=OFF -DCMAKE_INSTALL_PREFIX=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install
+[0.712s] PICO_GCC_TRIPLE defaulted to arm-none-eabi
+[0.713s] PICO_GCC_TRIPLE defaulted to arm-none-eabi
+[0.713s] PICO_GCC_TRIPLE defaulted to arm-none-eabi
+[0.714s] Not searching for unused variables given on the command line.
+[0.714s] -- The C compiler identification is GNU 10.3.1
+[0.714s] -- Detecting C compiler ABI info
+[0.714s] -- Detecting C compiler ABI info - done
+[0.715s] -- Check for working C compiler: /bin/arm-none-eabi-gcc - skipped
+[0.715s] -- Detecting C compile features
+[0.715s] -- Detecting C compile features - done
+[0.715s] -- The CXX compiler identification is GNU 10.3.1
+[0.715s] -- Detecting CXX compiler ABI info
+[0.767s] -- Detecting CXX compiler ABI info - done
+[0.774s] -- Check for working CXX compiler: /bin/arm-none-eabi-g++ - skipped
+[0.775s] -- Detecting CXX compile features
+[0.776s] -- Detecting CXX compile features - done
+[0.786s] -- Configuring done
+[0.793s] -- Generating done
+[0.795s] -- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr
+[0.823s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr' returned '0': /bin/cmake /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR --no-warn-unused-cli -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF -DTHIRDPARTY=ON -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/my_toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DUCDR_ISOLATED_INSTALL=OFF -DCMAKE_INSTALL_PREFIX=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install
+[0.825s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr': /bin/cmake --build /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr -- -j16 -l16
+[0.848s] /usr/bin/cmake -S/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR -B/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr --check-build-system CMakeFiles/Makefile.cmake 0
+[0.857s] /usr/bin/cmake -E cmake_progress_start /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr//CMakeFiles/progress.marks
+[0.868s] /bin/gmake  -f CMakeFiles/Makefile2 all
+[0.870s] gmake[1]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[0.870s] /bin/gmake  -f CMakeFiles/ucdr.dir/build.make CMakeFiles/ucdr.dir/depend
+[0.872s] gmake[2]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[0.872s] cd /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles/ucdr.dir/DependInfo.cmake --color=
+[0.884s] gmake[2]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[0.884s] /bin/gmake  -f CMakeFiles/ucdr.dir/build.make CMakeFiles/ucdr.dir/build
+[0.886s] gmake[2]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[0.893s] [ 12%] [34m[1mCreating directories for 'ucdr'[0m
+[0.895s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR
+[0.905s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr
+[0.909s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix
+[0.917s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/tmp
+[0.925s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp
+[0.932s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src
+[0.943s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp
+[0.954s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-mkdir
+[0.971s] [ 25%] [34m[1mNo download step for 'ucdr'[0m
+[0.972s] /usr/bin/cmake -E echo_append
+[0.978s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-download
+[1.000s] [ 37%] [34m[1mNo update step for 'ucdr'[0m
+[1.002s] /usr/bin/cmake -E echo_append
+[1.012s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-update
+[1.033s] [ 50%] [34m[1mNo patch step for 'ucdr'[0m
+[1.034s] /usr/bin/cmake -E echo_append
+[1.041s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-patch
+[1.055s] [ 62%] [34m[1mPerforming configure step for 'ucdr'[0m
+[1.056s] /usr/bin/cmake "-GUnix Makefiles" -C/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/tmp/ucdr-cache-Release.cmake /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR
+[1.063s] loading initial cache file /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/tmp/ucdr-cache-Release.cmake
+[1.063s] Re-run cmake no build system arguments
+[1.064s] [0mPICO_GCC_TRIPLE defaulted to arm-none-eabi[0m
+[1.080s] -- Configuring done
+[1.086s] -- Generating done
+[1.088s] -- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr
+[1.090s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-configure
+[1.112s] [ 75%] [34m[1mPerforming build step for 'ucdr'[0m
+[1.113s] /bin/gmake
+[1.116s] gmake[3]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.116s] /usr/bin/cmake -S/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR -B/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr --check-build-system CMakeFiles/Makefile.cmake 0
+[1.129s] /usr/bin/cmake -E cmake_progress_start /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr//CMakeFiles/progress.marks
+[1.134s] /bin/gmake  -f CMakeFiles/Makefile2 all
+[1.135s] gmake[4]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.135s] /bin/gmake  -f CMakeFiles/microcdr.dir/build.make CMakeFiles/microcdr.dir/depend
+[1.136s] gmake[5]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.136s] cd /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles/microcdr.dir/DependInfo.cmake --color=
+[1.148s] gmake[5]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.148s] /bin/gmake  -f CMakeFiles/microcdr.dir/build.make CMakeFiles/microcdr.dir/build
+[1.150s] gmake[5]: Entering directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.160s] [ 16%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/string.c.obj[0m
+[1.160s] /bin/arm-none-eabi-gcc  -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/include -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/include -std=c11 -O2 -march=armv6-m -mcpu=cortex-m0plus -mthumb -ffunction-sections -fdata-sections -fno-exceptions -nostdlib -D'RCUTILS_LOG_MIN_SEVERITY=RCUTILS_LOG_MIN_SEVERITY_NONE' -DCLOCK_MONOTONIC=0 -D'__attribute__(x)=' -O3 -DNDEBUG -fPIC -Wall -Wextra -Wshadow -pedantic -Wcast-align -Wunused -Wconversion -Wnull-dereference -Wduplicated-branches -Wduplicated-cond -Wrestrict -Wdouble-promotion -Wsign-conversion -fdata-sections -ffunction-sections -std=gnu99 -MD -MT CMakeFiles/microcdr.dir/src/c/types/string.c.obj -MF CMakeFiles/microcdr.dir/src/c/types/string.c.obj.d -o CMakeFiles/microcdr.dir/src/c/types/string.c.obj -c /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/src/c/types/string.c
+[1.160s] [ 33%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj[0m
+[1.160s] [ 50%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/common.c.obj[0m
+[1.160s] /bin/arm-none-eabi-gcc  -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/include -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/include -std=c11 -O2 -march=armv6-m -mcpu=cortex-m0plus -mthumb -ffunction-sections -fdata-sections -fno-exceptions -nostdlib -D'RCUTILS_LOG_MIN_SEVERITY=RCUTILS_LOG_MIN_SEVERITY_NONE' -DCLOCK_MONOTONIC=0 -D'__attribute__(x)=' -O3 -DNDEBUG -fPIC -Wall -Wextra -Wshadow -pedantic -Wcast-align -Wunused -Wconversion -Wnull-dereference -Wduplicated-branches -Wduplicated-cond -Wrestrict -Wdouble-promotion -Wsign-conversion -fdata-sections -ffunction-sections -std=gnu99 -MD -MT CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj -MF CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj.d -o CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj -c /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/src/c/types/sequence.c
+[1.160s] [ 66%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/basic.c.obj[0m
+[1.161s] /bin/arm-none-eabi-gcc  -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/include -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/include -std=c11 -O2 -march=armv6-m -mcpu=cortex-m0plus -mthumb -ffunction-sections -fdata-sections -fno-exceptions -nostdlib -D'RCUTILS_LOG_MIN_SEVERITY=RCUTILS_LOG_MIN_SEVERITY_NONE' -DCLOCK_MONOTONIC=0 -D'__attribute__(x)=' -O3 -DNDEBUG -fPIC -Wall -Wextra -Wshadow -pedantic -Wcast-align -Wunused -Wconversion -Wnull-dereference -Wduplicated-branches -Wduplicated-cond -Wrestrict -Wdouble-promotion -Wsign-conversion -fdata-sections -ffunction-sections -std=gnu99 -MD -MT CMakeFiles/microcdr.dir/src/c/common.c.obj -MF CMakeFiles/microcdr.dir/src/c/common.c.obj.d -o CMakeFiles/microcdr.dir/src/c/common.c.obj -c /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/src/c/common.c
+[1.161s] [ 83%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/array.c.obj[0m
+[1.161s] /bin/arm-none-eabi-gcc  -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/include -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/include -std=c11 -O2 -march=armv6-m -mcpu=cortex-m0plus -mthumb -ffunction-sections -fdata-sections -fno-exceptions -nostdlib -D'RCUTILS_LOG_MIN_SEVERITY=RCUTILS_LOG_MIN_SEVERITY_NONE' -DCLOCK_MONOTONIC=0 -D'__attribute__(x)=' -O3 -DNDEBUG -fPIC -Wall -Wextra -Wshadow -pedantic -Wcast-align -Wunused -Wconversion -Wnull-dereference -Wduplicated-branches -Wduplicated-cond -Wrestrict -Wdouble-promotion -Wsign-conversion -fdata-sections -ffunction-sections -std=gnu99 -MD -MT CMakeFiles/microcdr.dir/src/c/types/basic.c.obj -MF CMakeFiles/microcdr.dir/src/c/types/basic.c.obj.d -o CMakeFiles/microcdr.dir/src/c/types/basic.c.obj -c /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/src/c/types/basic.c
+[1.163s] /bin/arm-none-eabi-gcc  -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/include -I/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/include -std=c11 -O2 -march=armv6-m -mcpu=cortex-m0plus -mthumb -ffunction-sections -fdata-sections -fno-exceptions -nostdlib -D'RCUTILS_LOG_MIN_SEVERITY=RCUTILS_LOG_MIN_SEVERITY_NONE' -DCLOCK_MONOTONIC=0 -D'__attribute__(x)=' -O3 -DNDEBUG -fPIC -Wall -Wextra -Wshadow -pedantic -Wcast-align -Wunused -Wconversion -Wnull-dereference -Wduplicated-branches -Wduplicated-cond -Wrestrict -Wdouble-promotion -Wsign-conversion -fdata-sections -ffunction-sections -std=gnu99 -MD -MT CMakeFiles/microcdr.dir/src/c/types/array.c.obj -MF CMakeFiles/microcdr.dir/src/c/types/array.c.obj.d -o CMakeFiles/microcdr.dir/src/c/types/array.c.obj -c /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-CDR/src/c/types/array.c
+[1.787s] [100%] [32m[1mLinking C static library libmicrocdr.a[0m
+[1.789s] /usr/bin/cmake -P CMakeFiles/microcdr.dir/cmake_clean_target.cmake
+[1.797s] /usr/bin/cmake -E cmake_link_script CMakeFiles/microcdr.dir/link.txt --verbose=1
+[1.802s] /bin/arm-none-eabi-ar qc libmicrocdr.a CMakeFiles/microcdr.dir/src/c/common.c.obj CMakeFiles/microcdr.dir/src/c/types/basic.c.obj CMakeFiles/microcdr.dir/src/c/types/string.c.obj CMakeFiles/microcdr.dir/src/c/types/array.c.obj CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj
+[1.826s] /bin/arm-none-eabi-ranlib libmicrocdr.a
+[1.845s] gmake[5]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.856s] [100%] Built target microcdr
+[1.857s] gmake[4]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.857s] /usr/bin/cmake -E cmake_progress_start /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles 0
+[1.867s] gmake[3]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.868s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-build
+[1.887s] [34m[1mNo install step for 'ucdr'[0m
+[1.888s] /usr/bin/cmake -E echo_append
+[1.898s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-install
+[1.917s] [34m[1mCompleted 'ucdr'[0m
+[1.919s] /usr/bin/cmake -E make_directory /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles
+[1.928s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles/ucdr-complete
+[1.937s] /usr/bin/cmake -E touch /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/ucdr-prefix/src/ucdr-stamp/ucdr-done
+[1.944s] gmake[2]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.953s] Built target ucdr
+[1.955s] gmake[1]: Leaving directory '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr'
+[1.955s] /usr/bin/cmake -E cmake_progress_start /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr/CMakeFiles 0
+[2.154s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr' returned '0': /bin/cmake --build /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr -- -j16 -l16
+[2.198s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr': /bin/cmake --install /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr
+[2.208s] -- Install configuration: "Release"
+[2.209s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/libmicrocdr.a
+[2.209s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include/ucdr
+[2.209s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include/ucdr/microcdr.h
+[2.209s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include/ucdr/visibility.h
+[2.209s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include/ucdr/config.h
+[2.210s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/microcdr/cmake/microcdrTargets.cmake
+[2.210s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/microcdr/cmake/microcdrTargets-release.cmake
+[2.210s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/microcdr/cmake/microcdrConfig.cmake
+[2.210s] -- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/microcdr/cmake/microcdrConfigVersion.cmake
+[2.214s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr' returned '0': /bin/cmake --install /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/microcdr

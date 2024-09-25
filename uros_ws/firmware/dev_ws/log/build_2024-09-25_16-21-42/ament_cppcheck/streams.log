@@ -1,0 +1,37 @@
+[1.093s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_cppcheck': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_cppcheck build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/install.log --single-version-externally-managed install_data
+[1.297s] running egg_info
+[1.298s] creating ../../../build/ament_cppcheck/ament_cppcheck.egg-info
+[1.299s] writing ../../../build/ament_cppcheck/ament_cppcheck.egg-info/PKG-INFO
+[1.300s] writing dependency_links to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/dependency_links.txt
+[1.300s] writing entry points to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/entry_points.txt
+[1.300s] writing requirements to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/requires.txt
+[1.300s] writing top-level names to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/top_level.txt
+[1.301s] writing manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[1.304s] reading manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[1.305s] writing manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[1.305s] running build
+[1.306s] running build_py
+[1.306s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build
+[1.306s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib
+[1.306s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib/ament_cppcheck
+[1.306s] copying ament_cppcheck/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib/ament_cppcheck
+[1.307s] copying ament_cppcheck/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib/ament_cppcheck
+[1.307s] running install
+[1.307s] running install_lib
+[1.309s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck
+[1.309s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib/ament_cppcheck/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck
+[1.309s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build/lib/ament_cppcheck/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck
+[1.310s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck/__init__.py to __init__.cpython-310.pyc
+[1.311s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck/main.py to main.cpython-310.pyc
+[1.314s] running install_data
+[1.315s] copying package.xml -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/share/ament_cppcheck
+[1.315s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/share/ament_index
+[1.315s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/share/ament_index/resource_index
+[1.315s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/share/ament_index/resource_index/packages
+[1.316s] copying resource/ament_cppcheck -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/share/ament_index/resource_index/packages
+[1.316s] running install_egg_info
+[1.318s] Copying ../../../build/ament_cppcheck/ament_cppcheck.egg-info to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages/ament_cppcheck-0.12.11-py3.10.egg-info
+[1.320s] running install_scripts
+[1.342s] Installing ament_cppcheck script to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/bin
+[1.343s] writing list of installed files to '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/install.log'
+[1.577s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_cppcheck' returned '0': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cppcheck/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_cppcheck build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_cppcheck/install.log --single-version-externally-managed install_data

@@ -1,0 +1,6 @@
+PICO_GCC_TRIPLE defaulted to arm-none-eabi
+PICO_GCC_TRIPLE defaulted to arm-none-eabi
+[01m[K/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/util/time.c:[m[K In function '[01m[Kuxr_nanos[m[K':
+[01m[K/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client/src/c/util/time.c:71:5:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function '[01m[Kclock_gettime[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-function-declaration-Wimplicit-function-declaration]8;;[m[K]
+   71 |     [01;35m[Kclock_gettime[m[K(CLOCK_REALTIME, &ts);
+      |     [01;35m[K^~~~~~~~~~~~~[m[K

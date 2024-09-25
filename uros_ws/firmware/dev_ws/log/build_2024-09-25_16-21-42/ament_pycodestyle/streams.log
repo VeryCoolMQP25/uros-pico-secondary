@@ -1,0 +1,41 @@
+[1.056s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_pycodestyle': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_pycodestyle build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/install.log --single-version-externally-managed install_data
+[1.246s] running egg_info
+[1.246s] creating ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info
+[1.247s] writing ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/PKG-INFO
+[1.247s] writing dependency_links to ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/dependency_links.txt
+[1.247s] writing entry points to ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/entry_points.txt
+[1.247s] writing requirements to ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/requires.txt
+[1.247s] writing top-level names to ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/top_level.txt
+[1.248s] writing manifest file '../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/SOURCES.txt'
+[1.249s] reading manifest file '../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/SOURCES.txt'
+[1.249s] writing manifest file '../../../build/ament_pycodestyle/ament_pycodestyle.egg-info/SOURCES.txt'
+[1.250s] running build
+[1.250s] running build_py
+[1.250s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build
+[1.250s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib
+[1.250s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle
+[1.250s] copying ament_pycodestyle/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle
+[1.251s] copying ament_pycodestyle/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle
+[1.251s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle/configuration
+[1.251s] copying ament_pycodestyle/configuration/ament_pycodestyle.ini -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle/configuration
+[1.252s] running install
+[1.252s] running install_lib
+[1.252s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle
+[1.252s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle
+[1.253s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle/main.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle
+[1.253s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle/configuration
+[1.253s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build/lib/ament_pycodestyle/configuration/ament_pycodestyle.ini -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle/configuration
+[1.253s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle/__init__.py to __init__.cpython-310.pyc
+[1.254s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle/main.py to main.cpython-310.pyc
+[1.256s] running install_data
+[1.256s] copying package.xml -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/share/ament_pycodestyle
+[1.256s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/share/ament_index
+[1.256s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/share/ament_index/resource_index
+[1.256s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/share/ament_index/resource_index/packages
+[1.257s] copying resource/ament_pycodestyle -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/share/ament_index/resource_index/packages
+[1.257s] running install_egg_info
+[1.259s] Copying ../../../build/ament_pycodestyle/ament_pycodestyle.egg-info to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages/ament_pycodestyle-0.12.11-py3.10.egg-info
+[1.261s] running install_scripts
+[1.294s] Installing ament_pycodestyle script to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/bin
+[1.295s] writing list of installed files to '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/install.log'
+[1.339s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/ament/ament_lint/ament_pycodestyle' returned '0': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_pycodestyle/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/ament_pycodestyle build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/build/ament_pycodestyle/install.log --single-version-externally-managed install_data

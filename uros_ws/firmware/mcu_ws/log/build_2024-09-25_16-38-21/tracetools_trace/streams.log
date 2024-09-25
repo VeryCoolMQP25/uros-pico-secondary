@@ -1,0 +1,63 @@
+[1.354s] Invoking command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/uros/tracetools/tracetools_trace': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/tracetools_trace build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/install.log --single-version-externally-managed install_data
+[1.641s] running egg_info
+[1.648s] creating ../../../build/tracetools_trace/tracetools_trace.egg-info
+[1.648s] writing ../../../build/tracetools_trace/tracetools_trace.egg-info/PKG-INFO
+[1.648s] writing dependency_links to ../../../build/tracetools_trace/tracetools_trace.egg-info/dependency_links.txt
+[1.648s] writing entry points to ../../../build/tracetools_trace/tracetools_trace.egg-info/entry_points.txt
+[1.649s] writing requirements to ../../../build/tracetools_trace/tracetools_trace.egg-info/requires.txt
+[1.649s] writing top-level names to ../../../build/tracetools_trace/tracetools_trace.egg-info/top_level.txt
+[1.649s] writing manifest file '../../../build/tracetools_trace/tracetools_trace.egg-info/SOURCES.txt'
+[1.650s] reading manifest file '../../../build/tracetools_trace/tracetools_trace.egg-info/SOURCES.txt'
+[1.651s] writing manifest file '../../../build/tracetools_trace/tracetools_trace.egg-info/SOURCES.txt'
+[1.654s] running build
+[1.655s] running build_py
+[1.655s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build
+[1.655s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib
+[1.656s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace
+[1.656s] copying tracetools_trace/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace
+[1.656s] copying tracetools_trace/trace.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace
+[1.656s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.656s] copying tracetools_trace/tools/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.657s] copying tracetools_trace/tools/args.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.657s] copying tracetools_trace/tools/lttng.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.657s] copying tracetools_trace/tools/lttng_impl.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.657s] copying tracetools_trace/tools/lttng_stub.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.657s] copying tracetools_trace/tools/names.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.658s] copying tracetools_trace/tools/path.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.658s] copying tracetools_trace/tools/signals.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.659s] copying tracetools_trace/tools/tracepoints.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools
+[1.659s] running install
+[1.659s] running install_lib
+[1.659s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace
+[1.659s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace
+[1.659s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/trace.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace
+[1.659s] creating /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/__init__.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/args.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/lttng.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/lttng_impl.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/lttng_stub.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/names.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/path.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/signals.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.660s] copying /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build/lib/tracetools_trace/tools/tracepoints.py -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools
+[1.662s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/__init__.py to __init__.cpython-310.pyc
+[1.662s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/trace.py to trace.cpython-310.pyc
+[1.662s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/__init__.py to __init__.cpython-310.pyc
+[1.664s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/args.py to args.cpython-310.pyc
+[1.664s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/lttng.py to lttng.cpython-310.pyc
+[1.665s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/lttng_impl.py to lttng_impl.cpython-310.pyc
+[1.665s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/lttng_stub.py to lttng_stub.cpython-310.pyc
+[1.665s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/names.py to names.cpython-310.pyc
+[1.666s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/path.py to path.cpython-310.pyc
+[1.666s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/signals.py to signals.cpython-310.pyc
+[1.666s] byte-compiling /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace/tools/tracepoints.py to tracepoints.cpython-310.pyc
+[1.666s] running install_data
+[1.666s] copying package.xml -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/tracetools_trace
+[1.666s] copying resource/tracetools_trace -> /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/ament_index/resource_index/packages
+[1.666s] running install_egg_info
+[1.669s] Copying ../../../build/tracetools_trace/tracetools_trace.egg-info to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages/tracetools_trace-4.1.1-py3.10.egg-info
+[1.670s] running install_scripts
+[1.706s] Installing trace script to /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/tracetools_trace
+[1.706s] writing list of installed files to '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/install.log'
+[1.733s] Invoked command in '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/uros/tracetools/tracetools_trace' returned '0': PYTHONPATH=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/tracetools_trace build --build-base /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/build install --record /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/build/tracetools_trace/install.log --single-version-externally-managed install_data
