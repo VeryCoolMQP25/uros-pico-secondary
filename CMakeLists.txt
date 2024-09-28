@@ -14,7 +14,7 @@ pico_sdk_init()
 
 #include Libraries
 
-SET(MICRO_ROS_PATH "${CMAKE_CURRENT_LIST_DIR}/uros_ws/firmware/build" CACHE STRING "Course Common Lib")
+SET(MICRO_ROS_PATH "${CMAKE_CURRENT_LIST_DIR}/uros_ws/firmware/build" CACHE STRING "Common Uros Library")
 include(micro_ros.cmake)
 
 

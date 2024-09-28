@@ -7,7 +7,8 @@
 #include <rmw_microros/rmw_microros.h>
 
 #include "pico/stdlib.h"
-#include "pico_uart_transports.h"
+#include "pico_ros_usb.h"
+
 const uint LED_PIN = 25;
 
 rcl_publisher_t publisher;
@@ -16,7 +17,7 @@ std_msgs__msg__Int32 msg;
 void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 {
     rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-    msg.data++;
+    msg.data+=5;
 }
 
 int main()

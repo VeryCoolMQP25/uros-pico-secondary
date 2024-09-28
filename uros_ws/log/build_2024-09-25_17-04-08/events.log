@@ -1,0 +1,891 @@
+[0.000000] (-) TimerEvent: {}
+[0.000353] (-) JobUnselected: {'identifier': 'micro_ros_setup'}
+[0.000381] (micro_ros_msgs) JobQueued: {'identifier': 'micro_ros_msgs', 'dependencies': OrderedDict()}
+[0.000396] (micro_ros_agent) JobQueued: {'identifier': 'micro_ros_agent', 'dependencies': OrderedDict([('micro_ros_msgs', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs')])}
+[0.000409] (micro_ros_msgs) JobStarted: {'identifier': 'micro_ros_msgs'}
+[0.007118] (micro_ros_msgs) JobProgress: {'identifier': 'micro_ros_msgs', 'progress': 'cmake'}
+[0.007154] (micro_ros_msgs) Command: {'cmd': ['/bin/cmake', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/src/uros/micro_ros_msgs', '-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli', '-DCMAKE_INSTALL_PREFIX=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[0.016035] (micro_ros_msgs) StdoutLine: {'line': b'Not searching for unused variables given on the command line.\n'}
+[0.055576] (micro_ros_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099774] (-) TimerEvent: {}
+[0.101326] (micro_ros_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.107504] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.176108] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.183151] (micro_ros_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /bin/cc - skipped\n'}
+[0.183421] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.183945] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.187139] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.199949] (-) TimerEvent: {}
+[0.259820] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.266917] (micro_ros_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /bin/c++ - skipped\n'}
+[0.267174] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.267699] (micro_ros_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.270614] (micro_ros_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.300148] (-) TimerEvent: {}
+[0.376315] (micro_ros_msgs) StdoutLine: {'line': b'-- Found Python3: /bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.400248] (-) TimerEvent: {}
+[0.428524] (micro_ros_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.430225] (micro_ros_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.433401] (micro_ros_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.470368] (micro_ros_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.491902] (micro_ros_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[0.500426] (-) TimerEvent: {}
+[0.600699] (-) TimerEvent: {}
+[0.674867] (micro_ros_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[0.700875] (-) TimerEvent: {}
+[0.801187] (-) TimerEvent: {}
+[0.809383] (micro_ros_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.901388] (-) TimerEvent: {}
+[0.991889] (micro_ros_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.001595] (-) TimerEvent: {}
+[1.010642] (micro_ros_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[1.011988] (micro_ros_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[1.036567] (micro_ros_msgs) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[1.036714] (micro_ros_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /bin/python3\n'}
+[1.036800] (micro_ros_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[1.036880] (micro_ros_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[1.051323] (micro_ros_msgs) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[1.074235] (micro_ros_msgs) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.079701] (micro_ros_msgs) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.082768] (micro_ros_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.087123] (micro_ros_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.101762] (-) TimerEvent: {}
+[1.107837] (micro_ros_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[1.109480] (micro_ros_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs\n'}
+[1.114038] (micro_ros_msgs) CommandEnded: {'returncode': 0}
+[1.115726] (micro_ros_msgs) JobProgress: {'identifier': 'micro_ros_msgs', 'progress': 'build'}
+[1.115764] (micro_ros_msgs) Command: {'cmd': ['/bin/cmake', '--build', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs', '--', '-j16', '-l16'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[1.150171] (micro_ros_msgs) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[1.160907] (micro_ros_msgs) StdoutLine: {'line': b'[  4%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[1.167600] (micro_ros_msgs) StdoutLine: {'line': b'[  4%] Built target ament_cmake_python_copy_micro_ros_msgs\n'}
+[1.202011] (-) TimerEvent: {}
+[1.302388] (-) TimerEvent: {}
+[1.337690] (micro_ros_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[1.337985] (micro_ros_msgs) StdoutLine: {'line': b'creating micro_ros_msgs.egg-info\n'}
+[1.338248] (micro_ros_msgs) StdoutLine: {'line': b'writing micro_ros_msgs.egg-info/PKG-INFO\n'}
+[1.338513] (micro_ros_msgs) StdoutLine: {'line': b'writing dependency_links to micro_ros_msgs.egg-info/dependency_links.txt\n'}
+[1.338614] (micro_ros_msgs) StdoutLine: {'line': b'writing top-level names to micro_ros_msgs.egg-info/top_level.txt\n'}
+[1.338702] (micro_ros_msgs) StdoutLine: {'line': b"writing manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'\n"}
+[1.339830] (micro_ros_msgs) StdoutLine: {'line': b"reading manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'\n"}
+[1.340122] (micro_ros_msgs) StdoutLine: {'line': b"writing manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'\n"}
+[1.361313] (micro_ros_msgs) StdoutLine: {'line': b'[  4%] Built target ament_cmake_python_build_micro_ros_msgs_egg\n'}
+[1.398400] (micro_ros_msgs) StdoutLine: {'line': b'[  4%] Built target micro_ros_msgs__cpp\n'}
+[1.402564] (-) TimerEvent: {}
+[1.403328] (micro_ros_msgs) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/graph__functions.c.o\x1b[0m\n'}
+[1.404633] (micro_ros_msgs) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/node__functions.c.o\x1b[0m\n'}
+[1.405057] (micro_ros_msgs) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/entity__functions.c.o\x1b[0m\n'}
+[1.407687] (micro_ros_msgs) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[1.411163] (micro_ros_msgs) StdoutLine: {'line': b'[ 14%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[1.412190] (micro_ros_msgs) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.468610] (micro_ros_msgs) StdoutLine: {'line': b'[ 19%] \x1b[32m\x1b[1mLinking C shared library libmicro_ros_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[1.502651] (-) TimerEvent: {}
+[1.507479] (micro_ros_msgs) StdoutLine: {'line': b'[ 19%] Built target micro_ros_msgs__rosidl_generator_c\n'}
+[1.520444] (micro_ros_msgs) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[1.520648] (micro_ros_msgs) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.520765] (micro_ros_msgs) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[1.602806] (-) TimerEvent: {}
+[1.627217] (micro_ros_msgs) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/graph__type_support.cpp.o\x1b[0m\n'}
+[1.627481] (micro_ros_msgs) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/node__type_support.cpp.o\x1b[0m\n'}
+[1.627619] (micro_ros_msgs) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/entity__type_support.cpp.o\x1b[0m\n'}
+[1.694779] (micro_ros_msgs) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/graph__type_support.cpp.o\x1b[0m\n'}
+[1.695048] (micro_ros_msgs) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/node__type_support.cpp.o\x1b[0m\n'}
+[1.699979] (micro_ros_msgs) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/entity__type_support.cpp.o\x1b[0m\n'}
+[1.702851] (-) TimerEvent: {}
+[1.715741] (micro_ros_msgs) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/entity__type_support.cpp.o\x1b[0m\n'}
+[1.716776] (micro_ros_msgs) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/graph__type_support.cpp.o\x1b[0m\n'}
+[1.716997] (micro_ros_msgs) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/node__type_support.cpp.o\x1b[0m\n'}
+[1.773312] (micro_ros_msgs) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/entity__type_support.cpp.o\x1b[0m\n'}
+[1.773558] (micro_ros_msgs) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/graph__type_support.cpp.o\x1b[0m\n'}
+[1.774795] (micro_ros_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/node__type_support.cpp.o\x1b[0m\n'}
+[1.802956] (-) TimerEvent: {}
+[1.826137] (micro_ros_msgs) StdoutLine: {'line': b'[ 53%] \x1b[32m\x1b[1mLinking CXX shared library libmicro_ros_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[1.857959] (micro_ros_msgs) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/graph__type_support.c.o\x1b[0m\n'}
+[1.858714] (micro_ros_msgs) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/entity__type_support.c.o\x1b[0m\n'}
+[1.859798] (micro_ros_msgs) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/node__type_support.c.o\x1b[0m\n'}
+[1.903070] (-) TimerEvent: {}
+[1.904069] (micro_ros_msgs) StdoutLine: {'line': b'[ 59%] Built target micro_ros_msgs__rosidl_typesupport_c\n'}
+[1.949620] (micro_ros_msgs) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking C shared library libmicro_ros_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[1.998375] (micro_ros_msgs) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/graph__type_support_c.cpp.o\x1b[0m\n'}
+[1.998648] (micro_ros_msgs) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/entity__type_support_c.cpp.o\x1b[0m\n'}
+[1.998774] (micro_ros_msgs) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/node__type_support_c.cpp.o\x1b[0m\n'}
+[2.003194] (-) TimerEvent: {}
+[2.005831] (micro_ros_msgs) StdoutLine: {'line': b'[ 68%] Built target micro_ros_msgs__rosidl_typesupport_introspection_c\n'}
+[2.099922] (micro_ros_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libmicro_ros_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[2.103329] (-) TimerEvent: {}
+[2.171056] (micro_ros_msgs) StdoutLine: {'line': b'[ 70%] Built target micro_ros_msgs__rosidl_typesupport_cpp\n'}
+[2.203446] (-) TimerEvent: {}
+[2.303788] (-) TimerEvent: {}
+[2.362389] (micro_ros_msgs) StdoutLine: {'line': b'[ 72%] \x1b[32m\x1b[1mLinking CXX shared library libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[2.404016] (-) TimerEvent: {}
+[2.404835] (micro_ros_msgs) StdoutLine: {'line': b'[ 74%] \x1b[32m\x1b[1mLinking CXX shared library libmicro_ros_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[2.429834] (micro_ros_msgs) StdoutLine: {'line': b'[ 74%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_c\n'}
+[2.441064] (micro_ros_msgs) StdoutLine: {'line': b'[ 76%] \x1b[32m\x1b[1mLinking CXX shared library libmicro_ros_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[2.469798] (micro_ros_msgs) StdoutLine: {'line': b'[ 76%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[2.500504] (micro_ros_msgs) StdoutLine: {'line': b'[ 76%] Built target micro_ros_msgs__rosidl_typesupport_introspection_cpp\n'}
+[2.504231] (-) TimerEvent: {}
+[2.517133] (micro_ros_msgs) StdoutLine: {'line': b'[ 76%] Built target micro_ros_msgs\n'}
+[2.533587] (micro_ros_msgs) StdoutLine: {'line': b'[ 78%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[2.604449] (-) TimerEvent: {}
+[2.704825] (-) TimerEvent: {}
+[2.805199] (-) TimerEvent: {}
+[2.834007] (micro_ros_msgs) StdoutLine: {'line': b'[ 78%] Built target micro_ros_msgs__py\n'}
+[2.852372] (micro_ros_msgs) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_graph_s.c.o\x1b[0m\n'}
+[2.854035] (micro_ros_msgs) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_entity_s.c.o\x1b[0m\n'}
+[2.854176] (micro_ros_msgs) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_node_s.c.o\x1b[0m\n'}
+[2.905389] (-) TimerEvent: {}
+[2.956774] (micro_ros_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/micro_ros_msgs/libmicro_ros_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[2.998829] (micro_ros_msgs) StdoutLine: {'line': b'[ 87%] Built target micro_ros_msgs__rosidl_generator_py\n'}
+[3.005537] (-) TimerEvent: {}
+[3.021492] (micro_ros_msgs) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[3.023366] (micro_ros_msgs) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[3.023517] (micro_ros_msgs) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[3.101665] (micro_ros_msgs) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.101924] (micro_ros_msgs) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.103930] (micro_ros_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.105608] (-) TimerEvent: {}
+[3.133732] (micro_ros_msgs) StdoutLine: {'line': b'[100%] Built target micro_ros_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[3.137442] (micro_ros_msgs) StdoutLine: {'line': b'[100%] Built target micro_ros_msgs__rosidl_typesupport_c__pyext\n'}
+[3.139061] (micro_ros_msgs) StdoutLine: {'line': b'[100%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[3.149366] (micro_ros_msgs) CommandEnded: {'returncode': 0}
+[3.205815] (-) TimerEvent: {}
+[3.256861] (micro_ros_msgs) JobProgress: {'identifier': 'micro_ros_msgs', 'progress': 'install'}
+[3.263918] (micro_ros_msgs) Command: {'cmd': ['/bin/cmake', '--install', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[3.270231] (micro_ros_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.270392] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/rosidl_interfaces/micro_ros_msgs\n'}
+[3.270634] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.270755] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.271023] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[3.271135] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/graph.h\n'}
+[3.271288] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.271390] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__functions.c\n'}
+[3.271497] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__functions.h\n'}
+[3.271578] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__struct.h\n'}
+[3.271676] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.h\n'}
+[3.271770] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__functions.c\n'}
+[3.271864] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__functions.h\n'}
+[3.271948] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__struct.h\n'}
+[3.272031] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.h\n'}
+[3.272130] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__functions.c\n'}
+[3.272212] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__functions.h\n'}
+[3.272291] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__struct.h\n'}
+[3.272370] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.h\n'}
+[3.272446] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/node.h\n'}
+[3.272522] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/entity.h\n'}
+[3.272599] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/library_path.sh\n'}
+[3.272680] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/library_path.dsv\n'}
+[3.272768] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_c.so\n'}
+[3.281820] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_c.so" to ""\n'}
+[3.282019] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.282113] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.282151] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[3.282185] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.282218] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_fastrtps_c.h\n'}
+[3.282251] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_fastrtps_c.h\n'}
+[3.282286] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_fastrtps_c.h\n'}
+[3.282356] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[3.282408] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[3.282460] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.282513] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.282561] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[3.282597] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.282631] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_introspection_c.h\n'}
+[3.282680] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.c\n'}
+[3.282716] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_introspection_c.h\n'}
+[3.282788] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.c\n'}
+[3.282842] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_introspection_c.h\n'}
+[3.282880] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.c\n'}
+[3.282918] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_c.so\n'}
+[3.283342] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[3.283435] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_c.so\n'}
+[3.283661] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_c.so" to ""\n'}
+[3.283750] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.283923] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.284027] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/graph.hpp\n'}
+[3.284092] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.284135] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__builder.hpp\n'}
+[3.284176] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__struct.hpp\n'}
+[3.284245] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__traits.hpp\n'}
+[3.284329] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__builder.hpp\n'}
+[3.284409] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__struct.hpp\n'}
+[3.284487] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__traits.hpp\n'}
+[3.284546] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__builder.hpp\n'}
+[3.284605] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__struct.hpp\n'}
+[3.284688] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__traits.hpp\n'}
+[3.284746] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/node.hpp\n'}
+[3.284804] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/entity.hpp\n'}
+[3.284890] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.284973] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.285031] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[3.285091] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.285156] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[3.285262] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/dds_fastrtps\n'}
+[3.285320] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[3.285387] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[3.285450] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[3.286058] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[3.286179] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs\n'}
+[3.286248] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg\n'}
+[3.286352] (micro_ros_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail\n'}
+[3.286439] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_introspection_cpp.hpp\n'}
+[3.286510] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.cpp\n'}
+[3.286561] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_introspection_cpp.hpp\n'}
+[3.286599] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.cpp\n'}
+[3.286660] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_introspection_cpp.hpp\n'}
+[3.286714] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.cpp\n'}
+[3.286776] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[3.287372] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[3.287424] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_cpp.so\n'}
+[3.287680] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[3.287731] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/pythonpath.sh\n'}
+[3.287790] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/pythonpath.dsv\n'}
+[3.287849] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs-3.0.1-py3.10.egg-info\n'}
+[3.287923] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs-3.0.1-py3.10.egg-info/PKG-INFO\n'}
+[3.287980] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs-3.0.1-py3.10.egg-info/dependency_links.txt\n'}
+[3.288041] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs-3.0.1-py3.10.egg-info/top_level.txt\n'}
+[3.288104] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs-3.0.1-py3.10.egg-info/SOURCES.txt\n'}
+[3.288158] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs\n'}
+[3.288218] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/__init__.py\n'}
+[3.288279] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg\n'}
+[3.288342] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_graph.py\n'}
+[3.288396] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_graph_s.c\n'}
+[3.288445] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_node.py\n'}
+[3.288504] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_node_s.c\n'}
+[3.288564] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_entity.py\n'}
+[3.288627] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_entity_s.c\n'}
+[3.288688] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/__init__.py\n'}
+[3.288736] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[3.288797] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[3.288858] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[3.288920] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/libmicro_ros_msgs__rosidl_generator_py.so\n'}
+[3.288983] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.289241] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.289441] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.305988] (-) TimerEvent: {}
+[3.316709] (micro_ros_msgs) StdoutLine: {'line': b"Listing '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs'...\n"}
+[3.316868] (micro_ros_msgs) StdoutLine: {'line': b"Compiling '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/__init__.py'...\n"}
+[3.316986] (micro_ros_msgs) StdoutLine: {'line': b"Listing '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg'...\n"}
+[3.317097] (micro_ros_msgs) StdoutLine: {'line': b"Compiling '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/__init__.py'...\n"}
+[3.317205] (micro_ros_msgs) StdoutLine: {'line': b"Compiling '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_entity.py'...\n"}
+[3.317312] (micro_ros_msgs) StdoutLine: {'line': b"Compiling '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_graph.py'...\n"}
+[3.317418] (micro_ros_msgs) StdoutLine: {'line': b"Compiling '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/msg/_node.py'...\n"}
+[3.319723] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.320000] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.320244] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.320510] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.320713] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.321020] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.321110] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_py.so\n'}
+[3.321460] (micro_ros_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_py.so" to ""\n'}
+[3.321545] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Graph.idl\n'}
+[3.321682] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Node.idl\n'}
+[3.321875] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Entity.idl\n'}
+[3.321985] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Graph.msg\n'}
+[3.322102] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Node.msg\n'}
+[3.322231] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Entity.msg\n'}
+[3.322334] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/package_run_dependencies/micro_ros_msgs\n'}
+[3.322427] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/parent_prefix_path/micro_ros_msgs\n'}
+[3.322533] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/ament_prefix_path.sh\n'}
+[3.322636] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/ament_prefix_path.dsv\n'}
+[3.322736] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/path.sh\n'}
+[3.322846] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/path.dsv\n'}
+[3.322927] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.bash\n'}
+[3.323046] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.sh\n'}
+[3.323142] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.zsh\n'}
+[3.323246] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.dsv\n'}
+[3.323338] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.dsv\n'}
+[3.323429] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/packages/micro_ros_msgs\n'}
+[3.323548] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cExport.cmake\n'}
+[3.323646] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[3.323742] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[3.323845] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[3.323936] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[3.324025] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[3.324115] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cExport.cmake\n'}
+[3.324218] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[3.324308] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cppExport.cmake\n'}
+[3.324403] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[3.324515] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[3.324627] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[3.324718] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[3.324795] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[3.324872] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[3.324949] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_pyExport.cmake\n'}
+[3.325026] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[3.325101] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[3.325177] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[3.325253] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[3.325335] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[3.325411] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[3.325486] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.325576] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[3.325653] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgsConfig.cmake\n'}
+[3.325730] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgsConfig-version.cmake\n'}
+[3.325807] (micro_ros_msgs) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.xml\n'}
+[3.326851] (micro_ros_msgs) CommandEnded: {'returncode': 0}
+[3.406108] (-) TimerEvent: {}
+[3.440091] (micro_ros_msgs) JobEnded: {'identifier': 'micro_ros_msgs', 'rc': 0}
+[3.440810] (micro_ros_agent) JobStarted: {'identifier': 'micro_ros_agent'}
+[3.447630] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'cmake'}
+[3.447682] (micro_ros_agent) Command: {'cmd': ['/bin/cmake', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent', '-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli', '-DCMAKE_INSTALL_PREFIX=/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[3.453816] (micro_ros_agent) StdoutLine: {'line': b'Not searching for unused variables given on the command line.\n'}
+[3.496870] (micro_ros_agent) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[3.502326] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[3.506275] (-) TimerEvent: {}
+[3.570815] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[3.575071] (micro_ros_agent) StdoutLine: {'line': b'-- Check for working C compiler: /bin/cc - skipped\n'}
+[3.575366] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[3.575556] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[3.606356] (-) TimerEvent: {}
+[3.616390] (micro_ros_agent) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[3.621879] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[3.697382] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.704284] (micro_ros_agent) StdoutLine: {'line': b'-- Check for working CXX compiler: /bin/c++ - skipped\n'}
+[3.704362] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.704626] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.706417] (-) TimerEvent: {}
+[3.735511] (micro_ros_agent) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.737805] (micro_ros_agent) StdoutLine: {'line': b'-- Generating done\n'}
+[3.738249] (micro_ros_agent) StdoutLine: {'line': b'-- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent\n'}
+[3.741406] (micro_ros_agent) CommandEnded: {'returncode': 0}
+[3.742019] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'build'}
+[3.742376] (micro_ros_agent) Command: {'cmd': ['/bin/cmake', '--build', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent', '--', '-j16', '-l16'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[3.787891] (micro_ros_agent) StdoutLine: {'line': b"[  6%] \x1b[34m\x1b[1mCreating directories for 'xrceagent'\x1b[0m\n"}
+[3.806529] (-) TimerEvent: {}
+[3.847906] (micro_ros_agent) StdoutLine: {'line': b"[ 12%] \x1b[34m\x1b[1mPerforming download step (git clone) for 'xrceagent'\x1b[0m\n"}
+[3.865647] (micro_ros_agent) StderrLine: {'line': b"Cloning into 'xrceagent'...\n"}
+[3.906658] (-) TimerEvent: {}
+[4.006987] (-) TimerEvent: {}
+[4.107444] (-) TimerEvent: {}
+[4.207801] (-) TimerEvent: {}
+[4.308232] (-) TimerEvent: {}
+[4.408682] (-) TimerEvent: {}
+[4.508991] (-) TimerEvent: {}
+[4.609419] (-) TimerEvent: {}
+[4.709675] (-) TimerEvent: {}
+[4.809928] (-) TimerEvent: {}
+[4.910226] (-) TimerEvent: {}
+[5.010517] (-) TimerEvent: {}
+[5.110778] (-) TimerEvent: {}
+[5.206744] (micro_ros_agent) StderrLine: {'line': b"Switched to a new branch 'ros2'\n"}
+[5.206930] (micro_ros_agent) StdoutLine: {'line': b"Branch 'ros2' set up to track remote branch 'ros2' from 'origin'.\n"}
+[5.210892] (-) TimerEvent: {}
+[5.259760] (micro_ros_agent) StdoutLine: {'line': b"[ 18%] \x1b[34m\x1b[1mPerforming update step for 'xrceagent'\x1b[0m\n"}
+[5.311110] (-) TimerEvent: {}
+[5.411521] (-) TimerEvent: {}
+[5.507770] (micro_ros_agent) StderrLine: {'line': b'HEAD is now at c25243c Enable Domain Override on Reference and XML Participant (#351)\n'}
+[5.511618] (-) TimerEvent: {}
+[5.544089] (micro_ros_agent) StdoutLine: {'line': b"[ 25%] \x1b[34m\x1b[1mNo patch step for 'xrceagent'\x1b[0m\n"}
+[5.562519] (micro_ros_agent) StdoutLine: {'line': b"[ 31%] \x1b[34m\x1b[1mPerforming configure step for 'xrceagent'\x1b[0m\n"}
+[5.571104] (micro_ros_agent) StdoutLine: {'line': b'loading initial cache file /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent/agent/tmp/xrceagent-cache-.cmake\n'}
+[5.611727] (-) TimerEvent: {}
+[5.613686] (micro_ros_agent) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[5.619845] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[5.692235] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[5.698517] (micro_ros_agent) StdoutLine: {'line': b'-- Check for working C compiler: /bin/cc - skipped\n'}
+[5.698645] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[5.698771] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[5.711932] (-) TimerEvent: {}
+[5.742224] (micro_ros_agent) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[5.747320] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.812032] (-) TimerEvent: {}
+[5.825025] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[5.832461] (micro_ros_agent) StdoutLine: {'line': b'-- Check for working CXX compiler: /bin/c++ - skipped\n'}
+[5.832676] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[5.833166] (micro_ros_agent) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[5.837583] (micro_ros_agent) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[5.912222] (-) TimerEvent: {}
+[5.912648] (micro_ros_agent) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[5.913157] (micro_ros_agent) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[5.977649] (micro_ros_agent) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[5.978267] (micro_ros_agent) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[5.994106] (micro_ros_agent) StdoutLine: {'line': b'-- Configuring done\n'}
+[5.995652] (micro_ros_agent) StdoutLine: {'line': b'-- Generating done\n'}
+[5.995938] (micro_ros_agent) StdoutLine: {'line': b'-- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build\n'}
+[6.012417] (-) TimerEvent: {}
+[6.015477] (micro_ros_agent) StdoutLine: {'line': b"[ 37%] \x1b[34m\x1b[1mPerforming build step for 'xrceagent'\x1b[0m\n"}
+[6.057080] (micro_ros_agent) StdoutLine: {'line': b"[ 12%] \x1b[34m\x1b[1mCreating directories for 'uagent'\x1b[0m\n"}
+[6.112617] (-) TimerEvent: {}
+[6.122908] (micro_ros_agent) StdoutLine: {'line': b"[ 25%] \x1b[34m\x1b[1mNo download step for 'uagent'\x1b[0m\n"}
+[6.145295] (micro_ros_agent) StdoutLine: {'line': b"[ 37%] \x1b[34m\x1b[1mNo update step for 'uagent'\x1b[0m\n"}
+[6.168126] (micro_ros_agent) StdoutLine: {'line': b"[ 50%] \x1b[34m\x1b[1mNo patch step for 'uagent'\x1b[0m\n"}
+[6.186293] (micro_ros_agent) StdoutLine: {'line': b"[ 62%] \x1b[34m\x1b[1mPerforming configure step for 'uagent'\x1b[0m\n"}
+[6.194968] (micro_ros_agent) StdoutLine: {'line': b'loading initial cache file /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/uagent-prefix/tmp/uagent-cache-.cmake\n'}
+[6.198196] (micro_ros_agent) StdoutLine: {'line': b"-- Setting build type to 'Release' as none was specified.\n"}
+[6.212794] (-) TimerEvent: {}
+[6.217507] (micro_ros_agent) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):\n'}
+[6.217617] (micro_ros_agent) StderrLine: {'line': b'  The package name passed to `find_package_handle_standard_args` (tinyxml2)\n'}
+[6.217656] (micro_ros_agent) StderrLine: {'line': b'  does not match the name of the calling package (TinyXML2).  This can lead\n'}
+[6.217692] (micro_ros_agent) StderrLine: {'line': b'  to problems in calling code that expects `find_package` result variables\n'}
+[6.217723] (micro_ros_agent) StderrLine: {'line': b'  (e.g., `_FOUND`) to follow a certain pattern.\n'}
+[6.217754] (micro_ros_agent) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[6.217785] (micro_ros_agent) StderrLine: {'line': b'  cmake/modules/FindTinyXML2.cmake:40 (find_package_handle_standard_args)\n'}
+[6.217814] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/humble/share/fastrtps/cmake/fastrtps-config.cmake:51 (find_package)\n'}
+[6.217844] (micro_ros_agent) StderrLine: {'line': b'  CMakeLists.txt:153 (find_package)\n'}
+[6.217874] (micro_ros_agent) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[6.217904] (micro_ros_agent) StderrLine: {'line': b'\x1b[0m\n'}
+[6.217933] (micro_ros_agent) StdoutLine: {'line': b'-- Found tinyxml2: /usr/lib/x86_64-linux-gnu/libtinyxml2.so  \n'}
+[6.280896] (micro_ros_agent) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[6.286215] (micro_ros_agent) StdoutLine: {'line': b'-- Configuring done\n'}
+[6.293632] (micro_ros_agent) StdoutLine: {'line': b'-- Generating done\n'}
+[6.294303] (micro_ros_agent) StdoutLine: {'line': b'-- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build\n'}
+[6.313053] (micro_ros_agent) StdoutLine: {'line': b"[ 75%] \x1b[34m\x1b[1mPerforming build step for 'uagent'\x1b[0m\n"}
+[6.313191] (-) TimerEvent: {}
+[6.357527] (micro_ros_agent) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/Root.cpp.o\x1b[0m\n'}
+[6.357774] (micro_ros_agent) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/client/ProxyClient.cpp.o\x1b[0m\n'}
+[6.357874] (micro_ros_agent) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/participant/Participant.cpp.o\x1b[0m\n'}
+[6.357978] (micro_ros_agent) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/Agent.cpp.o\x1b[0m\n'}
+[6.358060] (micro_ros_agent) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/publisher/Publisher.cpp.o\x1b[0m\n'}
+[6.358139] (micro_ros_agent) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/AgentInstance.cpp.o\x1b[0m\n'}
+[6.358325] (micro_ros_agent) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/processor/Processor.cpp.o\x1b[0m\n'}
+[6.359129] (micro_ros_agent) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/datareader/DataReader.cpp.o\x1b[0m\n'}
+[6.359818] (micro_ros_agent) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/topic/Topic.cpp.o\x1b[0m\n'}
+[6.360116] (micro_ros_agent) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/object/XRCEObject.cpp.o\x1b[0m\n'}
+[6.360281] (micro_ros_agent) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/XRCETypes.cpp.o\x1b[0m\n'}
+[6.360498] (micro_ros_agent) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/MessageHeader.cpp.o\x1b[0m\n'}
+[6.360761] (micro_ros_agent) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/subscriber/Subscriber.cpp.o\x1b[0m\n'}
+[6.363187] (micro_ros_agent) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/requester/Requester.cpp.o\x1b[0m\n'}
+[6.363485] (micro_ros_agent) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/datawriter/DataWriter.cpp.o\x1b[0m\n'}
+[6.363639] (micro_ros_agent) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/replier/Replier.cpp.o\x1b[0m\n'}
+[6.416210] (-) TimerEvent: {}
+[6.516571] (-) TimerEvent: {}
+[6.617053] (-) TimerEvent: {}
+[6.717541] (-) TimerEvent: {}
+[6.817987] (-) TimerEvent: {}
+[6.918455] (-) TimerEvent: {}
+[7.018912] (-) TimerEvent: {}
+[7.119087] (micro_ros_agent) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/SubMessageHeader.cpp.o\x1b[0m\n'}
+[7.119437] (-) TimerEvent: {}
+[7.224072] (-) TimerEvent: {}
+[7.324515] (-) TimerEvent: {}
+[7.424936] (-) TimerEvent: {}
+[7.439897] (micro_ros_agent) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/message/InputMessage.cpp.o\x1b[0m\n'}
+[7.525071] (-) TimerEvent: {}
+[7.625486] (-) TimerEvent: {}
+[7.725927] (-) TimerEvent: {}
+[7.826393] (-) TimerEvent: {}
+[7.852292] (micro_ros_agent) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/message/OutputMessage.cpp.o\x1b[0m\n'}
+[7.929549] (-) TimerEvent: {}
+[8.027239] (micro_ros_agent) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/utils/ArgumentParser.cpp.o\x1b[0m\n'}
+[8.029677] (-) TimerEvent: {}
+[8.034951] (micro_ros_agent) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/Server.cpp.o\x1b[0m\n'}
+[8.054968] (micro_ros_agent) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/stream_framing/StreamFramingProtocol.cpp.o\x1b[0m\n'}
+[8.129799] (-) TimerEvent: {}
+[8.230172] (-) TimerEvent: {}
+[8.330548] (-) TimerEvent: {}
+[8.345849] (micro_ros_agent) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/custom/CustomAgent.cpp.o\x1b[0m\n'}
+[8.419538] (micro_ros_agent) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/udp/UDPv4AgentLinux.cpp.o\x1b[0m\n'}
+[8.430687] (-) TimerEvent: {}
+[8.531110] (-) TimerEvent: {}
+[8.631545] (-) TimerEvent: {}
+[8.732884] (-) TimerEvent: {}
+[8.833316] (-) TimerEvent: {}
+[8.933745] (-) TimerEvent: {}
+[9.036238] (-) TimerEvent: {}
+[9.139552] (-) TimerEvent: {}
+[9.240018] (-) TimerEvent: {}
+[9.340450] (-) TimerEvent: {}
+[9.440889] (-) TimerEvent: {}
+[9.542886] (-) TimerEvent: {}
+[9.643314] (-) TimerEvent: {}
+[9.743725] (-) TimerEvent: {}
+[9.844131] (-) TimerEvent: {}
+[9.944545] (-) TimerEvent: {}
+[10.046418] (-) TimerEvent: {}
+[10.146864] (-) TimerEvent: {}
+[10.247276] (-) TimerEvent: {}
+[10.292871] (micro_ros_agent) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/udp/UDPv6AgentLinux.cpp.o\x1b[0m\n'}
+[10.347412] (-) TimerEvent: {}
+[10.447831] (-) TimerEvent: {}
+[10.548231] (-) TimerEvent: {}
+[10.648658] (-) TimerEvent: {}
+[10.749535] (-) TimerEvent: {}
+[10.852880] (-) TimerEvent: {}
+[10.953312] (-) TimerEvent: {}
+[11.053736] (-) TimerEvent: {}
+[11.154185] (-) TimerEvent: {}
+[11.254619] (-) TimerEvent: {}
+[11.355048] (-) TimerEvent: {}
+[11.455483] (-) TimerEvent: {}
+[11.555928] (-) TimerEvent: {}
+[11.658034] (-) TimerEvent: {}
+[11.758507] (-) TimerEvent: {}
+[11.803685] (micro_ros_agent) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/tcp/TCPv4AgentLinux.cpp.o\x1b[0m\n'}
+[11.858627] (-) TimerEvent: {}
+[11.959051] (-) TimerEvent: {}
+[12.058196] (micro_ros_agent) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/tcp/TCPv6AgentLinux.cpp.o\x1b[0m\n'}
+[12.059157] (-) TimerEvent: {}
+[12.092441] (micro_ros_agent) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/SerialAgentLinux.cpp.o\x1b[0m\n'}
+[12.160943] (-) TimerEvent: {}
+[12.209037] (micro_ros_agent) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/TermiosAgentLinux.cpp.o\x1b[0m\n'}
+[12.261075] (-) TimerEvent: {}
+[12.361503] (-) TimerEvent: {}
+[12.462890] (-) TimerEvent: {}
+[12.479633] (micro_ros_agent) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/MultiSerialAgentLinux.cpp.o\x1b[0m\n'}
+[12.491795] (micro_ros_agent) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/MultiTermiosAgentLinux.cpp.o\x1b[0m\n'}
+[12.566217] (-) TimerEvent: {}
+[12.666665] (-) TimerEvent: {}
+[12.677953] (micro_ros_agent) StdoutLine: {'line': b'[ 76%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/PseudoTerminalAgentLinux.cpp.o\x1b[0m\n'}
+[12.766791] (-) TimerEvent: {}
+[12.867201] (-) TimerEvent: {}
+[12.967633] (-) TimerEvent: {}
+[13.068053] (-) TimerEvent: {}
+[13.168471] (-) TimerEvent: {}
+[13.269538] (-) TimerEvent: {}
+[13.369951] (-) TimerEvent: {}
+[13.470664] (-) TimerEvent: {}
+[13.573841] (-) TimerEvent: {}
+[13.676212] (-) TimerEvent: {}
+[13.776949] (-) TimerEvent: {}
+[13.839061] (micro_ros_agent) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/can/CanAgentLinux.cpp.o\x1b[0m\n'}
+[13.877084] (-) TimerEvent: {}
+[13.977507] (-) TimerEvent: {}
+[14.077929] (-) TimerEvent: {}
+[14.179583] (-) TimerEvent: {}
+[14.211770] (micro_ros_agent) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/discovery/DiscoveryServerLinux.cpp.o\x1b[0m\n'}
+[14.279713] (-) TimerEvent: {}
+[14.380128] (-) TimerEvent: {}
+[14.481946] (-) TimerEvent: {}
+[14.582374] (-) TimerEvent: {}
+[14.686209] (-) TimerEvent: {}
+[14.735106] (micro_ros_agent) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/discovery/DiscoveryServer.cpp.o\x1b[0m\n'}
+[14.786326] (-) TimerEvent: {}
+[14.886716] (-) TimerEvent: {}
+[14.987129] (-) TimerEvent: {}
+[14.992009] (micro_ros_agent) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/TopicPubSubType.cpp.o\x1b[0m\n'}
+[15.087272] (-) TimerEvent: {}
+[15.187627] (-) TimerEvent: {}
+[15.287996] (-) TimerEvent: {}
+[15.389536] (-) TimerEvent: {}
+[15.489913] (-) TimerEvent: {}
+[15.590283] (-) TimerEvent: {}
+[15.692870] (-) TimerEvent: {}
+[15.773010] (micro_ros_agent) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/xmlobjects/xmlobjects.cpp.o\x1b[0m\n'}
+[15.793012] (-) TimerEvent: {}
+[15.893468] (-) TimerEvent: {}
+[15.899540] (micro_ros_agent) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fast/FastEntities.cpp.o\x1b[0m\n'}
+[15.993588] (-) TimerEvent: {}
+[16.093952] (-) TimerEvent: {}
+[16.196202] (-) TimerEvent: {}
+[16.296594] (-) TimerEvent: {}
+[16.397017] (-) TimerEvent: {}
+[16.406220] (micro_ros_agent) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fast/FastMiddleware.cpp.o\x1b[0m\n'}
+[16.497140] (-) TimerEvent: {}
+[16.509886] (micro_ros_agent) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fastdds/FastDDSEntities.cpp.o\x1b[0m\n'}
+[16.597265] (-) TimerEvent: {}
+[16.697641] (-) TimerEvent: {}
+[16.798011] (-) TimerEvent: {}
+[16.898396] (-) TimerEvent: {}
+[16.998789] (-) TimerEvent: {}
+[17.099173] (-) TimerEvent: {}
+[17.199597] (-) TimerEvent: {}
+[17.252904] (micro_ros_agent) StdoutLine: {'line': b'[ 97%] \x1b[32mBuilding CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp.o\x1b[0m\n'}
+[17.299718] (-) TimerEvent: {}
+[17.400710] (-) TimerEvent: {}
+[17.502870] (-) TimerEvent: {}
+[17.603256] (-) TimerEvent: {}
+[17.703737] (-) TimerEvent: {}
+[17.804117] (-) TimerEvent: {}
+[17.904491] (-) TimerEvent: {}
+[18.004869] (-) TimerEvent: {}
+[18.105249] (-) TimerEvent: {}
+[18.205626] (-) TimerEvent: {}
+[18.305977] (-) TimerEvent: {}
+[18.406364] (-) TimerEvent: {}
+[18.506731] (-) TimerEvent: {}
+[18.607118] (-) TimerEvent: {}
+[18.707490] (-) TimerEvent: {}
+[18.807858] (-) TimerEvent: {}
+[18.908298] (-) TimerEvent: {}
+[19.008603] (-) TimerEvent: {}
+[19.108948] (-) TimerEvent: {}
+[19.209287] (-) TimerEvent: {}
+[19.309640] (-) TimerEvent: {}
+[19.409969] (-) TimerEvent: {}
+[19.510246] (-) TimerEvent: {}
+[19.610567] (-) TimerEvent: {}
+[19.710883] (-) TimerEvent: {}
+[19.811196] (-) TimerEvent: {}
+[19.911511] (-) TimerEvent: {}
+[20.011806] (-) TimerEvent: {}
+[20.112107] (-) TimerEvent: {}
+[20.212404] (-) TimerEvent: {}
+[20.312690] (-) TimerEvent: {}
+[20.412990] (-) TimerEvent: {}
+[20.513256] (-) TimerEvent: {}
+[20.613547] (-) TimerEvent: {}
+[20.713854] (-) TimerEvent: {}
+[20.814157] (-) TimerEvent: {}
+[20.914449] (-) TimerEvent: {}
+[21.014740] (-) TimerEvent: {}
+[21.115080] (-) TimerEvent: {}
+[21.215490] (-) TimerEvent: {}
+[21.315842] (-) TimerEvent: {}
+[21.416244] (-) TimerEvent: {}
+[21.516600] (-) TimerEvent: {}
+[21.616842] (-) TimerEvent: {}
+[21.717143] (-) TimerEvent: {}
+[21.817431] (-) TimerEvent: {}
+[21.917743] (-) TimerEvent: {}
+[22.018075] (-) TimerEvent: {}
+[22.118345] (-) TimerEvent: {}
+[22.218641] (-) TimerEvent: {}
+[22.319040] (-) TimerEvent: {}
+[22.419393] (-) TimerEvent: {}
+[22.519752] (-) TimerEvent: {}
+[22.620027] (-) TimerEvent: {}
+[22.684289] (micro_ros_agent) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libmicroxrcedds_agent.so\x1b[0m\n'}
+[22.720148] (-) TimerEvent: {}
+[22.820505] (-) TimerEvent: {}
+[22.918107] (micro_ros_agent) StdoutLine: {'line': b'[100%] Built target microxrcedds_agent\n'}
+[22.920672] (-) TimerEvent: {}
+[22.941153] (micro_ros_agent) StdoutLine: {'line': b"\x1b[34m\x1b[1mNo install step for 'uagent'\x1b[0m\n"}
+[22.963789] (micro_ros_agent) StdoutLine: {'line': b"\x1b[34m\x1b[1mCompleted 'uagent'\x1b[0m\n"}
+[22.994019] (micro_ros_agent) StdoutLine: {'line': b'Built target uagent\n'}
+[23.018287] (micro_ros_agent) StdoutLine: {'line': b"[ 43%] \x1b[34m\x1b[1mPerforming install step for 'xrceagent'\x1b[0m\n"}
+[23.020852] (-) TimerEvent: {}
+[23.055958] (micro_ros_agent) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target microxrcedds_agent\x1b[0m\n'}
+[23.117228] (micro_ros_agent) StdoutLine: {'line': b'[100%] Built target microxrcedds_agent\n'}
+[23.120933] (-) TimerEvent: {}
+[23.134945] (micro_ros_agent) StdoutLine: {'line': b'\x1b[36mInstall the project...\x1b[0m\n'}
+[23.140740] (micro_ros_agent) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[23.140823] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.so.2.4.1\n'}
+[23.146310] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.so.2.4\n'}
+[23.148263] (micro_ros_agent) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.so.2.4.1" to ""\n'}
+[23.148326] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.so\n'}
+[23.148382] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent\n'}
+[23.148435] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/Agent.hpp\n'}
+[23.148513] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp\n'}
+[23.148552] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/Root.hpp\n'}
+[23.148606] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client\n'}
+[23.148679] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/ProxyClient.hpp\n'}
+[23.148726] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session\n'}
+[23.148775] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/Session.hpp\n'}
+[23.148815] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/SessionInfo.hpp\n'}
+[23.148864] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream\n'}
+[23.148911] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream/InputStream.hpp\n'}
+[23.148960] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream/OutputStream.hpp\n'}
+[23.149008] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/datareader\n'}
+[23.149056] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/datareader/DataReader.hpp\n'}
+[23.149110] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/datawriter\n'}
+[23.149157] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/datawriter/DataWriter.hpp\n'}
+[23.149216] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/logger\n'}
+[23.149266] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp\n'}
+[23.149332] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/message\n'}
+[23.149591] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/message/InputMessage.hpp\n'}
+[23.149633] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/message/OutputMessage.hpp\n'}
+[23.149694] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/message/Packet.hpp\n'}
+[23.149743] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware\n'}
+[23.149793] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/Middleware.hpp\n'}
+[23.149842] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced\n'}
+[23.149894] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced/CedEntities.hpp\n'}
+[23.149936] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced/CedMiddleware.hpp\n'}
+[23.149976] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast\n'}
+[23.150040] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast/FastEntities.hpp\n'}
+[23.150089] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast/FastMiddleware.hpp\n'}
+[23.150142] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds\n'}
+[23.150206] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds/FastDDSEntities.hpp\n'}
+[23.150259] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp\n'}
+[23.150311] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/utils\n'}
+[23.150353] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/utils/Callbacks.hpp\n'}
+[23.150410] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/object\n'}
+[23.150450] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/object/XRCEObject.hpp\n'}
+[23.150496] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p\n'}
+[23.150546] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p/InternalClient.hpp\n'}
+[23.150592] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p/InternalClientManager.hpp\n'}
+[23.150642] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/participant\n'}
+[23.150692] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/participant/Participant.hpp\n'}
+[23.150751] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/processor\n'}
+[23.150803] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/processor/Processor.hpp\n'}
+[23.150860] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/publisher\n'}
+[23.150916] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/publisher/Publisher.hpp\n'}
+[23.150964] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/reader\n'}
+[23.151022] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/reader/Reader.hpp\n'}
+[23.151081] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/replier\n'}
+[23.151137] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/replier/Replier.hpp\n'}
+[23.151193] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/requester\n'}
+[23.151249] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/requester/Requester.hpp\n'}
+[23.151306] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler\n'}
+[23.151354] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler/PacketScheduler.hpp\n'}
+[23.151415] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler/Scheduler.hpp\n'}
+[23.151473] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/subscriber\n'}
+[23.151529] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/subscriber/Subscriber.hpp\n'}
+[23.151598] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/topic\n'}
+[23.151648] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/topic/Topic.hpp\n'}
+[23.151701] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport\n'}
+[23.151763] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp\n'}
+[23.151824] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp\n'}
+[23.151882] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/TransportRc.hpp\n'}
+[23.151938] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/can\n'}
+[23.151993] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/can/CanAgentLinux.hpp\n'}
+[23.152048] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/custom\n'}
+[23.152103] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/custom/CustomAgent.hpp\n'}
+[23.152159] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery\n'}
+[23.152218] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServer.hpp\n'}
+[23.152276] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServerLinux.hpp\n'}
+[23.152338] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServerWindows.hpp\n'}
+[23.152395] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint\n'}
+[23.152451] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/CanEndPoint.hpp\n'}
+[23.152509] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/CustomEndPoint.hpp\n'}
+[23.152569] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/IPv4EndPoint.hpp\n'}
+[23.152628] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/IPv6EndPoint.hpp\n'}
+[23.152686] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/MultiSerialEndPoint.hpp\n'}
+[23.152756] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/SerialEndPoint.hpp\n'}
+[23.152820] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p\n'}
+[23.152882] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p/AgentDiscoverer.hpp\n'}
+[23.152947] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p/AgentDiscovererLinux.hpp\n'}
+[23.153007] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial\n'}
+[23.153061] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/MultiSerialAgentLinux.hpp\n'}
+[23.153122] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/MultiTermiosAgentLinux.hpp\n'}
+[23.153184] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/PseudoTerminalAgentLinux.hpp\n'}
+[23.153245] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/SerialAgentLinux.hpp\n'}
+[23.153304] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/TermiosAgentLinux.hpp\n'}
+[23.153368] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/baud_rate_table_linux.h\n'}
+[23.153427] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/stream_framing\n'}
+[23.153491] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/stream_framing/StreamFramingProtocol.hpp\n'}
+[23.153551] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp\n'}
+[23.153606] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPConnection.hpp\n'}
+[23.153658] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPServerBase.hpp\n'}
+[23.153717] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp\n'}
+[23.153776] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv4AgentWindows.hpp\n'}
+[23.153841] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp\n'}
+[23.153902] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv6AgentWindows.hpp\n'}
+[23.153962] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp\n'}
+[23.154018] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp\n'}
+[23.154080] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv4AgentWindows.hpp\n'}
+[23.154137] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp\n'}
+[23.154196] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv6AgentWindows.hpp\n'}
+[23.154255] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util\n'}
+[23.154311] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util/InterfaceLinux.hpp\n'}
+[23.154369] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util/InterfaceWindows.hpp\n'}
+[23.154427] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types\n'}
+[23.154481] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types/MessageHeader.hpp\n'}
+[23.154539] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types/Optional.hpp\n'}
+[23.154596] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types/SubMessageHeader.hpp\n'}
+[23.154655] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types/TopicPubSubType.hpp\n'}
+[23.154714] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/types/XRCETypes.hpp\n'}
+[23.154775] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils\n'}
+[23.154832] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp\n'}
+[23.154891] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Color.hpp\n'}
+[23.154955] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Conversion.hpp\n'}
+[23.155014] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Functions.hpp\n'}
+[23.155072] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SeqNum.hpp\n'}
+[23.155134] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SharedMutex.hpp\n'}
+[23.155200] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SharedMutexPriority.hpp\n'}
+[23.155257] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Time.hpp\n'}
+[23.155317] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/TokenBucket.hpp\n'}
+[23.155378] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/visibility.hpp\n'}
+[23.155525] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentTargets.cmake\n'}
+[23.155633] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentTargets-release.cmake\n'}
+[23.155713] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/include/uxr/agent/config.hpp\n'}
+[23.155794] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/LICENSE\n'}
+[23.155878] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentConfig.cmake\n'}
+[23.155937] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentConfigVersion.cmake\n'}
+[23.174567] (micro_ros_agent) StdoutLine: {'line': b"[ 50%] \x1b[34m\x1b[1mCompleted 'xrceagent'\x1b[0m\n"}
+[23.206533] (micro_ros_agent) StdoutLine: {'line': b'[ 50%] Built target xrceagent\n'}
+[23.221137] (-) TimerEvent: {}
+[23.227146] (micro_ros_agent) StdoutLine: {'line': b"[ 56%] \x1b[34m\x1b[1mCreating directories for 'micro_ros_agent'\x1b[0m\n"}
+[23.280436] (micro_ros_agent) StdoutLine: {'line': b"[ 62%] \x1b[34m\x1b[1mNo download step for 'micro_ros_agent'\x1b[0m\n"}
+[23.301700] (micro_ros_agent) StdoutLine: {'line': b"[ 68%] \x1b[34m\x1b[1mNo update step for 'micro_ros_agent'\x1b[0m\n"}
+[23.321329] (-) TimerEvent: {}
+[23.322472] (micro_ros_agent) StdoutLine: {'line': b"[ 75%] \x1b[34m\x1b[1mNo patch step for 'micro_ros_agent'\x1b[0m\n"}
+[23.343847] (micro_ros_agent) StdoutLine: {'line': b"[ 81%] \x1b[34m\x1b[1mPerforming configure step for 'micro_ros_agent'\x1b[0m\n"}
+[23.353049] (micro_ros_agent) StdoutLine: {'line': b'loading initial cache file /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent/micro_ros_agent-prefix/tmp/micro_ros_agent-cache-.cmake\n'}
+[23.368272] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[23.421534] (-) TimerEvent: {}
+[23.491025] (micro_ros_agent) StdoutLine: {'line': b'-- Found Python3: /bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[23.521706] (-) TimerEvent: {}
+[23.621999] (-) TimerEvent: {}
+[23.624650] (micro_ros_agent) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[23.627286] (micro_ros_agent) StdoutLine: {'line': b'-- Looking for C++ include pthread.h\n'}
+[23.703634] (micro_ros_agent) StdoutLine: {'line': b'-- Looking for C++ include pthread.h - found\n'}
+[23.703767] (micro_ros_agent) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[23.722194] (-) TimerEvent: {}
+[23.779314] (micro_ros_agent) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[23.780553] (micro_ros_agent) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[23.785077] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_cmake: 3.1.5 (/opt/ros/humble/share/rosidl_cmake/cmake)\n'}
+[23.786403] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[23.804998] (micro_ros_agent) StdoutLine: {'line': b'-- Found fastrtps_cmake_module: 2.2.2 (/opt/ros/humble/share/fastrtps_cmake_module/cmake)\n'}
+[23.815433] (micro_ros_agent) StdoutLine: {'line': b'-- Found rmw_dds_common: 1.6.0 (/opt/ros/humble/share/rmw_dds_common/cmake)\n'}
+[23.822359] (-) TimerEvent: {}
+[23.832440] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[23.837937] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[23.842676] (micro_ros_agent) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[23.850268] (micro_ros_agent) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[23.864050] (micro_ros_agent) StdoutLine: {'line': b'-- Found rmw_fastrtps_shared_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake)\n'}
+[23.905821] (micro_ros_agent) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[23.906460] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[23.907815] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_cmake_gtest: 1.3.10 (/opt/ros/humble/share/ament_cmake_gtest/cmake)\n'}
+[23.908378] (micro_ros_agent) StdoutLine: {'line': b'-- Found micro_ros_msgs: 3.0.1 (/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake)\n'}
+[23.922535] (-) TimerEvent: {}
+[23.969407] (micro_ros_agent) StdoutLine: {'line': b'-- Configuring done\n'}
+[23.976531] (micro_ros_agent) StdoutLine: {'line': b'-- Generating done\n'}
+[23.977602] (micro_ros_agent) StdoutLine: {'line': b'-- Build files have been written to: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent\n'}
+[23.997248] (micro_ros_agent) StdoutLine: {'line': b"[ 87%] \x1b[34m\x1b[1mPerforming build step for 'micro_ros_agent'\x1b[0m\n"}
+[24.022737] (-) TimerEvent: {}
+[24.037767] (micro_ros_agent) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_agent.dir/src/main.cpp.o\x1b[0m\n'}
+[24.037920] (micro_ros_agent) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_agent.dir/src/agent/utils/demangle.cpp.o\x1b[0m\n'}
+[24.038598] (micro_ros_agent) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_agent.dir/src/agent/Agent.cpp.o\x1b[0m\n'}
+[24.040442] (micro_ros_agent) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_agent.dir/src/agent/graph_manager/graph_manager.cpp.o\x1b[0m\n'}
+[24.040591] (micro_ros_agent) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/micro_ros_agent.dir/src/agent/graph_manager/graph_typesupport.cpp.o\x1b[0m\n'}
+[24.122928] (-) TimerEvent: {}
+[24.223270] (-) TimerEvent: {}
+[24.323594] (-) TimerEvent: {}
+[24.424007] (-) TimerEvent: {}
+[24.524435] (-) TimerEvent: {}
+[24.624846] (-) TimerEvent: {}
+[24.725265] (-) TimerEvent: {}
+[24.825691] (-) TimerEvent: {}
+[24.926108] (-) TimerEvent: {}
+[25.026511] (-) TimerEvent: {}
+[25.126809] (-) TimerEvent: {}
+[25.227226] (-) TimerEvent: {}
+[25.327640] (-) TimerEvent: {}
+[25.428011] (-) TimerEvent: {}
+[25.528458] (-) TimerEvent: {}
+[25.628782] (-) TimerEvent: {}
+[25.729204] (-) TimerEvent: {}
+[25.829650] (-) TimerEvent: {}
+[25.929958] (-) TimerEvent: {}
+[26.030297] (-) TimerEvent: {}
+[26.130706] (-) TimerEvent: {}
+[26.231063] (-) TimerEvent: {}
+[26.331474] (-) TimerEvent: {}
+[26.431774] (-) TimerEvent: {}
+[26.532169] (-) TimerEvent: {}
+[26.632578] (-) TimerEvent: {}
+[26.674247] (micro_ros_agent) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable micro_ros_agent\x1b[0m\n'}
+[26.732770] (-) TimerEvent: {}
+[26.833191] (-) TimerEvent: {}
+[26.926337] (micro_ros_agent) StdoutLine: {'line': b'[100%] Built target micro_ros_agent\n'}
+[26.933361] (-) TimerEvent: {}
+[26.951184] (micro_ros_agent) StdoutLine: {'line': b"\x1b[34m\x1b[1mNo install step for 'micro_ros_agent'\x1b[0m\n"}
+[26.973659] (micro_ros_agent) StdoutLine: {'line': b"\x1b[34m\x1b[1mCompleted 'micro_ros_agent'\x1b[0m\n"}
+[27.004648] (micro_ros_agent) StdoutLine: {'line': b'Built target micro_ros_agent\n'}
+[27.013974] (micro_ros_agent) CommandEnded: {'returncode': 0}
+[27.033476] (-) TimerEvent: {}
+[27.049094] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'install'}
+[27.049836] (micro_ros_agent) Command: {'cmd': ['/bin/cmake', '--install', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent'], 'cwd': '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent', 'env': OrderedDict([('KDE_FULL_SESSION', 'true'), ('MAIL', '/var/spool/mail/jake'), ('USER', 'jake'), ('PAM_KWALLET5_LOGIN', '/run/user/1000/kwallet5.socket'), ('HOSTNAME', 'oscar'), ('XDG_SESSION_TYPE', 'wayland'), ('CSF_TObjDefaults', '/usr/share/opencascade/resources/StdResource'), ('XDG_CACHE_HOME', '/home/jake/.cache'), ('QT_WAYLAND_RECONNECT', '1'), ('CSF_XCAFDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHLVL', '4'), ('LD_LIBRARY_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('CSF_XSMessage', '/usr/share/opencascade/resources/XSMessage'), ('LESS', '-R'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/jake'), ('CSF_TObjMessage', '/usr/share/opencascade/resources/TObj'), ('MMGT_CLEAR', '1'), ('KDE_APPLICATIONS_AS_SCOPE', '1'), ('OLDPWD', '/home/jake/Documents/MQP/uros-pico-controller/build'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('CSF_ShadersDirectory', '/usr/share/opencascade/resources/Shaders'), ('ZSH', '/home/jake/.oh-my-zsh'), ('HG', '/usr/bin/hg'), ('CSF_MDTVTexturesDirectory', '/usr/share/opencascade/resources/Textures'), ('ROS_PYTHON_VERSION', '3'), ('GTK_RC_FILES', '/etc/gtk/gtkrc:/home/jake/.gtkrc:/home/jake/.config/gtkrc'), ('KDE_SESSION_VERSION', '6'), ('PAGER', 'less'), ('DRAWHOME', '/usr/share/opencascade/resources/DrawResources'), ('MANAGERPID', '2642'), ('DISTROBOX_ENTER_PATH', '/sbin/distrobox-enter'), ('SYSTEMD_EXEC_PID', '40274'), ('CSF_IGESDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('XDG_STATE_HOME', '/home/jake/.local/state'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('container', 'docker'), ('CASROOT', '/usr'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install'), ('XKB_DEFAULT_LAYOUT', 'us'), ('ROS_DISTRO', 'humble'), ('XKB_DEFAULT_OPTIONS', 'terminate:ctrl_alt_bksp'), ('LOGNAME', 'jake'), ('QT_AUTO_SCREEN_SCALE_FACTOR', '0'), ('JOURNAL_STREAM', '8:907038'), ('_', '/bin/colcon'), ('ROS_VERSION', '2'), ('CSF_LANGUAGE', 'us'), ('MEMORY_PRESSURE_WATCH', '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/foot-server.service/memory.pressure'), ('XDG_SESSION_CLASS', 'user'), ('TERMINFO_DIRS', '/usr/share/terminfo:/run/host/usr/share/terminfo'), ('TERM', 'foot'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('GTK2_RC_FILES', '/etc/gtk-2.0/gtkrc:/home/jake/.gtkrc-2.0:/home/jake/.config/gtkrc-2.0'), ('PATH', '/opt/ros/humble/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('SESSION_MANAGER', 'local/oscar:@/tmp/.ICE-unix/2883,unix/oscar:/tmp/.ICE-unix/2883'), ('INVOCATION_ID', '2d4e4872f931445a94560019050d20b1'), ('XDG_MENU_PREFIX', 'plasma-'), ('XKB_DEFAULT_MODEL', 'pc105+inet'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('ICEAUTHORITY', '/run/user/1000/iceauth_kAtTLg'), ('CSF_XmlOcafResource', '/usr/share/opencascade/resources/XmlOcafResource'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'KDE'), ('XDG_DATA_HOME', '/home/jake/.local/share'), ('XDG_CONFIG_HOME', '/home/jake/.config'), ('XDG_SESSION_DESKTOP', 'KDE'), ('XAUTHORITY', '/run/user/1000/xauth_JSXTPY'), ('LS_COLORS', ''), ('CSF_StandardDefaults', '/usr/share/opencascade/resources/StdResource'), ('RAWWAVE_PATH', '/usr/share/stk/rawwaves'), ('AMENT_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSSTRNGS', '/usr/share/locale'), ('CSF_PluginDefaults', '/usr/share/opencascade/resources/StdResource'), ('SHELL', 'fish'), ('CSF_SHMessage', '/usr/share/opencascade/resources/SHMessage'), ('CSF_STEPDefaults', '/usr/share/opencascade/resources/XSTEPResource'), ('PWD', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_agent'), ('CSF_StandardLiteDefaults', '/usr/share/opencascade/resources/StdResource'), ('CONTAINER_ID', 'ubuntu22'), ('OPCODE6DIR', '/usr/lib/csound/plugins64-6.0'), ('XDG_CONFIG_DIRS', '/home/jake/.config/kdedefaults:/etc/xdg'), ('CSF_DrawPluginDefaults', '/usr/share/opencascade/resources/DrawResources'), ('CSF_MIGRATION_TYPES', '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt'), ('PICO_SDK_PATH', '/home/jake/devtools/pico-sdk'), ('XDG_DATA_DIRS', '/home/jake/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/usr/local/share:/usr/share'), ('CSF_OCCTResourcePath', '/usr/share/opencascade/resources'), ('PYTHONPATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('DRAWDEFAULT', '/usr/share/opencascade/resources/DrawResources/DrawDefault'), ('KDE_SESSION_UID', '1000'), ('COLCON', '1'), ('MEMORY_PRESSURE_WRITE', 'c29tZSAyMDAwMDAgMjAwMDAwMAA='), ('CMAKE_PREFIX_PATH', '/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_msgs:/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_setup:/opt/ros/humble'), ('CSF_EXCEPTION_PROMPT', '1')]), 'shell': False}
+[27.055007] (micro_ros_agent) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[27.055124] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/ament_index/resource_index/package_run_dependencies/micro_ros_agent\n'}
+[27.055189] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/ament_index/resource_index/parent_prefix_path/micro_ros_agent\n'}
+[27.055448] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.sh\n'}
+[27.055564] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.dsv\n'}
+[27.055693] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.sh\n'}
+[27.055812] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.dsv\n'}
+[27.055910] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.bash\n'}
+[27.056004] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.sh\n'}
+[27.056083] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.zsh\n'}
+[27.056173] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.dsv\n'}
+[27.056282] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv\n'}
+[27.056401] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/ament_index/resource_index/packages/micro_ros_agent\n'}
+[27.056482] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[27.056547] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig.cmake\n'}
+[27.056605] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig-version.cmake\n'}
+[27.056664] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.xml\n'}
+[27.056757] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent\n'}
+[27.070421] (micro_ros_agent) StdoutLine: {'line': b'-- Set runtime path of "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent" to ""\n'}
+[27.070511] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/launch\n'}
+[27.070566] (micro_ros_agent) StdoutLine: {'line': b'-- Installing: /home/jake/Documents/MQP/uros-pico-controller/uros_ws/install/micro_ros_agent/share/micro_ros_agent/launch/micro_ros_agent_launch.py\n'}
+[27.071961] (micro_ros_agent) CommandEnded: {'returncode': 0}
+[27.117040] (micro_ros_agent) JobEnded: {'identifier': 'micro_ros_agent', 'rc': 0}
+[27.117411] (-) EventReactorShutdown: {}
