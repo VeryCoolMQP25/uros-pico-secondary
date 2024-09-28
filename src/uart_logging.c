@@ -1,4 +1,5 @@
 #include "uart_logging.h"
+#include <string.h>
 
 static bool fault = false;
 
@@ -15,17 +16,50 @@ void uart_send(const char *tosend){
 	uart_puts(uart0, tosend);
 }
 
+void uart_log(LogLevel level, char *message){
+	// do not process if log level of message is below set level
+	if (level < LOGLEVEL){
+		return;
+	}
+	uint32_t uptime_ms = time_us_32()/1000;
+	char *out = malloc(strlen(message)+30);
+	const char *levelstr;
+	switch (level){
+		case LEVEL_DEBUG: {
+			levelstr = "DEBUG";
+			break;
+		}
+		case LEVEL_INFO: {
+		    levelstr = "INFO";
+		    break;
+		}
+		case LEVEL_WARN: {
+		    levelstr = "WARN";
+		    break;
+		}
+		case LEVEL_ERROR: {
+		    levelstr = "ERROR";
+		    break;
+		}
+		default: {
+		    levelstr = "UNKNOWN";
+		}
+	}
+	sprintf(out, "[%llu] %s: %s\n",uptime_ms, levelstr, message);
+	uart_send(out);
+	free(out);
+}
+
 
 /**
  * @brief  Nonblocking read checking for newline on UART
  * 
- * Polls for 
- * other relevant information.
+ * Polls for data on UART 
  * 
- * @param[in]  param1  Description of the first input parameter.
- * @param[in]  param2  Description of the second input parameter.
  * 
- * @return  Description of the return value.
+ * @param[in]  target  Pointer to destination buffer
+ * 
+ * @return  true if a new message has been written to target buffer, false otherwise
  */
 bool uart_getline(char *target){
 	static char recbuff[UART_READBUFF_SIZE];
@@ -34,7 +68,7 @@ bool uart_getline(char *target){
 		return false;
 	}
 	char newchar = uart_getc(uart0);
-	if (recv_idx >= UART_READBUFF_SIZE-1 {
+	if (recv_idx >= UART_READBUFF_SIZE-2) {
 		uart_send("UART RX FULL! Flushing...\n");
 		recv_idx = 0;
 		return false;

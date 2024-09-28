@@ -8,7 +8,9 @@
 
 #include "pico/stdlib.h"
 #include "pico_ros_usb.h"
+#include "uart_logging.h"
 
+// onboard green LED
 const uint LED_PIN = 25;
 
 rcl_publisher_t publisher;
