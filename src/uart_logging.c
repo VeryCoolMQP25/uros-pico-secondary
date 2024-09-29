@@ -1,18 +1,16 @@
 #include "uart_logging.h"
 #include <string.h>
-
-static bool fault = false;
+#include <stdio.h>
+#include <rcl/rcl.h>
 
 void uart_setup(){
-	gpio_init(FAULT_LED_PIN);
-	gpio_set_dir(FAULT_LED_PIN, GPIO_OUT);
 	uart_init(uart0, UART_BAUD);
 	gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
-    uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
+    uart_set_format(uart0, 8, 1, UART_PARITY_NONE);
 }
 
-void uart_send(const char *tosend){
+void uart_send(char *tosend){
 	uart_puts(uart0, tosend);
 }
 
@@ -22,8 +20,8 @@ void uart_log(LogLevel level, char *message){
 		return;
 	}
 	uint32_t uptime_ms = time_us_32()/1000;
-	char *out = malloc(strlen(message)+30);
-	const char *levelstr;
+	char out[UART_DEBUG_MAXLEN];
+	char *levelstr;
 	switch (level){
 		case LEVEL_DEBUG: {
 			levelstr = "DEBUG";
@@ -45,9 +43,9 @@ void uart_log(LogLevel level, char *message){
 		    levelstr = "UNKNOWN";
 		}
 	}
-	sprintf(out, "[%llu] %s: %s\n",uptime_ms, levelstr, message);
+	snprintf(out, UART_DEBUG_MAXLEN, "[%lu] %s: %s\r\n", uptime_ms, levelstr, message);
 	uart_send(out);
-	free(out);
+
 }
 
 
@@ -83,13 +81,4 @@ bool uart_getline(char *target){
 	}
 	recv_idx++;
 	return false;	
-}
-
-void set_fault(bool status){
-	fault = status;
-	gpio_put(FAULT_LED_PIN, status);
-}
-
-bool get_fault(){
-	return fault;
 }

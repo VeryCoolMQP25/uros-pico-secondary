@@ -19,6 +19,7 @@ std_msgs__msg__Int32 msg;
 void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 {
     rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+    uart_log(LEVEL_INFO, "Sent ROS message");
     msg.data+=5;
 }
 
@@ -35,6 +36,9 @@ int main()
 
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+
+    uart_setup();
+    uart_log(LEVEL_DEBUG, "Started UART comms");
 
     rcl_timer_t timer;
     rcl_node_t node;

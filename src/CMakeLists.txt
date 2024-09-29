@@ -1,5 +1,6 @@
 add_executable(${NAME}
         main.c
+        uart_logging.c
         pico_ros_usb.c
         )
 
