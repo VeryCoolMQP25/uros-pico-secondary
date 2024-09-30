@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <rcl/rcl.h>
 
+
+mutex_t uart_mutex;
+
 void uart_setup(){
 	uart_init(uart0, UART_BAUD);
 	gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
@@ -56,7 +59,7 @@ void uart_log(LogLevel level, char *message){
 }
 
 void uart_log_nonblocking(LogLevel level, char *message){
-	if(!mutex_try_enter(&uart_mutex)) {
+	if(!mutex_try_enter(&uart_mutex, NULL)) {
 		return;
 	}
 	uart_log_internal(level, message);

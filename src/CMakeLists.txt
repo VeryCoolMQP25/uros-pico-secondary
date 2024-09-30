@@ -1,19 +1,23 @@
 add_executable(${NAME}
         main.c
         uart_logging.c
+        actuators.c
         pico_ros_usb.c
         )
+
+# generate h file from pio description.
+pico_generate_pio_header(${NAME} ${CMAKE_CURRENT_LIST_DIR}/quadrature_encoder.pio)
 
 # Pull in our pico_stdlib which pulls in commonly used features
 target_link_libraries(${NAME} 
 	 pico_stdlib
      micro_ros
      hardware_pwm
+     hardware_pio
+     pico_multicore
 	)
 	
-target_include_directories(${NAME} PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}
-     )
+target_include_directories(${NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
      
 
 # create map/bin/hex file etc.

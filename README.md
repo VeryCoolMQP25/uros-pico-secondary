@@ -1,3 +1,3 @@
 # Tourbot Microcontroller - Pi Pico
 
-Portions of this project are based on the [RPIPicoMicroROS](https://github.com/jondurrant/RPIPicoMicroROS_USB_UART) course by Dr. Jon Durrant, licensed under the MIT License.
+This project includes some unmodified source files from the [Pi Pico Examples](https://github.com/raspberrypi/pico-examples) under BSD 3-clause.
