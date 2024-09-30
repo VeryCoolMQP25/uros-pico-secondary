@@ -8,13 +8,14 @@ void uart_setup(){
 	gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
     uart_set_format(uart0, 8, 1, UART_PARITY_NONE);
+    mutex_init(&uart_mutex);
 }
 
 void uart_send(char *tosend){
 	uart_puts(uart0, tosend);
 }
 
-void uart_log(LogLevel level, char *message){
+static void uart_log_internal(LogLevel level, char *message){
 	// do not process if log level of message is below set level
 	if (level < LOGLEVEL){
 		return;
@@ -46,6 +47,20 @@ void uart_log(LogLevel level, char *message){
 	snprintf(out, UART_DEBUG_MAXLEN, "[%lu] %s: %s\r\n", uptime_ms, levelstr, message);
 	uart_send(out);
 
+}
+
+void uart_log(LogLevel level, char *message){
+	mutex_enter_timeout_ms(&uart_mutex, UART_WRITE_TIMEOUT);
+	uart_log_internal(level, message);
+	mutex_exit(&uart_mutex);
+}
+
+void uart_log_nonblocking(LogLevel level, char *message){
+	if(!mutex_try_enter(&uart_mutex)) {
+		return;
+	}
+	uart_log_internal(level, message);
+	mutex_exit(&uart_mutex);
 }
 
 

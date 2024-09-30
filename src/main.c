@@ -23,8 +23,31 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
     msg.data+=5;
 }
 
+// checks if we have comms with serial agent
+bool check_connectivity(){
+	bool ok = (rmw_uros_ping_agent(50, 1) == RCL_RET_OK);
+	gpio_put(LED_PIN, ok);
+	return ok;
+}
+
+// creates and returns a timer, configuring it to call specified callback. Returns timer handle
+rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *support, uint period_ms, rcl_timer_callback_t cb)
+{
+	rcl_timer_t *timer = malloc(sizeof(rcl_timer_t));
+    rclc_timer_init_default(timer, support, RCL_MS_TO_NS(period_ms), cb);
+	rclc_executor_add_timer(executor, timer);
+	uart_log(LEVEL_DEBUG, "registered timer cb");
+	return timer;
+}
+
+void core1task(){
+	uart_log(LEVEL_DEBUG, "Started core 1 task");
+	
+}
+
 int main()
 {
+	// init USB serial comms
     rmw_uros_set_custom_transport(
 		true,
 		NULL,
@@ -37,10 +60,11 @@ int main()
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
+	// init uart0 debugging iface
     uart_setup();
     uart_log(LEVEL_DEBUG, "Started UART comms");
 
-    rcl_timer_t timer;
+	// init uros
     rcl_node_t node;
     rcl_allocator_t allocator;
     rclc_support_t support;
@@ -48,18 +72,18 @@ int main()
 
     allocator = rcl_get_default_allocator();
 
-    // Wait for agent successful ping for 2 minutes.
-    const int timeout_ms = 1000; 
-    const uint8_t attempts = 120;
-
-    rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
+	// wait for host agent to come online (60 seconds)
+    rcl_ret_t ret = rmw_uros_ping_agent(50, 120);
 
     if (ret != RCL_RET_OK)
     {
-        // Unreachable agent, exiting program.
+    	char tosend[50];
+    	snprintf(tosend, 50, "Cannot contact USB Serial Agent! Got code %i", ret);
+        uart_log(LEVEL_ERROR, tosend);
         return ret;
     }
-
+	uart_log(LEVEL_INFO, "Connected to ROS agent");
+	
     rclc_support_init(&support, 0, NULL, &allocator);
 
     rclc_node_init_default(&node, "pico_node", "", &support);
@@ -69,21 +93,16 @@ int main()
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
         "pico_publisher");
 
-    rclc_timer_init_default(
-        &timer,
-        &support,
-        RCL_MS_TO_NS(1000),
-        timer_callback);
-
     rclc_executor_init(&executor, &support.context, 1, &allocator);
-    rclc_executor_add_timer(&executor, &timer);
-
-    gpio_put(LED_PIN, 1);
+    create_timer_callback(&executor, &support, 100, timer_callback);
 
     msg.data = 0;
-    while (true)
-    {
-        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-    }
+    
+    uart_log(LEVEL_DEBUG, "Finished init, starting exec");
+
+    rclc_executor_spin(&executor);
+    
+	uart_log(LEVEL_ERROR, "Executor exited!");
+	
     return 0;
 }
