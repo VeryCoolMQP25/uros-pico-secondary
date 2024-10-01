@@ -12,14 +12,15 @@
 
 typedef struct {
 	PIO pio;
-	const uint sm; 
+	uint sm; 
 } Encoder;
 
 typedef struct {
+	uint pin_num;
 	uint slice_num;
-	uint enc_num;
+	Encoder *enc;
 } Motor;
 
-void init_motors()
+void init_motors();
 
 #endif
