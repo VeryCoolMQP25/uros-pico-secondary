@@ -9,6 +9,7 @@
 #include "pico/stdlib.h"
 #include "pico_ros_usb.h"
 #include "uart_logging.h"
+#include "actuators.h"
 
 // onboard green LED
 const uint LED_PIN = 25;
@@ -97,7 +98,7 @@ int main()
     create_timer_callback(&executor, &support, 100, timer_callback);
 
     msg.data = 0;
-    
+    init_all_motors();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
 
     rclc_executor_spin(&executor);

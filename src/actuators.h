@@ -3,7 +3,6 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 #include "quadrature_encoder.pio.h"
-#include <stdio.h>
 
 #define DT_L_ENCODER_A 6
 #define DT_L_ENCODER_B 7
@@ -39,6 +38,10 @@ typedef struct {
 	int curpower;
 	Encoder *enc;
 } Motor;
+
+extern Motor drivetrain_left;
+extern Motor drivetrain_right;
+extern Motor lift_motor;
 
 void init_all_motors();
 bool set_motor_power(Motor*, int);

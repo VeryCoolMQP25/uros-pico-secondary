@@ -28,19 +28,19 @@ static void uart_log_internal(LogLevel level, char *message){
 	char *levelstr;
 	switch (level){
 		case LEVEL_DEBUG: {
-			levelstr = "DEBUG";
+			levelstr = "\033[32mDEBUG\033[0m";
 			break;
 		}
 		case LEVEL_INFO: {
-		    levelstr = "INFO";
+		    levelstr = "\033[34mINFO\033[0m";
 		    break;
 		}
 		case LEVEL_WARN: {
-		    levelstr = "WARN";
+		    levelstr = "\033[33mWARN\033[0m";
 		    break;
 		}
 		case LEVEL_ERROR: {
-		    levelstr = "ERROR";
+		    levelstr = "\033[31mERROR\033[0m";
 		    break;
 		}
 		default: {
