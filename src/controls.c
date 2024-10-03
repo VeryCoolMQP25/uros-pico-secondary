@@ -13,9 +13,11 @@ static int right_power = 0;
 unsigned long dt_raw_last_update = 0;
 
 void dt_power_callback(const void *indata) {
+	uart_log(LEVEL_DEBUG, "dt pwr CB run");
     const std_msgs__msg__Int32MultiArray * msg = (const std_msgs__msg__Int32MultiArray *)indata;
     if (msg->data.size < 2){
     	uart_log(LEVEL_WARN,"drivetrain power message wrong len! Discarded.");
+    	return;
     }
 	if (abs(msg->data.data[0]) > 100 || abs(msg->data.data[1]) > 100){
 		uart_log(LEVEL_WARN,"bad drivetrain power message. Discarded.");

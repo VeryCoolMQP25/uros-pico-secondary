@@ -12,6 +12,7 @@ void uart_setup(){
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
     uart_set_format(uart0, 8, 1, UART_PARITY_NONE);
     mutex_init(&uart_mutex);
+    uart_puts(uart0, "\r\n");
 }
 
 void uart_send(char *tosend){

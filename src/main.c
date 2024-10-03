@@ -16,26 +16,25 @@
 // globals
 const char *namespace = "";
 // system states
-CommState comm_state = cs_disconnected;
 DriveMode drive_mode = dm_raw;
 
-int comm_fail_counter = 0;
 // onboard green LED
 const uint LED_PIN = 25;
 
 
-void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time)
-{
+void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
+	//uart_log(LEVEL_DEBUG, "publisher CB run");
+	return;
 	//TODO
-    return;
 }
 
 // checks if we have comms with serial agent
 void check_connectivity(rcl_timer_t *timer, int64_t last_call_time){
+	//uart_log(LEVEL_DEBUG, "connectivity CB run");
 	bool ok = (rmw_uros_ping_agent(50, 1) == RCL_RET_OK);
 	gpio_put(LED_PIN, ok);
 	if (!ok){
-		comm_state = cs_disconnected;
+		drive_mode = dm_halt;
 	}
 }
 
@@ -106,58 +105,35 @@ int main()
     allocator = rcl_get_default_allocator();	
     rclc_support_init(&support, 0, NULL, &allocator);
     rclc_node_init_default(&node, "pico_node", namespace, &support);
-    rclc_executor_init(&executor, &support.context, 1, &allocator);
+    rclc_executor_init(&executor, &support.context, 3, &allocator);
     
     // create timed events
     create_timer_callback(&executor, &support, 500, publish_all_cb);
     create_timer_callback(&executor, &support, 200, check_connectivity);
     
 	std_msgs__msg__Int32MultiArray dt_pwr_msg;
-	std_msgs__msg__Int32MultiArray__init(&dt_pwr_msg); // Initialize the messag
+	std_msgs__msg__Int32MultiArray__init(&dt_pwr_msg); // Initialize the message
+	// allocate space for the message payload
+	// int32_t dt_powers[2];
+	dt_pwr_msg.data.data = malloc(sizeof(int32_t)*2);
+	dt_pwr_msg.data.size = 0;
+	dt_pwr_msg.data.capacity = 2;
+
     // create message subscribers
     rcl_subscription_t dt_pwr_sub;
-    rclc_subscription_init_default(
-        &dt_pwr_sub,
-        &node,
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray),
-        "drivetrain_powers");    
-    rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
+    rclc_subscription_init_default(&dt_pwr_sub, &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/drivetrain_powers");    
+    ret =rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
+	char debugbuff[50];
+	snprintf(debugbuff,50,"Add subscription returned code %d", ret);
+	uart_log(LEVEL_DEBUG,debugbuff);
     init_all_motors();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
+    
     multicore_launch_core1(core1task);
-	while (true){
-		switch(comm_state){
-			case cs_down: {
-				kill_all_actuators();
-				if (rmw_uros_ping_agent(10, 5) == RCL_RET_OK){
-					uart_log(LEVEL_INFO, "trying to re-connect...");
-					comm_state = cs_disconnected;
-					comm_fail_counter = 0;
-				}
-				break;
-			}
-			case cs_connected: {
-				rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-				break;
-			}
-			case cs_disconnected: {
-				if(rmw_uros_ping_agent(50, 1) == RCL_RET_OK){
-					uart_log(LEVEL_INFO, "Connected to ROS agent");
-					comm_state = cs_connected;
-					comm_fail_counter = 0;
-				}
-				else if(++comm_fail_counter > COMM_FAIL_THRESH){
-					comm_state = cs_down;
-					uart_log(LEVEL_WARN, "No connection to ROS agent!");
-				}
-				break;
-			}
-			default:
-				uart_log(LEVEL_ERROR, "Illegal state!");
-				return 1;
-		}
-	}
-	uart_log(LEVEL_ERROR, "Executor exited!");
-	
+   	rclc_executor_spin(&executor);
+	uart_log(LEVEL_ERROR, "Executor exited! Emergency Stop.");
+	kill_all_actuators();
+	gpio_put(LED_PIN, 0);
     return 0;
 }
