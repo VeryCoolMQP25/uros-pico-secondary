@@ -9,9 +9,9 @@
 #define DT_R_ENCODER_A 8
 #define DT_R_ENCODER_B 9
 
-#define DT_L_PWM 10
-#define DT_R_PWM 11
-#define LIFT_PWM 13
+#define DT_L_PWM 14
+#define DT_R_PWM 15
+#define LIFT_PWM 11
 
 /** Talon SR speed controller specifics
  * 333Hz signal

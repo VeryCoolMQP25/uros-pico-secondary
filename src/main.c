@@ -10,6 +10,9 @@
 #include "pico_ros_usb.h"
 #include "uart_logging.h"
 #include "actuators.h"
+#include "controls.h"
+
+CommState comm_state =
 
 // onboard green LED
 const uint LED_PIN = 25;
@@ -17,7 +20,7 @@ const uint LED_PIN = 25;
 rcl_publisher_t publisher;
 std_msgs__msg__Int32 msg;
 
-void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
+void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time)
 {
     rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
     uart_log(LEVEL_INFO, "Sent ROS message");
@@ -100,9 +103,9 @@ int main()
     msg.data = 0;
     init_all_motors();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
-
-    rclc_executor_spin(&executor);
-    
+	while (true){
+		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+	}
 	uart_log(LEVEL_ERROR, "Executor exited!");
 	
     return 0;
