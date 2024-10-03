@@ -3,6 +3,7 @@ add_executable(${NAME}
         uart_logging.c
         pico_ros_usb.c
         actuators.c
+        controls.c
         )
 
 # generate h file from pio description.

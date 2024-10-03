@@ -4,6 +4,7 @@
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/int32_multi_array.h>
 #include <rmw_microros/rmw_microros.h>
 
 #include "pico/stdlib.h"
@@ -12,23 +13,21 @@
 #include "actuators.h"
 #include "controls.h"
 
+// globals
+const char *namespace = "";
 // system states
 CommState comm_state = cs_disconnected;
-DriveMode drive_mode = dm_halt;
+DriveMode drive_mode = dm_raw;
 
 int comm_fail_counter = 0;
-
 // onboard green LED
 const uint LED_PIN = 25;
 
-rcl_publisher_t publisher;
-std_msgs__msg__Int32 msg;
 
 void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time)
 {
-    rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-    uart_log(LEVEL_INFO, "Sent ROS message");
-    msg.data+=5;
+	//TODO
+    return;
 }
 
 // checks if we have comms with serial agent
@@ -52,7 +51,22 @@ rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *su
 
 void core1task(){
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
-	
+	while(true){
+		switch(drive_mode){
+			case dm_halt:
+				kill_all_actuators();
+				break;
+			case dm_raw:
+				drivetrain_power_from_ros();
+				break;
+			default:
+				uart_log(LEVEL_WARN, "Invalid drive state!");
+				drive_mode = dm_halt;
+		}
+		sleep_ms(10);
+	}
+	uart_log(LEVEL_ERROR, "Exiting core1 task!");
+	kill_all_actuators();	
 }
 
 int main()
@@ -91,23 +105,26 @@ int main()
 
     allocator = rcl_get_default_allocator();	
     rclc_support_init(&support, 0, NULL, &allocator);
-
-    rclc_node_init_default(&node, "pico_node", "", &support);
-    rclc_publisher_init_default(
-        &publisher,
-        &node,
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-        "pico_publisher");
-
+    rclc_node_init_default(&node, "pico_node", namespace, &support);
     rclc_executor_init(&executor, &support.context, 1, &allocator);
     
     // create timed events
     create_timer_callback(&executor, &support, 500, publish_all_cb);
     create_timer_callback(&executor, &support, 200, check_connectivity);
-
-    msg.data = 0;
+    
+	std_msgs__msg__Int32MultiArray dt_pwr_msg;
+	std_msgs__msg__Int32MultiArray__init(&dt_pwr_msg); // Initialize the messag
+    // create message subscribers
+    rcl_subscription_t dt_pwr_sub;
+    rclc_subscription_init_default(
+        &dt_pwr_sub,
+        &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray),
+        "drivetrain_powers");    
+    rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
     init_all_motors();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
+    multicore_launch_core1(core1task);
 	while (true){
 		switch(comm_state){
 			case cs_down: {
