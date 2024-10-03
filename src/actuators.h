@@ -45,5 +45,6 @@ extern Motor lift_motor;
 
 void init_all_motors();
 bool set_motor_power(Motor*, int);
+void kill_all_actuators();
 
 #endif

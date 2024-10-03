@@ -6,6 +6,8 @@
 
 #include <uxr/client/profile/transport/custom/custom_transport.h>
 
+#define COMM_FAIL_THRESH	3
+
 bool pico_serial_transport_open(struct uxrCustomTransport * transport);
 bool pico_serial_transport_close(struct uxrCustomTransport * transport);
 size_t pico_serial_transport_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len, uint8_t * err);

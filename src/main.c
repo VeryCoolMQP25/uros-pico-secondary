@@ -12,7 +12,11 @@
 #include "actuators.h"
 #include "controls.h"
 
-CommState comm_state =
+// system states
+CommState comm_state = cs_disconnected;
+DriveMode drive_mode = dm_halt;
+
+int comm_fail_counter = 0;
 
 // onboard green LED
 const uint LED_PIN = 25;
@@ -28,10 +32,12 @@ void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time)
 }
 
 // checks if we have comms with serial agent
-bool check_connectivity(){
+void check_connectivity(rcl_timer_t *timer, int64_t last_call_time){
 	bool ok = (rmw_uros_ping_agent(50, 1) == RCL_RET_OK);
 	gpio_put(LED_PIN, ok);
-	return ok;
+	if (!ok){
+		comm_state = cs_disconnected;
+	}
 }
 
 // creates and returns a timer, configuring it to call specified callback. Returns timer handle
@@ -67,6 +73,15 @@ int main()
 	// init uart0 debugging iface
     uart_setup();
     uart_log(LEVEL_DEBUG, "Started UART comms");
+    uart_log(LEVEL_INFO, "Waiting for agent...");
+
+    rcl_ret_t ret = rmw_uros_ping_agent(50, 120);
+
+    if (ret != RCL_RET_OK)
+    {
+        uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing out!");
+        return ret;
+    }
 
 	// init uros
     rcl_node_t node;
@@ -74,20 +89,7 @@ int main()
     rclc_support_t support;
     rclc_executor_t executor;
 
-    allocator = rcl_get_default_allocator();
-
-	// wait for host agent to come online (60 seconds)
-    rcl_ret_t ret = rmw_uros_ping_agent(50, 120);
-
-    if (ret != RCL_RET_OK)
-    {
-    	char tosend[50];
-    	snprintf(tosend, 50, "Cannot contact USB Serial Agent! Got code %i", ret);
-        uart_log(LEVEL_ERROR, tosend);
-        return ret;
-    }
-	uart_log(LEVEL_INFO, "Connected to ROS agent");
-	
+    allocator = rcl_get_default_allocator();	
     rclc_support_init(&support, 0, NULL, &allocator);
 
     rclc_node_init_default(&node, "pico_node", "", &support);
@@ -98,13 +100,45 @@ int main()
         "pico_publisher");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
-    create_timer_callback(&executor, &support, 100, timer_callback);
+    
+    // create timed events
+    create_timer_callback(&executor, &support, 500, publish_all_cb);
+    create_timer_callback(&executor, &support, 200, check_connectivity);
 
     msg.data = 0;
     init_all_motors();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
 	while (true){
-		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+		switch(comm_state){
+			case cs_down: {
+				kill_all_actuators();
+				if (rmw_uros_ping_agent(10, 5) == RCL_RET_OK){
+					uart_log(LEVEL_INFO, "trying to re-connect...");
+					comm_state = cs_disconnected;
+					comm_fail_counter = 0;
+				}
+				break;
+			}
+			case cs_connected: {
+				rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+				break;
+			}
+			case cs_disconnected: {
+				if(rmw_uros_ping_agent(50, 1) == RCL_RET_OK){
+					uart_log(LEVEL_INFO, "Connected to ROS agent");
+					comm_state = cs_connected;
+					comm_fail_counter = 0;
+				}
+				else if(++comm_fail_counter > COMM_FAIL_THRESH){
+					comm_state = cs_down;
+					uart_log(LEVEL_WARN, "No connection to ROS agent!");
+				}
+				break;
+			}
+			default:
+				uart_log(LEVEL_ERROR, "Illegal state!");
+				return 1;
+		}
 	}
 	uart_log(LEVEL_ERROR, "Executor exited!");
 	

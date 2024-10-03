@@ -99,3 +99,9 @@ void init_all_motors(){
 	init_motor(LIFT_PWM, &lift_motor);
 	uart_log(LEVEL_DEBUG, "Motor & Encoder init finished.");
 }
+
+void kill_all_actuators(){
+	set_motor_power(&drivetrain_right, 0);
+	set_motor_power(&drivetrain_left, 0);
+	set_motor_power(&lift_motor, 0);
+}
