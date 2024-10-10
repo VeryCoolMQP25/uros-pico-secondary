@@ -101,3 +101,26 @@ bool uart_getline(char *target){
 	recv_idx++;
 	return false;	
 }
+
+void rcl_check_error(rcl_ret_t retcode, const char *desc){
+	char outstring[100];
+	switch (retcode){
+		case RCL_RET_OK:
+			return;
+		case RCL_RET_INVALID_ARGUMENT:
+			snprintf(outstring, 100, "Invalid argument in %s call!",desc);
+			break;
+		case RCL_RET_PUBLISHER_INVALID:
+			snprintf(outstring, 100, "%s failed with code invalid pub!",desc);
+			break;
+		case RCL_RET_NODE_INVALID:
+			snprintf(outstring, 100, "%s failed with code invalid node!",desc);
+			break;
+		case RCL_RET_TIMEOUT:
+			snprintf(outstring, 100, "%s timed out!",desc);
+			break;
+		default:
+			snprintf(outstring, 100, "Operation %s returned unknown error code %d!",desc,retcode);
+	}
+	uart_log(LEVEL_ERROR, outstring);
+}

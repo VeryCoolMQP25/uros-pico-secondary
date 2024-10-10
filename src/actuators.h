@@ -9,9 +9,13 @@
 #define DT_R_ENCODER_A 8
 #define DT_R_ENCODER_B 9
 
+#define ENCODER_DIST_PER_PULSE	100 // arbitrary placehoder
+
 #define DT_L_PWM 14
 #define DT_R_PWM 15
 #define LIFT_PWM 11
+
+#define MOTOR_POWER_MAX	40
 
 /** Talon SR speed controller specifics
  * 333Hz signal
@@ -39,6 +43,7 @@ typedef struct {
 	uint slice_num;
 	int curpower;
 	Encoder *enc;
+	float velocity;
 } Motor;
 
 extern Motor drivetrain_left;
@@ -49,6 +54,6 @@ void init_all_motors();
 bool set_motor_power(Motor*, int);
 void kill_all_actuators();
 
-void read_motor_encoder(Motor*);
+void update_motor_encoders(Motor*);
 
 #endif

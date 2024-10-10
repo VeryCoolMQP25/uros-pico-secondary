@@ -5,6 +5,7 @@
 #include "hardware/gpio.h"
 #include "pico/multicore.h"
 #include "pico/sync.h"
+#include <rcl/rcl.h>
 
 // adjustable parameters
 #define UART_READBUFF_SIZE	1024
@@ -32,5 +33,7 @@ void uart_log(LogLevel, char*);
 void uart_log_nonblocking(LogLevel, char*);
 
 bool uart_getline(char*);
+
+void rcl_check_error(rcl_ret_t, const char*);
 
 #endif

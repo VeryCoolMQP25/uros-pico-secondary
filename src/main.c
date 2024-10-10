@@ -21,11 +21,14 @@ DriveMode drive_mode = dm_raw;
 // onboard green LED
 const uint LED_PIN = 25;
 
+rcl_publisher_t encoder_raw_publisher;
+std_msgs__msg__Int32MultiArray encoder_raw_message;
 
 void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
-	//uart_log(LEVEL_DEBUG, "publisher CB run");
-	return;
-	//TODO
+	// publish raw encoder readings
+	encoder_raw_message.data.data[0] = drivetrain_left.enc->prev_count;
+	encoder_raw_message.data.data[1] = drivetrain_right.enc->prev_count;
+	rcl_check_error(rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL), "Enc Raw Publish");
 }
 
 // checks if we have comms with serial agent
@@ -119,6 +122,11 @@ int main()
 	dt_pwr_msg.data.size = 0;
 	dt_pwr_msg.data.capacity = 2;
 
+	// create publishers
+	rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts");
+	encoder_raw_message.data.data = malloc(sizeof(int32_t)*2);
+	encoder_raw_message.data.size = 2;
+	encoder_raw_message.data.capacity = 2;
     // create message subscribers
     rcl_subscription_t dt_pwr_sub;
     rclc_subscription_init_default(&dt_pwr_sub, &node,

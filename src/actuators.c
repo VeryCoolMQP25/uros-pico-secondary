@@ -78,16 +78,18 @@ void init_motor_with_encoder(int pin, Motor *motor_struct, int enc_pin_A, int en
 
 // accepts integer power level [-100, 100]
 bool set_motor_power(Motor *motor, int power){
-	if(abs(power) > 100){
-		char buff[40];
-		snprintf(buff, 40, "Requsted motor power %d is invalid! Ignoring.", power);
-		uart_log(LEVEL_WARN, buff);
-		return false;
+	bool ok = true;
+	if(abs(power) > MOTOR_POWER_MAX){
+		power = MOTOR_POWER_MAX*(power/abs(power));
+		ok = false;
 	}
 	int setpoint = (TALON_DEADCTR+power*(TALON_FULL_FWD-TALON_DEADCTR));
+	if (setpoint > TALON_FULL_FWD || setpoint < TALON_FULL_REV){
+		return false;
+	}
 	pwm_set_gpio_level(motor->pin_num, setpoint);
 	motor->curpower = power;
-	return true;
+	return ok;
 }
 
 void init_all_motors(){
@@ -106,4 +108,17 @@ void kill_all_actuators(){
 	set_motor_power(&drivetrain_right, 0);
 	set_motor_power(&drivetrain_left, 0);
 	set_motor_power(&lift_motor, 0);
+}
+
+void update_motor_encoders(Motor *mot){
+	Encoder *encoder = mot->enc;
+	int32_t raw = quadrature_encoder_get_count(encoder->pio, encoder->sm);
+	int32_t dist_delta_pulse = raw - encoder->prev_count;
+	uint64_t curtime = time_us_64();
+	uint64_t delta_time_us = curtime - encoder->prev_time_us;
+	encoder->prev_count = raw;
+	encoder->prev_time_us = curtime;
+	float pulse_per_sec = (1000000.0*(float)dist_delta_pulse)/(float)delta_time_us;
+	float velocity = pulse_per_sec * ENCODER_DIST_PER_PULSE;
+	mot->velocity = velocity;
 }
