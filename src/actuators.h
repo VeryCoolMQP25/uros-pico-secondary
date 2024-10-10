@@ -25,11 +25,13 @@
 #define TALON_PWM_WRAP 15015
 #define TALON_FULL_FWD 10184
 #define TALON_FULL_REV 4945
-#define TALON_DEADCTR	7565
+#define TALON_DEADCTR  7565
 
 typedef struct {
 	PIO pio;
 	uint sm; 
+	uint prev_count;
+	uint64_t prev_time_us;
 } Encoder;
 
 typedef struct {
@@ -46,5 +48,7 @@ extern Motor lift_motor;
 void init_all_motors();
 bool set_motor_power(Motor*, int);
 void kill_all_actuators();
+
+void read_motor_encoder(Motor*);
 
 #endif

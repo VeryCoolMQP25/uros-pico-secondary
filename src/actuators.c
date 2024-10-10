@@ -45,6 +45,8 @@ static Encoder *init_encoder(uint pinA, uint pinB){
 		enc->sm = sm_idx-4;
 	}
 	quadrature_encoder_program_init(enc->pio, enc->sm, pinA, 0);
+	enc->prev_count = 0;
+	enc->prev_time_us = 0;
 	return enc;
 }
 
@@ -94,8 +96,8 @@ void init_all_motors(){
 	pio_add_program(pio0, &quadrature_encoder_program);
 	pio_add_program(pio1, &quadrature_encoder_program);
 	uart_log(LEVEL_DEBUG, "Starting motor init");
-	init_motor(DT_L_PWM, &drivetrain_left);
-	init_motor(DT_R_PWM, &drivetrain_right);
+	init_motor_with_encoder(DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B);
+	init_motor_with_encoder(DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B);
 	init_motor(LIFT_PWM, &lift_motor);
 	uart_log(LEVEL_DEBUG, "Motor & Encoder init finished.");
 }
