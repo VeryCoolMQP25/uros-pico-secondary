@@ -13,7 +13,6 @@ static int right_power = 0;
 unsigned long dt_raw_last_update = 0;
 
 void dt_power_callback(const void *indata) {
-	uart_log(LEVEL_DEBUG, "dt pwr CB run");
     const std_msgs__msg__Int32MultiArray * msg = (const std_msgs__msg__Int32MultiArray *)indata;
     if (msg->data.size < 2){
     	uart_log(LEVEL_WARN,"drivetrain power message wrong len! Discarded.");
@@ -25,6 +24,9 @@ void dt_power_callback(const void *indata) {
 	}
     left_power = msg->data.data[0];
     right_power = msg->data.data[1];
+    char debugbuff[60];
+    snprintf(debugbuff, 60, "Drivetrain powers now (%d, %d)",left_power, right_power);
+    uart_log(LEVEL_DEBUG, debugbuff);
     dt_raw_last_update = time_us_64();
 }
 
@@ -47,4 +49,13 @@ void drivetrain_power_from_ros(){
 
 void set_drivetrain_speed(float l_speed, float r_speed){
 	uart_log(LEVEL_ERROR,"Speed control not implemented!");
+}
+
+DriveMode drive_mode_from_ros(){
+	// hardcoding raw mode for now, TODO
+	if (time_us_64() - dt_raw_last_update > DRIVETRAIN_TIMEOUT){
+		uart_log(LEVEL_WARN,"Drivetrain timeout exceeded!!");
+		return dm_halt;
+	}
+	return dm_raw;
 }

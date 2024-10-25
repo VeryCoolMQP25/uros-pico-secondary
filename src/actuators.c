@@ -83,8 +83,11 @@ bool set_motor_power(Motor *motor, int power){
 		power = MOTOR_POWER_MAX*(power/abs(power));
 		ok = false;
 	}
-	int setpoint = (TALON_DEADCTR+power*(TALON_FULL_FWD-TALON_DEADCTR));
+	int setpoint = (TALON_DEADCTR+power*(TALON_FULL_FWD-TALON_DEADCTR)/100);
 	if (setpoint > TALON_FULL_FWD || setpoint < TALON_FULL_REV){
+		char dbgbuf[60];
+		snprintf(dbgbuf, 60, "Rejecting pwm setpoint %d from power %d!",setpoint, power);
+		uart_log(LEVEL_WARN, dbgbuf);
 		return false;
 	}
 	pwm_set_gpio_level(motor->pin_num, setpoint);

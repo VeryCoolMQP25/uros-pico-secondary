@@ -54,6 +54,7 @@ rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *su
 void core1task(){
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
 	while(true){
+		drive_mode = drive_mode_from_ros();
 		switch(drive_mode){
 			case dm_halt:
 				kill_all_actuators();
