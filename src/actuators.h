@@ -1,20 +1,12 @@
 #ifndef ACTUATORS_H
 #define ACTUATORS_H
+
+#include "pins.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 #include "quadrature_encoder.pio.h"
 
-#define DT_L_ENCODER_A 6
-#define DT_L_ENCODER_B 7
-#define DT_R_ENCODER_A 8
-#define DT_R_ENCODER_B 9
-
 #define ENCODER_DIST_PER_PULSE	100 // arbitrary placehoder
-
-#define DT_L_PWM 14
-#define DT_R_PWM 15
-#define LIFT_PWM 11
-
 #define MOTOR_POWER_MAX	40
 
 /** Talon SR speed controller specifics

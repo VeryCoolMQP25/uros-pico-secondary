@@ -10,11 +10,12 @@
 //globals
 static int left_power = 0;
 static int right_power = 0;
+static int lift_power = 0;
 unsigned long dt_raw_last_update = 0;
 
 void dt_power_callback(const void *indata) {
     const std_msgs__msg__Int32MultiArray * msg = (const std_msgs__msg__Int32MultiArray *)indata;
-    if (msg->data.size < 2){
+    if (msg->data.size != 3){
     	uart_log(LEVEL_WARN,"drivetrain power message wrong len! Discarded.");
     	return;
     }
@@ -38,6 +39,14 @@ int get_right_power(){
 	return right_power;
 }
 
+int get_lift_power(){
+	return lift_power;
+}
+
+bool get_lift_hardstop(){
+	return gpio_get(LIFT_LIMIT_PIN);
+}
+
 void set_drivetrain_power(int l_power, int r_power){
 	set_motor_power(&drivetrain_left, l_power);
 	set_motor_power(&drivetrain_right, r_power);
@@ -45,6 +54,18 @@ void set_drivetrain_power(int l_power, int r_power){
 
 void drivetrain_power_from_ros(){
 	set_drivetrain_power(left_power, right_power);
+}
+
+void set_lift_power(int pwr){
+	if (get_lift_hardstop() && pwr < 0){
+		pwr = 0;
+		uart_log(LEVEL_INFO, "Halted downward lift motion due to limit sw");
+	}
+	set_motor_power(&lift_motor, pwr);
+}
+
+void lift_power_from_ros(){
+	set_lift_power(lift_power);
 }
 
 void set_drivetrain_speed(float l_speed, float r_speed){

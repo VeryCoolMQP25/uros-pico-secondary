@@ -12,14 +12,12 @@
 #include "uart_logging.h"
 #include "actuators.h"
 #include "controls.h"
+#include "pins.h"
 
 // globals
 const char *namespace = "";
 // system states
 DriveMode drive_mode = dm_raw;
-
-// onboard green LED
-const uint LED_PIN = 25;
 
 rcl_publisher_t encoder_raw_publisher;
 std_msgs__msg__Int32MultiArray encoder_raw_message;
@@ -61,6 +59,7 @@ void core1task(){
 				break;
 			case dm_raw:
 				drivetrain_power_from_ros();
+				lift_power_from_ros();
 				break;
 			default:
 				uart_log(LEVEL_WARN, "Invalid drive state!");
@@ -119,9 +118,9 @@ int main()
 	std_msgs__msg__Int32MultiArray__init(&dt_pwr_msg); // Initialize the message
 	// allocate space for the message payload
 	// int32_t dt_powers[2];
-	dt_pwr_msg.data.data = malloc(sizeof(int32_t)*2);
+	dt_pwr_msg.data.data = malloc(sizeof(int32_t)*3);
 	dt_pwr_msg.data.size = 0;
-	dt_pwr_msg.data.capacity = 2;
+	dt_pwr_msg.data.capacity = 3;
 
 	// create publishers
 	rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts");
@@ -132,7 +131,7 @@ int main()
     rcl_subscription_t dt_pwr_sub;
     rclc_subscription_init_default(&dt_pwr_sub, &node,
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/drivetrain_powers");    
-    ret =rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
+    ret = rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
 	char debugbuff[50];
 	snprintf(debugbuff,50,"Add subscription returned code %d", ret);
 	uart_log(LEVEL_DEBUG,debugbuff);

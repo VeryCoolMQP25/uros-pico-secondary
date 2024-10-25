@@ -1,5 +1,6 @@
 #ifndef UARTLOGH
 #define UARTLOGH
+#include "pins.h"
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
 #include "hardware/gpio.h"
@@ -10,8 +11,6 @@
 // adjustable parameters
 #define UART_READBUFF_SIZE	1024
 #define UART_BAUD			115200
-#define UART_TX_PIN			0
-#define UART_RX_PIN 		1
 #define UART_DEBUG_MAXLEN	128
 #define UART_WRITE_TIMEOUT	5 //ms
 
