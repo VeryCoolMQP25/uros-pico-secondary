@@ -144,6 +144,7 @@ int main()
 	snprintf(debugbuff,50,"Add subscription returned code %d", ret);
 	uart_log(LEVEL_DEBUG,debugbuff);
     init_all_motors();
+    pid_setup();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
     
     multicore_launch_core1(core1task);

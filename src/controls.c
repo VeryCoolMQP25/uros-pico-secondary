@@ -6,12 +6,33 @@
 #include "pico/stdlib.h"
 #include "uart_logging.h"
 #include "controls.h"
-#include "actuators.h"
+#include "tunables.h"
 //globals
 static int left_power = 0;
 static int right_power = 0;
 static int lift_power = 0;
 unsigned long dt_raw_last_update = 0;
+static PIDController pid_left;
+static PIDController pid_right;
+static PIDController pid_lift;
+
+
+void pid_setup(){
+	pid_left = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD);
+	pid_right = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD);
+	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD);	
+}
+
+PIDController init_pid_control(float Kp, float Ki, float Kd){
+	PIDController controller;
+	controller.Kp = Kp;
+	controller.Ki = Ki;
+	controller.Kd = Kd;
+	controller.previous_error = 0.0;
+	controller.integral = 0.0;
+	controller.last_tick_us = time_us_64();
+	return controller;
+}
 
 void dt_power_callback(const void *indata) {
     const std_msgs__msg__Int32MultiArray * msg = (const std_msgs__msg__Int32MultiArray *)indata;
@@ -68,8 +89,36 @@ void lift_power_from_ros(){
 	set_lift_power(lift_power);
 }
 
+// Speed values in m/s
 void set_drivetrain_speed(float l_speed, float r_speed){
-	uart_log(LEVEL_ERROR,"Speed control not implemented!");
+	run_pid(&drivetrain_left, &pid_left, l_speed);
+	run_pid(&drivetrain_right, &pid_right, r_speed);
+}
+
+void run_pid(Motor *motor, PIDController *pid, float target){
+	uint64_t curtime = time_us_64();
+	float delta_time_s = (curtime - pid->last_tick_us)/1000000.0;
+	pid->last_tick_us = curtime;
+	
+	float error = target - motor->velocity;
+	float P = pid->Kp * error;
+	
+	pid->integral += error * delta_time_s;
+	float I = pid->Ki * pid->integral;
+
+	float D = pid->Kd * ((error - pid->previous_error) / delta_time_s);
+
+	pid->previous_error = error;
+
+	// PID output
+	int output = P + I + D;
+	if (output > 100){
+		output = 100;
+	}
+	else if (output < -100){
+		output = -100;
+	}
+	set_motor_power(motor, output);
 }
 
 DriveMode drive_mode_from_ros(){

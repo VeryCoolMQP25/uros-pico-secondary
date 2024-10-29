@@ -117,6 +117,7 @@ void update_motor_encoders(Motor *mot){
 	Encoder *encoder = mot->enc;
 	//skip function if encoder did not init
 	if (encoder==NULL){
+		uart_log(LEVEL_WARN, "Encoder is NULL!!");
 		return;
 	}
 	int32_t raw = quadrature_encoder_get_count(encoder->pio, encoder->sm);
