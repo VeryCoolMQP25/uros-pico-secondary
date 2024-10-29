@@ -37,7 +37,7 @@ class MinimalPublisher(Node):
                 if abs(rightpower) > 100:
                     rightpower = 100*(rightpower/abs(rightpower))
                 msg = Int32MultiArray()
-                msg.data = [int(leftpower), int(rightpower), int(100*z)]
+                msg.data = [int(leftpower), int(rightpower), int(z)]
                 self.publisher_.publish(msg)
                 self.get_logger().info(f'Pufblishing: {msg.data}')
 

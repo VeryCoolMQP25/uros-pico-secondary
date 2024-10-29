@@ -23,9 +23,17 @@ rcl_publisher_t encoder_raw_publisher;
 std_msgs__msg__Int32MultiArray encoder_raw_message;
 
 void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
+	// update encoder values
+	update_motor_encoders(&drivetrain_left);
+	update_motor_encoders(&drivetrain_right);
 	// publish raw encoder readings
 	encoder_raw_message.data.data[0] = drivetrain_left.enc->prev_count;
 	encoder_raw_message.data.data[1] = drivetrain_right.enc->prev_count;
+	#ifdef DEBUG_ENCODERS
+		char debugbuff[60];
+		snprintf(debugbuff, 60, "Encoder data: (%d, %d)", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count);
+		uart_log(LEVEL_DEBUG, debugbuff);
+	#endif //DEBUG_ENCODERS
 	rcl_check_error(rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL), "Enc Raw Publish");
 }
 

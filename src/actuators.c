@@ -26,7 +26,7 @@ static int get_next_sm(){
 }
 
 static Encoder *init_encoder(uint pinA, uint pinB){
-	if (pinA-pinB != 1){
+	if (abs(pinA-pinB) != 1){
 		uart_log(LEVEL_ERROR, "Encoder pin A and B must be sequential! Aborting enc init");
 		return NULL;
 	}
@@ -115,6 +115,10 @@ void kill_all_actuators(){
 
 void update_motor_encoders(Motor *mot){
 	Encoder *encoder = mot->enc;
+	//skip function if encoder did not init
+	if (encoder==NULL){
+		return;
+	}
 	int32_t raw = quadrature_encoder_get_count(encoder->pio, encoder->sm);
 	int32_t dist_delta_pulse = raw - encoder->prev_count;
 	uint64_t curtime = time_us_64();
