@@ -15,8 +15,8 @@
 #define DT_R_ENCODER_B		9
 //#define UNASSIGNED		10
 #define LIFT_PWM			11
-#define LIFT_LIMIT_PIN		12
-//#define UNASSIGNED		13
+#define LIFT_ENCODER_A		12
+#define LIFT_ENCODER_B		13
 #define DT_L_PWM			14
 #define DT_R_PWM			15
 //#define UNASSIGNED		16
@@ -25,7 +25,7 @@
 //#define UNASSIGNED		19
 //#define UNASSIGNED		20
 //#define UNASSIGNED		21
-//#define UNASSIGNED		22
+#define LIFT_LIMIT_PIN		22
 //#define UNASSIGNED		23
 //#define UNASSIGNED		24
 #define LED_PIN				25
