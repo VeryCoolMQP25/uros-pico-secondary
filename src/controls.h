@@ -30,7 +30,7 @@ typedef struct {
 
 void pid_setup();
 
-PIDController init_pid_control(float Kp, float Ki, float Kd);
+PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PIDMode pmode);
 
 void twist_callback(const void*);
 

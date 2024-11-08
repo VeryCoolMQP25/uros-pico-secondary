@@ -1,8 +1,10 @@
-#include <std_msgs/msg/int32_multi_array.h>
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
 #include <stdio.h>
+#include <std_msgs/msg/float32_multi_array.h>
+#include <std_msgs/msg/int32_multi_array.h>
+#include <geometry_msgs/msg/twist.h>
 #include "pico/stdlib.h"
 #include "uart_logging.h"
 #include "controls.h"
@@ -21,8 +23,8 @@ static DriveMode drive_mode_global = dm_halt;
 
 
 void pid_setup(){
-	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0, pid_velocity);
-	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0, pid_velocity);
+	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.0, pid_velocity);
+	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.0, pid_velocity);
 	pid_p_left = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD, PID_DT_TOL, pid_position);
 	pid_p_right = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD, PID_DT_TOL, pid_position);
 	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD, PID_LFT_TOL, pid_position);	
