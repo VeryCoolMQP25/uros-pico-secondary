@@ -32,15 +32,15 @@ void pid_setup();
 
 PIDController init_pid_control(float Kp, float Ki, float Kd);
 
-void dt_power_callback(const void*);
+void twist_callback(const void*);
+
+void pid_k_callback(const void*);
 
 int get_left_power();
 
 int get_right_power();
 
 int get_lift_power();
-
-bool get_lift_hardstop();
 
 void set_drivetrain_power(int, int);
 

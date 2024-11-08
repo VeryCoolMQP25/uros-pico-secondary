@@ -1,0 +1,5 @@
+List of tasks currently partially implemented
+
+- Lift motor automatic cutoff with limit switch
+- Twist message subscriber / listening
+- live PID variable update from ROS

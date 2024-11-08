@@ -51,5 +51,6 @@ bool set_motor_power(Motor*, int);
 void kill_all_actuators();
 
 void update_motor_encoders(Motor*);
+bool get_lift_hardstop();
 
 #endif

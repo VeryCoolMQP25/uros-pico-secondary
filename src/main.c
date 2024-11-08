@@ -3,8 +3,9 @@
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
-#include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/float32_multi_array.h>
 #include <std_msgs/msg/int32_multi_array.h>
+#include <geometry_msgs/msg/twist.h>
 #include <rmw_microros/rmw_microros.h>
 
 #include "hardware/watchdog.h"
@@ -17,11 +18,10 @@
 
 // globals
 const char *namespace = "";
-// system states
 DriveMode drive_mode = dm_halt;
-
 rcl_publisher_t encoder_raw_publisher;
 std_msgs__msg__Int32MultiArray encoder_raw_message;
+
 
 void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
 	// update encoder values
@@ -46,6 +46,7 @@ void check_connectivity(rcl_timer_t *timer, int64_t last_call_time){
 	if (!ok){
 		drive_mode = dm_halt;
 	}
+	watchdog_update();
 }
 
 // creates and returns a timer, configuring it to call specified callback. Returns timer handle
@@ -75,7 +76,6 @@ void core1task(){
 				drive_mode = dm_halt;
 		}
 		sleep_ms(10);
-		watchdog_update();
 	}
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();	
@@ -92,7 +92,8 @@ int main()
 		pico_serial_transport_write,
 		pico_serial_transport_read
 	);
-
+	
+	// setup on-board status LED
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
@@ -109,17 +110,25 @@ int main()
     watchdog_enable(100, 1);
     
     uart_log(LEVEL_INFO, "Waiting for agent...");
+    
+    // try 20 times to ping, 50ms timeout each ping
+	for (int i = 0; i < 20; i++){
+		if (rmw_uros_ping_agent(1, 50) == RCL_RET_OK){
+			uart_log(LEVEL_INFO,"Connected to host.");
+			break;
+		}
+		char outbuff[20];
+		snprintf(outbuff, 20, "Ping #%d failed.", i);
+		uart_log(LEVEL_DEBUG, outbuff);
+		if (i == 19){
+			uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing!");
+			//wait for watchdog to reset board
+			while(1);
+		}
+		watchdog_update();
+	}
 
-    rcl_ret_t ret = rmw_uros_ping_agent(50, 120);
-
-    if (ret != RCL_RET_OK)
-    {
-        uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing out!");
-        //wait for watchdog to reset board
-        while(1);
-    }
-
-	// init uros
+	// --init uros--
     rcl_node_t node;
     rcl_allocator_t allocator;
     rclc_support_t support;
@@ -130,31 +139,43 @@ int main()
     rclc_node_init_default(&node, "pico_node", namespace, &support);
     rclc_executor_init(&executor, &support.context, 3, &allocator);
     
-    // create timed events
+    // --create timed events--
     create_timer_callback(&executor, &support, 500, publish_all_cb);
     create_timer_callback(&executor, &support, 200, check_connectivity);
-    
-	std_msgs__msg__Int32MultiArray dt_pwr_msg;
-	std_msgs__msg__Int32MultiArray__init(&dt_pwr_msg); // Initialize the message
-	// allocate space for the message payload
-	// int32_t dt_powers[2];
-	dt_pwr_msg.data.data = malloc(sizeof(int32_t)*3);
-	dt_pwr_msg.data.size = 0;
-	dt_pwr_msg.data.capacity = 3;
 
-	// create publishers
+	// --create publishers--
 	rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts");
 	encoder_raw_message.data.data = malloc(sizeof(int32_t)*2);
 	encoder_raw_message.data.size = 2;
 	encoder_raw_message.data.capacity = 2;
-    // create message subscribers
-    rcl_subscription_t dt_pwr_sub;
-    rclc_subscription_init_default(&dt_pwr_sub, &node,
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/drivetrain_powers");    
-    ret = rclc_executor_add_subscription(&executor, &dt_pwr_sub, &dt_pwr_msg, &dt_power_callback, ON_NEW_DATA);
-	char debugbuff[50];
-	snprintf(debugbuff,50,"Add subscription returned code %d", ret);
-	uart_log(LEVEL_DEBUG,debugbuff);
+	
+    // --create subscribers--
+    // twist command subscriber
+    rcl_subscription_t twist_subscriber;
+    geometry_msgs__msg__Twist twist_msg;
+    rclc_subscription_init_default(
+        &twist_subscriber,
+        &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
+        "cmd_twist");
+        
+    rclc_executor_add_subscription(&executor, &twist_subscriber, &twist_msg, &twist_callback, ON_NEW_DATA);
+	// PID Tuner sub
+	std_msgs__msg__Float32MultiArray pid_vars_msg;
+	std_msgs__msg__Float32MultiArray__init(&pid_vars_msg); // Initialize the message
+	// allocate space for the message payload
+	pid_vars_msg.data.data = malloc(sizeof(float)*3);
+	pid_vars_msg.data.size = 0;
+	pid_vars_msg.data.capacity = 3;
+	rcl_subscription_t pid_tune_sub;
+	rclc_subscription_init_default(
+		&pid_tune_sub, 
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), 
+		"/pidtune");
+	rclc_executor_add_subscription(&executor, &pid_tune_sub, &pid_vars_msg, &pid_k_callback, ON_NEW_DATA);
+
+    // -- general inits --
     init_all_motors();
     pid_setup();
     uart_log(LEVEL_DEBUG, "Finished init, starting exec");
@@ -162,7 +183,10 @@ int main()
     multicore_launch_core1(core1task);
    	rclc_executor_spin(&executor);
 	uart_log(LEVEL_ERROR, "Executor exited! Emergency Stop.");
-	kill_all_actuators();
 	gpio_put(LED_PIN, 0);
-    return 0;
+	// wait to be killed by watchdog
+    while(1) {
+    	kill_all_actuators();
+    	uart_log(LEVEL_ERROR,"KILL ME");
+    }
 }

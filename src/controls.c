@@ -23,10 +23,8 @@ static DriveMode drive_mode_global = dm_halt;
 void pid_setup(){
 	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0, pid_velocity);
 	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0, pid_velocity);
-	
 	pid_p_left = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD, PID_DT_TOL, pid_position);
 	pid_p_right = init_pid_control(PID_DT_KP, PID_DT_KI, PID_DT_KD, PID_DT_TOL, pid_position);
-	
 	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD, PID_LFT_TOL, pid_position);	
 }
 
@@ -43,22 +41,21 @@ PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PI
 	return controller;
 }
 
-void dt_power_callback(const void *indata) {
-    const std_msgs__msg__Int32MultiArray * msg = (const std_msgs__msg__Int32MultiArray *)indata;
-    if (msg->data.size != 3){
-    	uart_log(LEVEL_WARN,"drivetrain power message wrong len! Discarded.");
-    	return;
-    }
-	if (abs(msg->data.data[0]) > 100 || abs(msg->data.data[1]) > 100){
-		uart_log(LEVEL_WARN,"bad drivetrain power message. Discarded.");
-		return;
-	}
-    left_power = msg->data.data[0];
-    right_power = msg->data.data[1];
+void twist_callback(const void *msgin) {
+    const geometry_msgs__msg__Twist * msg = (const geometry_msgs__msg__Twist *)msgin;
+    uart_log(LEVEL_ERROR, "Drivetrain Twist NOT IMPLEMENTED!");
+    left_power = 0;
+    right_power = 0;
     char debugbuff[60];
     snprintf(debugbuff, 60, "Drivetrain powers now (%d, %d)",left_power, right_power);
     uart_log(LEVEL_DEBUG, debugbuff);
     dt_raw_last_update = time_us_64();
+}
+
+void pid_k_callback(const void *msgin){
+	const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msgin;
+	uart_log(LEVEL_ERROR, "Live PID NOT IMPLEMENTED!");
+	    
 }
 
 int get_left_power(){
@@ -71,10 +68,6 @@ int get_right_power(){
 
 int get_lift_power(){
 	return lift_power;
-}
-
-bool get_lift_hardstop(){
-	return gpio_get(LIFT_LIMIT_PIN);
 }
 
 void set_drivetrain_power(int l_power, int r_power){
