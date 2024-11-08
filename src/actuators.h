@@ -17,6 +17,7 @@
  * 1.487ms = the "low end" of the deadband range
  * 0.989ms = full "reverse"
 */
+
 #define TALON_PWM_FREQ 333
 #define TALON_PWM_WRAP 15015
 #define TALON_FULL_FWD 10184
@@ -36,6 +37,9 @@ typedef struct {
 	int curpower;
 	Encoder *enc;
 	float velocity;
+	float position;
+	bool (*killfunc)(void);
+	
 } Motor;
 
 extern Motor drivetrain_left;

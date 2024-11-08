@@ -50,7 +50,7 @@ static Encoder *init_encoder(uint pinA, uint pinB){
 	return enc;
 }
 
-void init_motor(int pin, Motor *motor_struct){
+void init_motor(int pin, Motor *motor_struct, bool (*killfunc)(void)){
 	motor_struct->pin_num = pin;
 	gpio_set_function(pin, GPIO_FUNC_PWM);
 	uint slice = pwm_gpio_to_slice_num(pin);
@@ -66,6 +66,9 @@ void init_motor(int pin, Motor *motor_struct){
 	// init and start PWM channel
 	pwm_init(slice, &config, true);
 	motor_struct->enc = NULL;
+	motor_struct->velocity=0.0;
+	motor_position->position=0.0;
+	motor_struct->killfunc = killfunc;
 }
 
 void init_motor_with_encoder(int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B){
@@ -76,12 +79,21 @@ void init_motor_with_encoder(int pin, Motor *motor_struct, int enc_pin_A, int en
 	}
 }
 
+// sets the power level of a motor via PWM.
 // accepts integer power level [-100, 100]
 bool set_motor_power(Motor *motor, int power){
 	bool ok = true;
 	if(abs(power) > MOTOR_POWER_MAX){
 		power = MOTOR_POWER_MAX*(power/abs(power));
 		ok = false;
+	}
+	// check if motor has a defined cutout function
+	if (motor->killfunc != NULL){
+		if (motor->killfunc()){
+			uart_log(LEVEL_DEBUG,"motor kill funciton active");
+			power = 0;
+			ok = false;
+		}
 	}
 	int setpoint = (TALON_DEADCTR+power*(TALON_FULL_FWD-TALON_DEADCTR)/100);
 	if (setpoint > TALON_FULL_FWD || setpoint < TALON_FULL_REV){

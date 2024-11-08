@@ -12,12 +12,19 @@ typedef enum {
 	dm_halt
 } DriveMode;
 
+typedef enum {
+	pid_position,
+	pid_velocity
+} PIDMode;
+
 typedef struct {
 	float Kp;
 	float Ki;
 	float Kd;
 	float previous_error;
 	float integral;
+	float tolerance;
+	PIDMode mode;
 	uint64_t last_tick_us;
 } PIDController;
 

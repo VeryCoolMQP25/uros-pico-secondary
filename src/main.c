@@ -7,6 +7,7 @@
 #include <std_msgs/msg/int32_multi_array.h>
 #include <rmw_microros/rmw_microros.h>
 
+#include "hardware/watchdog.h"
 #include "pico/stdlib.h"
 #include "pico_ros_usb.h"
 #include "uart_logging.h"
@@ -17,7 +18,7 @@
 // globals
 const char *namespace = "";
 // system states
-DriveMode drive_mode = dm_raw;
+DriveMode drive_mode = dm_halt;
 
 rcl_publisher_t encoder_raw_publisher;
 std_msgs__msg__Int32MultiArray encoder_raw_message;
@@ -74,6 +75,7 @@ void core1task(){
 				drive_mode = dm_halt;
 		}
 		sleep_ms(10);
+		watchdog_update();
 	}
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();	
@@ -97,6 +99,15 @@ int main()
 	// init uart0 debugging iface
     uart_setup();
     uart_log(LEVEL_DEBUG, "Started UART comms");
+    if (watchdog_caused_reboot()){
+    	uart_log(LEVEL_WARN, "Rebooted by watchdog!");
+    }
+    else {
+    	uart_log(LEVEL_INFO, "Boot was clean.");
+    }
+    uart_log(LEVEL_INFO, "Starting watchdog...");
+    watchdog_enable(100, 1);
+    
     uart_log(LEVEL_INFO, "Waiting for agent...");
 
     rcl_ret_t ret = rmw_uros_ping_agent(50, 120);
@@ -104,7 +115,8 @@ int main()
     if (ret != RCL_RET_OK)
     {
         uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing out!");
-        return ret;
+        //wait for watchdog to reset board
+        while(1);
     }
 
 	// init uros
