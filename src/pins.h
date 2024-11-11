@@ -9,10 +9,10 @@
 //#define UNASSIGNED		3
 //#define UNASSIGNED		4
 //#define UNASSIGNED		5
-#define DT_L_ENCODER_A		6
-#define DT_L_ENCODER_B		7
-#define DT_R_ENCODER_A		8
-#define DT_R_ENCODER_B		9
+#define DT_R_ENCODER_A		6
+#define DT_R_ENCODER_B		7
+#define DT_L_ENCODER_A		8
+#define DT_L_ENCODER_B		9
 //#define UNASSIGNED		10
 #define LIFT_PWM			11
 #define LIFT_ENCODER_A		12

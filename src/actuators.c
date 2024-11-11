@@ -142,7 +142,7 @@ void update_motor_encoders(Motor *mot){
 	encoder->prev_count = raw;
 	encoder->prev_time_us = curtime;
 	float pulse_per_sec = (1000000.0*(float)dist_delta_pulse)/(float)delta_time_us;
-	float velocity = pulse_per_sec * ENCODER_DIST_PER_PULSE;
+	float velocity = pulse_per_sec / DT_ENCODER_PPM;
 	mot->velocity = velocity;
 }
 

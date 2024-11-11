@@ -6,9 +6,6 @@
 #include "hardware/clocks.h"
 #include "quadrature_encoder.pio.h"
 
-#define ENCODER_DIST_PER_PULSE	100 // arbitrary placehoder
-#define MOTOR_POWER_MAX	40
-
 /** Talon SR speed controller specifics
  * 333Hz signal
  * 2.037ms = full "forward"

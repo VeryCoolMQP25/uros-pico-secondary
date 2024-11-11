@@ -26,3 +26,14 @@ ROS communications handling, sensor sampling, and other miscelaneous tasks. Core
 ## Debugging
 The pico outputs a log over UART0 (pins 1 and 2) for debugging and troubleshooting at a baud rate of 115200.
 This project includes some unmodified source files from the [Pi Pico Examples](https://github.com/raspberrypi/pico-examples) under BSD 3-clause.
+
+### DT Encoder Distances
+
+| Distance (cm) | Encoder L | Encoder R |
+|---------------|-----------|-----------|
+| 5             | 6686      | 6787      |
+| 10            | 14483     | 14614     |
+| 15            | 22582     | 22491     |
+| 32            | 48353     | 47352     |
+| 64            | 98647     | 98176     |
+| 109           | 167258    | 167718    |

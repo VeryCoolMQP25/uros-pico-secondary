@@ -15,4 +15,19 @@
 #define PID_LFT_KD	0.05
 #define PID_LFT_TOL	0.05
 
+/* distances averaged from measurements
++---------------+-----------+-----------+
+| Distance (cm) | Encoder L | Encoder R |
++---------------+-----------+-----------+
+| 5             | 6686      | 6787      |
+| 10            | 14483     | 14614     |
+| 15            | 22582     | 22491     |
+| 32            | 48353     | 47352     |
+| 64            | 98647     | 98176     |
+| 109           | 167258    | 167718    |
++---------------+-----------+-----------+
+*/
+#define DT_ENCODER_PPM	147904
+#define MOTOR_POWER_MAX	40
+
 #endif

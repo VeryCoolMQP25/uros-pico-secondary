@@ -15,7 +15,7 @@
 #include "actuators.h"
 #include "controls.h"
 #include "pins.h"
-
+#define DEBUG_ENCODERS
 // globals
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
@@ -30,14 +30,12 @@ void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
 	// publish raw encoder readings
 	encoder_raw_message.data.data[0] = drivetrain_left.enc->prev_count;
 	encoder_raw_message.data.data[1] = drivetrain_right.enc->prev_count;
-	encoder_raw_message.data.data[2] = lift_motor.enc->prev_count;
-
+	int res = rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL);
 	#ifdef DEBUG_ENCODERS
-		char debugbuff[60];
-		snprintf(debugbuff, 60, "Encoder data: (%d, %d)", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count, lift_motor.enc->prev_count);
+		char debugbuff[80];
+		snprintf(debugbuff, 80, "Encoder data: (%d, %d) [%d]", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count, res);
 		uart_log(LEVEL_DEBUG, debugbuff);
 	#endif //DEBUG_ENCODERS
-	rcl_check_error(rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL), "Enc Raw Publish");
 }
 
 // checks if we have comms with serial agent
@@ -113,16 +111,17 @@ int main()
     
     uart_log(LEVEL_INFO, "Waiting for agent...");
     
-    // try 20 times to ping, 50ms timeout each ping
-	for (int i = 0; i < 20; i++){
+    // try 50 times to ping, 50ms timeout each ping
+	for (int i = 0; i < 50; i++){
 		if (rmw_uros_ping_agent(1, 50) == RCL_RET_OK){
 			uart_log(LEVEL_INFO,"Connected to host.");
+			watchdog_disable();
 			break;
 		}
 		char outbuff[20];
 		snprintf(outbuff, 20, "Ping #%d failed.", i);
 		uart_log(LEVEL_DEBUG, outbuff);
-		if (i == 19){
+		if (i == 49){
 			uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing!");
 			//wait for watchdog to reset board
 			while(1);
@@ -142,14 +141,18 @@ int main()
     rclc_executor_init(&executor, &support.context, 3, &allocator);
     
     // --create timed events--
-    create_timer_callback(&executor, &support, 500, publish_all_cb);
+    create_timer_callback(&executor, &support, 100, publish_all_cb);
     create_timer_callback(&executor, &support, 200, check_connectivity);
 
 	// --create publishers--
-	rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts");
-	encoder_raw_message.data.data = malloc(sizeof(int32_t)*3);
-	encoder_raw_message.data.size = 3;
-	encoder_raw_message.data.capacity = 3;
+	if (rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts") != RCL_RET_OK){
+		while (1){
+			uart_log(LEVEL_ERROR,"Publisher init failed!!");
+		}
+	}
+	encoder_raw_message.data.data = malloc(sizeof(int32_t)*2);
+	encoder_raw_message.data.size = 2;
+	encoder_raw_message.data.capacity = 2;
 	
     // --create subscribers--
     // twist command subscriber
@@ -161,8 +164,7 @@ int main()
         ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
         "cmd_twist");
         
-    rclc_executor_add_subscription(&executor, &twist_subscriber, &twist_msg, &twist_callback, ON_NEW_DATA);
-	// PID Tuner sub
+    rclc_executor_add_subscription(&executor, &twist_subscriber, &twist_msg, &twist_callback, ON_NEW_DATA);		// PID Tuner sub
 	std_msgs__msg__Float32MultiArray pid_vars_msg;
 	std_msgs__msg__Float32MultiArray__init(&pid_vars_msg); // Initialize the message
 	// allocate space for the message payload
