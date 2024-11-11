@@ -5,6 +5,7 @@
 #include <std_msgs/msg/float32_multi_array.h>
 #include <std_msgs/msg/int32_multi_array.h>
 #include <geometry_msgs/msg/twist.h>
+#include <math.h>
 #include "pico/stdlib.h"
 #include "uart_logging.h"
 #include "controls.h"
@@ -56,8 +57,20 @@ void twist_callback(const void *msgin) {
 
 void pid_k_callback(const void *msgin){
 	const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msgin;
-	uart_log(LEVEL_ERROR, "Live PID NOT IMPLEMENTED!");
-	    
+	float Kp = msg->data.data[0];
+	float Ki = msg->data.data[1];
+	float Kd = msg->data.data[2];
+
+	char mesg[50];
+	snprintf(mesg, 50, "Setting K values to %f, %f, %f.",Kp, Ki, Kd);
+	uart_log(LEVEL_DEBUG, mesg);
+	pid_v_left.Kp = Kp;
+	pid_v_left.Ki = Ki;
+	pid_v_left.Kd = Kd;
+	
+	pid_v_right.Kp = Kp;
+	pid_v_right.Ki = Ki;
+	pid_v_right.Kd = Kd;	    
 }
 
 int get_left_power(){
@@ -95,8 +108,8 @@ void lift_power_from_ros(){
 
 // Speed values in m/s
 void set_drivetrain_speed(float l_speed, float r_speed){
-	run_pid_velocity(&drivetrain_left, &pid_v_left, l_speed);
-	run_pid_velocity(&drivetrain_right, &pid_v_right, r_speed);
+	run_pid(&drivetrain_left, &pid_v_left, l_speed);
+	run_pid(&drivetrain_right, &pid_v_right, r_speed);
 }
 
 void run_pid(Motor *motor, PIDController *pid, float target){

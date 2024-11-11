@@ -30,9 +30,11 @@ void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
 	// publish raw encoder readings
 	encoder_raw_message.data.data[0] = drivetrain_left.enc->prev_count;
 	encoder_raw_message.data.data[1] = drivetrain_right.enc->prev_count;
+	encoder_raw_message.data.data[2] = lift_motor.enc->prev_count;
+
 	#ifdef DEBUG_ENCODERS
 		char debugbuff[60];
-		snprintf(debugbuff, 60, "Encoder data: (%d, %d)", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count);
+		snprintf(debugbuff, 60, "Encoder data: (%d, %d)", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count, lift_motor.enc->prev_count);
 		uart_log(LEVEL_DEBUG, debugbuff);
 	#endif //DEBUG_ENCODERS
 	rcl_check_error(rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL), "Enc Raw Publish");
@@ -145,9 +147,9 @@ int main()
 
 	// --create publishers--
 	rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts");
-	encoder_raw_message.data.data = malloc(sizeof(int32_t)*2);
-	encoder_raw_message.data.size = 2;
-	encoder_raw_message.data.capacity = 2;
+	encoder_raw_message.data.data = malloc(sizeof(int32_t)*3);
+	encoder_raw_message.data.size = 3;
+	encoder_raw_message.data.capacity = 3;
 	
     // --create subscribers--
     // twist command subscriber
