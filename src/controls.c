@@ -18,8 +18,8 @@ static DriveMode drive_mode_global = dm_halt;
 unsigned long last_twist_msg = 0;
 
 void pid_setup(){
-	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.01, pid_velocity);
-	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.01, pid_velocity);
+	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.02, pid_velocity);
+	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.02, pid_velocity);
 	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD, PID_LFT_TOL, pid_position);	
 }
 
@@ -43,9 +43,6 @@ void twist_callback(const void *msgin) {
     float angular = msg->angular.z; // rad/s
     pid_v_left.target = linear - (WHEELBASE_M*angular)/2;
     pid_v_right.target = linear + (WHEELBASE_M*angular)/2;
-    char debugbuff[60];
-    snprintf(debugbuff, 60, "Drivetrain targets now (%f, %f)",pid_v_left.target, pid_v_right.target);
-    uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
     last_twist_msg = time_us_64();
 }
 
@@ -79,8 +76,12 @@ void run_pid(Motor *motor, PIDController *pid){
 			error = pid->target - motor->velocity;
 			if (fabs(error) > pid->tolerance) {
 				pid->integral += error * delta_time_s;
-			} else {
+			} 
+			else {
 				pid->integral = 0;  // Reset to avoid windup
+			}
+			if (pid->integral>0.25){
+				pid->integral = 0;
 			}
 			break;
 		case pid_position:
