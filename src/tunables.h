@@ -1,14 +1,17 @@
 #ifndef TUNABLES_H
 #define TUNABLES_H
 
-#define PID_DT_V_KP	1.0
-#define PID_DT_V_KI	0.1
-#define PID_DT_V_KD	0.05
+// distance between front wheels in meters
+#define WHEELBASE_M 0.51
 
-#define PID_DT_KP	10.0
-#define PID_DT_KI	0.1
-#define PID_DT_KD	0.05
-#define PID_DT_TOL	0.05
+#define PID_DT_V_KP	0.7
+#define PID_DT_V_KI	0.2
+#define PID_DT_V_KD	0.001
+
+// #define PID_DT_KP	10.0
+// #define PID_DT_KI	0.1
+// #define PID_DT_KD	0.05
+// #define PID_DT_TOL	0.05
 
 #define PID_LFT_KP	10.0
 #define PID_LFT_KI	0.1
@@ -31,3 +34,6 @@
 #define MOTOR_POWER_MAX	40
 
 #endif
+
+// [13235] DEBUG: P:0.019370, I:0.019791, D:-0.393729
+// tgt: 0.267728, act: 0.240057, err: 0.027671 | out: -35

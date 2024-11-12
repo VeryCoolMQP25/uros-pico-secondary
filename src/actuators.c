@@ -5,6 +5,7 @@
 #include "hardware/timer.h"
 #include "actuators.h"
 #include "uart_logging.h"
+#include "tunables.h"
 
 Motor drivetrain_left;
 Motor drivetrain_right;

@@ -10,12 +10,14 @@
 
 #include "hardware/watchdog.h"
 #include "pico/stdlib.h"
+#include "pico/malloc.h"
+#include <malloc.h>
 #include "pico_ros_usb.h"
 #include "uart_logging.h"
 #include "actuators.h"
 #include "controls.h"
 #include "pins.h"
-#define DEBUG_ENCODERS
+
 // globals
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
@@ -36,6 +38,12 @@ void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
 		snprintf(debugbuff, 80, "Encoder data: (%d, %d) [%d]", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count, res);
 		uart_log(LEVEL_DEBUG, debugbuff);
 	#endif //DEBUG_ENCODERS
+	#ifdef DEBUG_MEM
+		struct mallinfo info = mallinfo();
+		char membuff[32];
+		snprintf(membuff, 32, "malloc: %d, mfree: %d",info.uordblks,info.fordblks);
+		uart_log_nonblocking(LEVEL_INFO, membuff);
+	#endif // DEBUG_MEM
 }
 
 // checks if we have comms with serial agent
@@ -62,14 +70,14 @@ rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *su
 void core1task(){
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
 	while(true){
+		watchdog_update();
 		drive_mode = drive_mode_from_ros();
 		switch(drive_mode){
 			case dm_halt:
 				kill_all_actuators();
 				break;
-			case dm_raw:
-				drivetrain_power_from_ros();
-				lift_power_from_ros();
+			case dm_twist:
+				do_drivetrain_pid_v();
 				break;
 			default:
 				uart_log(LEVEL_WARN, "Invalid drive state!");
@@ -82,7 +90,9 @@ void core1task(){
 }
 
 int main()
-{
+{	
+	// in case of unclean boot, make sure actuators are off
+	kill_all_actuators();
 	// init USB serial comms
     rmw_uros_set_custom_transport(
 		true,
@@ -107,7 +117,7 @@ int main()
     	uart_log(LEVEL_INFO, "Boot was clean.");
     }
     uart_log(LEVEL_INFO, "Starting watchdog...");
-    watchdog_enable(100, 1);
+    watchdog_enable(300, 1);
     
     uart_log(LEVEL_INFO, "Waiting for agent...");
     
@@ -115,7 +125,6 @@ int main()
 	for (int i = 0; i < 50; i++){
 		if (rmw_uros_ping_agent(1, 50) == RCL_RET_OK){
 			uart_log(LEVEL_INFO,"Connected to host.");
-			watchdog_disable();
 			break;
 		}
 		char outbuff[20];
@@ -162,23 +171,10 @@ int main()
         &twist_subscriber,
         &node,
         ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-        "cmd_twist");
+        "cmd_vel");
         
-    rclc_executor_add_subscription(&executor, &twist_subscriber, &twist_msg, &twist_callback, ON_NEW_DATA);		// PID Tuner sub
-	std_msgs__msg__Float32MultiArray pid_vars_msg;
-	std_msgs__msg__Float32MultiArray__init(&pid_vars_msg); // Initialize the message
-	// allocate space for the message payload
-	pid_vars_msg.data.data = malloc(sizeof(float)*3);
-	pid_vars_msg.data.size = 0;
-	pid_vars_msg.data.capacity = 3;
-	rcl_subscription_t pid_tune_sub;
-	rclc_subscription_init_default(
-		&pid_tune_sub, 
-		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), 
-		"/pidtune");
-	rclc_executor_add_subscription(&executor, &pid_tune_sub, &pid_vars_msg, &pid_k_callback, ON_NEW_DATA);
-
+    rclc_executor_add_subscription(&executor, &twist_subscriber, &twist_msg, &twist_callback, ON_NEW_DATA);
+	watchdog_update();
     // -- general inits --
     init_all_motors();
     pid_setup();

@@ -24,6 +24,7 @@ typedef struct {
 	float previous_error;
 	float integral;
 	float tolerance;
+	float target;
 	PIDMode mode;
 	uint64_t last_tick_us;
 } PIDController;
@@ -36,21 +37,11 @@ void twist_callback(const void*);
 
 void pid_k_callback(const void*);
 
-int get_left_power();
-
-int get_right_power();
-
-int get_lift_power();
-
 void set_drivetrain_power(int, int);
 
-void drivetrain_power_from_ros();
+void do_drivetrain_pid_v();
 
-void lift_power_from_ros();
-
-void set_drivetrain_speed(float, float);
-
-void run_pid(Motor*, PIDController*, float);
+void run_pid(Motor*, PIDController*);
 
 DriveMode drive_mode_from_ros();
 
