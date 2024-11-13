@@ -2,14 +2,13 @@
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
 #include <stdio.h>
-#include <std_msgs/msg/float32_multi_array.h>
-#include <std_msgs/msg/int32_multi_array.h>
-#include <geometry_msgs/msg/twist.h>
 #include <math.h>
 #include "pico/stdlib.h"
 #include "uart_logging.h"
 #include "controls.h"
 #include "tunables.h"
+#include "message_types.h"
+
 //globals
 static PIDController pid_v_left;
 static PIDController pid_v_right;
@@ -46,9 +45,16 @@ void twist_callback(const void *msgin) {
     last_twist_msg = time_us_64();
 }
 
-void set_drivetrain_power(int l_power, int r_power){
-	set_motor_power(&drivetrain_left, l_power);
-	set_motor_power(&drivetrain_right, r_power);
+// calculate 'twist' messages based on observed encoder data
+void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg){
+	float v_l = drivetrain_left.velocity;
+	float v_r = drivetrain_right.velocity;
+	unsigned long messagetime = time_us_64();
+	float v_diff = v_l-v_r;
+	msg->header.stamp.sec = messagetime/1000000;
+	msg->header.stamp.nanosec = messagetime % 1000000;
+	msg->twist.angular.z = v_diff/WHEELBASE_M;
+	msg->twist.linear.x = (v_l+v_r)/2;
 }
 
 
@@ -66,6 +72,7 @@ void do_drivetrain_pid_v(){
 }
 
 void run_pid(Motor *motor, PIDController *pid){
+	update_motor_encoders(motor);
 	static unsigned short printcount = 0;
 	uint64_t curtime = time_us_64();
 	float delta_time_s = (curtime - pid->last_tick_us)/1000000.0;

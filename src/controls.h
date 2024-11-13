@@ -5,6 +5,7 @@
 
 #include "pins.h"
 #include "actuators.h"
+#include "message_types.h"
 
 typedef enum {
 	dm_raw,
@@ -35,9 +36,7 @@ PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PI
 
 void twist_callback(const void*);
 
-void pid_k_callback(const void*);
-
-void set_drivetrain_power(int, int);
+void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg);
 
 void do_drivetrain_pid_v();
 

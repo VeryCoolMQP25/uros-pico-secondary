@@ -3,47 +3,35 @@
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
-#include <std_msgs/msg/float32_multi_array.h>
-#include <std_msgs/msg/int32_multi_array.h>
-#include <geometry_msgs/msg/twist.h>
 #include <rmw_microros/rmw_microros.h>
 
 #include "hardware/watchdog.h"
 #include "pico/stdlib.h"
 #include "pico/malloc.h"
-#include <malloc.h>
 #include "pico_ros_usb.h"
 #include "uart_logging.h"
 #include "actuators.h"
 #include "controls.h"
 #include "pins.h"
+#include "message_types.h"
 
 // globals
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
-rcl_publisher_t encoder_raw_publisher;
-std_msgs__msg__Int32MultiArray encoder_raw_message;
 
 
-void publish_all_cb(rcl_timer_t *timer, int64_t last_call_time){
-	// update encoder values
-	update_motor_encoders(&drivetrain_left);
-	update_motor_encoders(&drivetrain_right);
-	// publish raw encoder readings
-	encoder_raw_message.data.data[0] = drivetrain_left.enc->prev_count;
-	encoder_raw_message.data.data[1] = drivetrain_right.enc->prev_count;
-	int res = rcl_publish(&encoder_raw_publisher, &encoder_raw_message, NULL);
-	#ifdef DEBUG_ENCODERS
-		char debugbuff[80];
-		snprintf(debugbuff, 80, "Encoder data: (%d, %d) [%d]", drivetrain_left.enc->prev_count, drivetrain_right.enc->prev_count, res);
-		uart_log(LEVEL_DEBUG, debugbuff);
-	#endif //DEBUG_ENCODERS
-	#ifdef DEBUG_MEM
-		struct mallinfo info = mallinfo();
-		char membuff[32];
-		snprintf(membuff, 32, "malloc: %d, mfree: %d",info.uordblks,info.fordblks);
-		uart_log_nonblocking(LEVEL_INFO, membuff);
-	#endif // DEBUG_MEM
+
+/// support for encoder publisher
+rcl_publisher_t encoder_publisher;
+geometry_msgs__msg__TwistStamped observed_twist_msg;
+// callback to publish encoder data (processed into timestamped twists)
+
+void publish_encoder(rcl_timer_t *timer, int64_t last_call_time){
+	populate_observed_twist(&observed_twist_msg);
+	// Publish message
+	if(rcl_publish(&encoder_publisher, &observed_twist_msg, NULL)){
+		uart_log(LEVEL_WARN,"Encoder publish failed!");
+	}
 }
 
 // checks if we have comms with serial agent
@@ -150,18 +138,26 @@ int main()
     rclc_executor_init(&executor, &support.context, 3, &allocator);
     
     // --create timed events--
-    create_timer_callback(&executor, &support, 100, publish_all_cb);
+    create_timer_callback(&executor, &support, 50, publish_encoder);
     create_timer_callback(&executor, &support, 200, check_connectivity);
 
 	// --create publishers--
-	if (rclc_publisher_init_default(&encoder_raw_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32MultiArray), "/encoder_raw_counts") != RCL_RET_OK){
-		while (1){
-			uart_log(LEVEL_ERROR,"Publisher init failed!!");
-		}
-	}
-	encoder_raw_message.data.data = malloc(sizeof(int32_t)*2);
-	encoder_raw_message.data.size = 2;
-	encoder_raw_message.data.capacity = 2;
+	rclc_publisher_init_default(
+	    &encoder_publisher,
+	    &node,
+	    ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, TwistStamped),
+	    "twist_observed"
+	);
+	// setup static components of message
+	observed_twist_msg.header.frame_id.data = "base_link";
+	observed_twist_msg.header.frame_id.size = strlen(observed_twist_msg.header.frame_id.data);
+	observed_twist_msg.header.frame_id.capacity = observed_twist_msg.header.frame_id.size + 1;
+	observed_twist_msg.twist.linear.x = 0.0;
+	observed_twist_msg.twist.linear.y = 0.0;
+	observed_twist_msg.twist.linear.z = 0.0;
+	observed_twist_msg.twist.angular.x = 0.0;
+	observed_twist_msg.twist.angular.y = 0.0;
+	observed_twist_msg.twist.angular.z = 0.0;
 	
     // --create subscribers--
     // twist command subscriber
