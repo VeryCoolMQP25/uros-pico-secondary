@@ -110,20 +110,20 @@ int main()
     
     // try 50 times to ping, 50ms timeout each ping
 	for (int i = 0; i < 50; i++){
-		if (rmw_uros_ping_agent(1, 50) == RCL_RET_OK){
+		watchdog_update();
+		if (rmw_uros_ping_agent(1, 45) == RCL_RET_OK){
 			uart_log(LEVEL_INFO,"Connected to host.");
 			watchdog_update();
 			break;
 		}
-		char outbuff[20];
-		snprintf(outbuff, 20, "Ping #%d failed.", i);
+		char outbuff[25];
+		snprintf(outbuff, 25, "Ping %d/50 failed.", i+1);
 		uart_log(LEVEL_DEBUG, outbuff);
 		if (i == 49){
 			uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing!");
 			//wait for watchdog to reset board
 			while(1);
 		}
-		watchdog_update();
 	}
 
 	// --init uros--
