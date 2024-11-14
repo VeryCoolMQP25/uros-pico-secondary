@@ -2,3 +2,6 @@
 	path = uros_ws/src/micro_ros_setup
 	url = https://github.com/micro-ROS/micro_ros_setup.git
 	branch = humble
+[submodule "uros_ws/src/mqp_teleop"]
+	path = uros_ws/src/mqp_teleop
+	url = git@github.com:VeryCoolMQP25/teleop-lift-pkg.git
