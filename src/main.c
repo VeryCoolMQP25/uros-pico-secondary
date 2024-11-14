@@ -20,7 +20,6 @@ const char *namespace = "";
 DriveMode drive_mode = dm_halt;
 
 
-
 /// support for encoder publisher
 rcl_publisher_t encoder_publisher;
 geometry_msgs__msg__TwistStamped observed_twist_msg;
@@ -62,7 +61,8 @@ void core1task(){
 		drive_mode = drive_mode_from_ros();
 		switch(drive_mode){
 			case dm_halt:
-				kill_all_actuators();
+				set_motor_power(&drivetrain_left, 0);
+				set_motor_power(&drivetrain_right, 0);
 				break;
 			case dm_twist:
 				do_drivetrain_pid_v();
@@ -71,7 +71,7 @@ void core1task(){
 				uart_log(LEVEL_WARN, "Invalid drive state!");
 				drive_mode = dm_halt;
 		}
-		sleep_ms(10);
+		sleep_ms(4);
 	}
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();	
@@ -79,6 +79,17 @@ void core1task(){
 
 int main()
 {	
+	// init uart0 debugging iface
+    uart_setup();
+    uart_log(LEVEL_DEBUG, "Started UART comms");
+    if (watchdog_caused_reboot()){
+    	uart_log(LEVEL_WARN, "Rebooted by watchdog!");
+    }
+    else {
+    	uart_log(LEVEL_INFO, "Boot was clean.");
+    }
+    uart_log(LEVEL_INFO, "Starting watchdog...");
+    watchdog_enable(300, 1);
 	// in case of unclean boot, make sure actuators are off
 	kill_all_actuators();
 	// init USB serial comms
@@ -94,18 +105,6 @@ int main()
 	// setup on-board status LED
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
-
-	// init uart0 debugging iface
-    uart_setup();
-    uart_log(LEVEL_DEBUG, "Started UART comms");
-    if (watchdog_caused_reboot()){
-    	uart_log(LEVEL_WARN, "Rebooted by watchdog!");
-    }
-    else {
-    	uart_log(LEVEL_INFO, "Boot was clean.");
-    }
-    uart_log(LEVEL_INFO, "Starting watchdog...");
-    watchdog_enable(300, 1);
     
     uart_log(LEVEL_INFO, "Waiting for agent...");
     
@@ -113,6 +112,7 @@ int main()
 	for (int i = 0; i < 50; i++){
 		if (rmw_uros_ping_agent(1, 50) == RCL_RET_OK){
 			uart_log(LEVEL_INFO,"Connected to host.");
+			watchdog_update();
 			break;
 		}
 		char outbuff[20];
@@ -135,12 +135,13 @@ int main()
     allocator = rcl_get_default_allocator();	
     rclc_support_init(&support, 0, NULL, &allocator);
     rclc_node_init_default(&node, "pico_node", namespace, &support);
-    rclc_executor_init(&executor, &support.context, 5, &allocator);
+    rclc_executor_init(&executor, &support.context, 4, &allocator);
     
     // --create timed events--
     create_timer_callback(&executor, &support, 50, publish_encoder);
     create_timer_callback(&executor, &support, 200, check_connectivity);
-
+	watchdog_update();
+	
 	// --create publishers--
 	rclc_publisher_init_default(
 	    &encoder_publisher,

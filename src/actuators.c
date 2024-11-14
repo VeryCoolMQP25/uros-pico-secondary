@@ -51,7 +51,8 @@ static Encoder *init_encoder(uint pinA, uint pinB){
 	return enc;
 }
 
-void init_motor(int pin, Motor *motor_struct, bool (*killfunc)(void)){
+void init_motor(char *name, int pin, Motor *motor_struct, bool (*killfunc)(void)){
+	motor_struct->name = name;
 	motor_struct->pin_num = pin;
 	gpio_set_function(pin, GPIO_FUNC_PWM);
 	uint slice = pwm_gpio_to_slice_num(pin);
@@ -72,8 +73,8 @@ void init_motor(int pin, Motor *motor_struct, bool (*killfunc)(void)){
 	motor_struct->killfunc = killfunc;
 }
 
-void init_motor_with_encoder(int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void)){
-	init_motor(pin, motor_struct, killfunc);
+void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void)){
+	init_motor(name, pin, motor_struct, killfunc);
 	motor_struct->enc = init_encoder(enc_pin_A, enc_pin_B);
 	if (motor_struct->enc == NULL){
 		uart_log(LEVEL_ERROR, "Could not init encoder!");
@@ -105,9 +106,6 @@ bool set_motor_power(Motor *motor, int power){
 	}
 	pwm_set_gpio_level(motor->pin_num, setpoint);
 	motor->curpower = power;
-	char asdfasf[20];
-	snprintf(asdfasf,20,"Set motor to %d",power);
-	uart_log(LEVEL_DEBUG, asdfasf);
 	return ok;
 }
 
@@ -117,9 +115,9 @@ void init_all_motors(){
 	pio_add_program(pio0, &quadrature_encoder_program);
 	pio_add_program(pio1, &quadrature_encoder_program);
 	uart_log(LEVEL_DEBUG, "Starting motor init");
-	init_motor_with_encoder(DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL);
-	init_motor_with_encoder(DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL);
-	init_motor_with_encoder(LIFT_PWM, &lift_motor, LIFT_ENCODER_A, LIFT_ENCODER_B, get_lift_hardstop);
+	init_motor_with_encoder("DT_L", DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL);
+	init_motor_with_encoder("DT_R", DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL);
+	init_motor_with_encoder("LIFT", LIFT_PWM, &lift_motor, LIFT_ENCODER_A, LIFT_ENCODER_B, get_lift_hardstop);
 	// initialize GPIO hardstop sensor
 	gpio_init(LIFT_LIMIT_PIN);
 	gpio_pull_up(LIFT_LIMIT_PIN);
@@ -127,6 +125,7 @@ void init_all_motors(){
 }
 
 void kill_all_actuators(){
+	uart_log(LEVEL_INFO, "Actuators killed");
 	set_motor_power(&drivetrain_right, 0);
 	set_motor_power(&drivetrain_left, 0);
 	set_motor_power(&lift_motor, 0);
@@ -151,6 +150,5 @@ void update_motor_encoders(Motor *mot){
 }
 
 bool get_lift_hardstop(){
-	return 0; //TODO remove
 	return !gpio_get(LIFT_LIMIT_PIN);
 }

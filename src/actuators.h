@@ -29,6 +29,7 @@ typedef struct {
 } Encoder;
 
 typedef struct {
+	char *name;
 	uint pin_num;
 	uint slice_num;
 	int curpower;

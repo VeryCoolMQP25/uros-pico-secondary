@@ -19,8 +19,8 @@ unsigned long last_lift_msg = 0;
 
 
 void pid_setup(){
-	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.02, pid_velocity);
-	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.02, pid_velocity);
+	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, PID_DT_TOL, pid_velocity);
+	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, PID_DT_TOL, pid_velocity);
 	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD, PID_LFT_TOL, pid_position);	
 }
 
@@ -71,9 +71,6 @@ void set_lift_power(int pwr){
 		uart_log(LEVEL_INFO, "Halted downward lift motion due to limit sw");
 	}
 	set_motor_power(&lift_motor, pwr);
-	char asdf[20];
-	snprintf(asdf, 20, "set lift to %d", pwr);
-	uart_log(LEVEL_DEBUG, asdf);
 }
 
 void do_drivetrain_pid_v(){
@@ -83,7 +80,6 @@ void do_drivetrain_pid_v(){
 
 void run_pid(Motor *motor, PIDController *pid){
 	update_motor_encoders(motor);
-	static unsigned short printcount = 0;
 	uint64_t curtime = time_us_64();
 	float delta_time_s = (curtime - pid->last_tick_us)/1000000.0;
 	pid->last_tick_us = curtime;
@@ -97,7 +93,8 @@ void run_pid(Motor *motor, PIDController *pid){
 			else {
 				pid->integral = 0;  // Reset to avoid windup
 			}
-			if (pid->integral>0.25){
+			if (pid->integral>PID_DT_KI_CAP){
+				uart_log(LEVEL_WARN, "Reset integral");
 				pid->integral = 0;
 			}
 			break;
@@ -122,13 +119,11 @@ void run_pid(Motor *motor, PIDController *pid){
 	else if (output < -100){
 		output = -100;
 	}
-	if (printcount++ > 4 && output){
-		printcount = 0;
-		char debugbuff[100];
-		snprintf(debugbuff, 100, "P:%f, I:%f, D:%f\r\ntgt: %f, act: %f, err: %f | out: %d",
-		P, I, D, pid->target, motor->velocity, error, output);
-		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
-	}
+	// char debugbuff[110];
+	// snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
+	// motor->name, P, I, D, pid->target, motor->velocity, error, output);
+	// uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
+		
 	pid->previous_error = error;
 	set_motor_power(motor, output);
 }
