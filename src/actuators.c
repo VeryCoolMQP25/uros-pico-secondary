@@ -105,6 +105,9 @@ bool set_motor_power(Motor *motor, int power){
 	}
 	pwm_set_gpio_level(motor->pin_num, setpoint);
 	motor->curpower = power;
+	char asdfasf[20];
+	snprintf(asdfasf,20,"Set motor to %d",power);
+	uart_log(LEVEL_DEBUG, asdfasf);
 	return ok;
 }
 
@@ -148,5 +151,6 @@ void update_motor_encoders(Motor *mot){
 }
 
 bool get_lift_hardstop(){
+	return 0; //TODO remove
 	return !gpio_get(LIFT_LIMIT_PIN);
 }

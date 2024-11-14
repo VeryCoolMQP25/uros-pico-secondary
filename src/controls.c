@@ -15,6 +15,8 @@ static PIDController pid_v_right;
 static PIDController pid_lift;
 static DriveMode drive_mode_global = dm_halt;
 unsigned long last_twist_msg = 0;
+unsigned long last_lift_msg = 0;
+
 
 void pid_setup(){
 	pid_v_left = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, 0.02, pid_velocity);
@@ -57,6 +59,11 @@ void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg){
 	msg->twist.linear.x = (v_l+v_r)/2;
 }
 
+void raw_lift_callback(const void *msgin) {
+    const std_msgs__msg__Float32 * msg = (const std_msgs__msg__Float32 *)msgin;
+    set_lift_power((int)(msg->data*100.0));
+	last_lift_msg = time_us_64();
+}
 
 void set_lift_power(int pwr){
 	if (get_lift_hardstop() && pwr < 0){
@@ -64,6 +71,9 @@ void set_lift_power(int pwr){
 		uart_log(LEVEL_INFO, "Halted downward lift motion due to limit sw");
 	}
 	set_motor_power(&lift_motor, pwr);
+	char asdf[20];
+	snprintf(asdf, 20, "set lift to %d", pwr);
+	uart_log(LEVEL_DEBUG, asdf);
 }
 
 void do_drivetrain_pid_v(){
