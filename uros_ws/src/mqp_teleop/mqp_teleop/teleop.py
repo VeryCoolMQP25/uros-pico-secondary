@@ -1,87 +1,61 @@
-import pygame
 import rclpy
-import rclpy.logging
+import rclpy.executors
 from rclpy.node import Node
-from rclpy.executors import MultiThreadedExecutor
-from geometry_msgs.msg import Twist
-import os
-os.environ['SDL_RENDERER'] = 'software'  # Forces SDL to use the software renderer
+from sensor_msgs.msg import Joy
+from std_msgs.msg import Float32
+from rclpy.publisher import Publisher
 
-cur_angular = 0.0
-cur_linear = 0.0
+LIFT_ENABLE_BTN = 5 # right bumper
+LIFT_AXIS = 4 # right stick Y
 
-class TwistPublisher(Node):
+power: float = 0.0
+
+class JoyListener(Node):
     def __init__(self):
-        super().__init__('twist_publisher')
-        self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
-        timer_period = 0.1
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-    def timer_callback(self):
-        msg = Twist()
-        msg.angular.z = cur_angular
-        msg.linear.x = cur_linear
-        self.publisher_.publish(msg)
+        super().__init__('joy_listener')
+        # Subscriber to the /joy topic
+        self.subscription = self.create_subscription(
+            Joy,
+            '/joy',
+            self.joy_callback,
+            10  # Queue size
+        )
 
-class PygameRunner(Node):
+    def joy_callback(self, msg):
+        global power
+        # Print out the button and axis values
+        buttons = msg.buttons  # List of button states (0 or 1)
+        axes = msg.axes  # List of axis states (e.g., for analog sticks)
+        command = 0.0
+        if (msg.buttons[LIFT_ENABLE_BTN]):
+            command = msg.axes[LIFT_AXIS]
+        power = command
+        self.get_logger().debug(f'States: {buttons[LIFT_ENABLE_BTN]}, {axes[LIFT_AXIS]}')
+        # self.get_logger().info(f'Buttons: {buttons}')
+        # self.get_logger().info(f'Axes: {axes}')
+
+class LiftPublisher(Node):
     def __init__(self):
-        super().__init__('teleop_pygame_runner')
-        self.timer = self.create_timer(0.05, self.timer_callback)
-        print("Init pygame...")
-        pygame.init()
-        pygame.joystick.init()
-        if pygame.joystick.get_count() == 0:
-            print("No xbox controller connected!")
-            pygame.quit()
-            exit()
-        self.controller = pygame.joystick.Joystick(0)
-        self.font = pygame.font.SysFont(None, 24)
-        self.screen = pygame.display.set_mode((800, 400), pygame.RESIZABLE)
-        pygame.display.set_caption("Teleop Client")
-        self.screen.fill((0, 0, 0))
+        super().__init__('lift_raw_publisher')
+        self.msg = Float32()
+        self.publisher: Publisher = self.create_publisher(Float32, "/lift_raw", 1)
+        self.timer = self.create_timer(0.05, self.callback)
 
-
-    def timer_callback(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        # Get joystick inputs
-        button_states = []
-        for i in range(self.controller.get_numbuttons()):
-            button_states.append(self.controller.get_button(i))
-
-        # Get joystick axes
-        axes = [self.controller.get_axis(i) for i in range(self.controller.get_numaxes())]
-
-        # Display button states
-        for i, state in enumerate(button_states):
-            text = self.font.render(f"Button {i}: {'Pressed' if state else 'Released'}", True, (255, 255, 255))
-            self.screen.blit(text, (10, 30 + 20 * i))
-
-        # Display joystick axes (left and right analog sticks)
-        text = self.font.render(f"Left Stick: ({axes[0]:.2f}, {axes[1]:.2f})", True, (255, 255, 255))
-        self.screen.blit(text, (10, 30 + 20 * len(button_states)))
-        text = self.font.render(f"Right Stick: ({axes[3]:.2f}, {axes[4]:.2f})", True, (255, 255, 255))
-        self.screen.blit(text, (10, 30 + 20 * (len(button_states) + 1)))
-        pygame.display.flip()
-
+    def callback(self):
+        self.msg.data = float(power)
+        self.publisher.publish(self.msg)
 
 def main(args=None):
-    print("Init RCLpy...")
     rclpy.init(args=args)
-
-
-    twist_publisher = TwistPublisher()
-    display = PygameRunner()
-    executor = MultiThreadedExecutor()
-    executor.add_node(twist_publisher)
-    executor.add_node(display)
-
+    executor = rclpy.executors.MultiThreadedExecutor()
+    joy_listener = JoyListener()
+    lift_publish = LiftPublisher()
+    executor.add_node(joy_listener)
+    executor.add_node(lift_publish)
     executor.spin()
-
-    twist_publisher.destroy_node()
+    joy_listener.destroy_node()
+    lift_publish.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()

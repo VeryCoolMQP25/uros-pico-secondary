@@ -1,3 +1,2 @@
 List of tasks currently partially implemented
 
-- Twist message subscriber / listening
