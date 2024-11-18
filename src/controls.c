@@ -79,6 +79,7 @@ void do_drivetrain_pid_v(){
 }
 
 void run_pid(Motor *motor, PIDController *pid){
+	static unsigned short printctr = 0;
 	update_motor_encoders(motor);
 	uint64_t curtime = time_us_64();
 	float delta_time_s = (curtime - pid->last_tick_us)/1000000.0;
@@ -119,11 +120,13 @@ void run_pid(Motor *motor, PIDController *pid){
 	else if (output < -100){
 		output = -100;
 	}
-	// char debugbuff[110];
-	// snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
-	// motor->name, P, I, D, pid->target, motor->velocity, error, output);
-	// uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
-		
+	// if (printctr++ == 4){
+	// 	char debugbuff[110];
+	// 	snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
+	// 	motor->name, P, I, D, pid->target, motor->velocity, error, output);
+	// 	uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
+	// 	printctr = 0;
+	// }
 	pid->previous_error = error;
 	set_motor_power(motor, output);
 }
@@ -133,6 +136,11 @@ DriveMode drive_mode_from_ros(){
 	if (time_us_64() - last_twist_msg > DRIVETRAIN_TIMEOUT){
 		if (last != dm_halt){
 			uart_log(LEVEL_WARN,"Drivetrain timeout exceeded!!");
+			char asdf[50];
+			snprintf(asdf, 50, "L: %f, R: %f",drivetrain_left.position, drivetrain_right.position);
+			uart_log(LEVEL_DEBUG,asdf); 
+			drivetrain_left.position = 0.0;
+			drivetrain_right.position = 0.0;
 		}
 		last = dm_halt;
 		return dm_halt;

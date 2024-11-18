@@ -48,6 +48,9 @@ static Encoder *init_encoder(uint pinA, uint pinB){
 	quadrature_encoder_program_init(enc->pio, enc->sm, pinA, 0);
 	enc->prev_count = 0;
 	enc->prev_time_us = 0;
+	char asdf[40];
+	snprintf(asdf, 40, "Encoder on pin (%d, %d) allocated SM %d",pinA, pinB, sm_idx);
+	uart_log(LEVEL_DEBUG, asdf);
 	return enc;
 }
 
@@ -147,6 +150,8 @@ void update_motor_encoders(Motor *mot){
 	float pulse_per_sec = (1000000.0*(float)dist_delta_pulse)/(float)delta_time_us;
 	float velocity = pulse_per_sec / DT_ENCODER_PPM;
 	mot->velocity = velocity;
+	mot->position += (velocity * (delta_time_us))/1000000.0;
+	
 }
 
 bool get_lift_hardstop(){

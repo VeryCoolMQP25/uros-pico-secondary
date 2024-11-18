@@ -26,7 +26,12 @@ geometry_msgs__msg__TwistStamped observed_twist_msg;
 // callback to publish encoder data (processed into timestamped twists)
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time){
-	populate_observed_twist(&observed_twist_msg);
+	// update_motor_encoders(&drivetrain_left);
+	// update_motor_encoders(&drivetrain_right);
+	// char balls[50];
+	// snprintf(balls, 50, "Velocities: (%f, %f)",drivetrain_left.velocity, drivetrain_right.velocity);
+	// uart_log(LEVEL_DEBUG, balls);
+	// populate_observed_twist(&observed_twist_msg);
 	// Publish message
 	if(rcl_publish(&encoder_publisher, &observed_twist_msg, NULL)){
 		uart_log(LEVEL_WARN,"Encoder publish failed!");
@@ -60,6 +65,10 @@ void core1task(){
 		watchdog_update();
 		drive_mode = drive_mode_from_ros();
 		switch(drive_mode){
+			case dm_raw:
+				set_motor_power(&drivetrain_left, 25);
+				set_motor_power(&drivetrain_right, 25);
+				break;
 			case dm_halt:
 				set_motor_power(&drivetrain_left, 0);
 				set_motor_power(&drivetrain_right, 0);
