@@ -36,8 +36,6 @@ PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PI
 
 void twist_callback(const void*);
 
-
-
 void raw_lift_callback(const void*);
 
 void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg);
@@ -49,5 +47,7 @@ void do_drivetrain_pid_v();
 void run_pid(Motor*, PIDController*);
 
 DriveMode drive_mode_from_ros();
+
+void die();
 
 #endif

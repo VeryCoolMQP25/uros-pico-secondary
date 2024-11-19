@@ -148,3 +148,12 @@ DriveMode drive_mode_from_ros(){
 	last = dm_twist;
 	return dm_twist;
 }
+
+void die(){
+	// kill drivtrain control core (prevent WDT updates)
+	multicore_lockout_start_blocking();
+	while(1) {
+	    	kill_all_actuators();
+	    	uart_log(LEVEL_ERROR,"KILL ME");
+	    }
+}

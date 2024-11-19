@@ -19,19 +19,14 @@
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
 
-
 /// support for encoder publisher
 rcl_publisher_t encoder_publisher;
 geometry_msgs__msg__TwistStamped observed_twist_msg;
 // callback to publish encoder data (processed into timestamped twists)
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time){
-	// update_motor_encoders(&drivetrain_left);
-	// update_motor_encoders(&drivetrain_right);
-	// char balls[50];
-	// snprintf(balls, 50, "Velocities: (%f, %f)",drivetrain_left.velocity, drivetrain_right.velocity);
-	// uart_log(LEVEL_DEBUG, balls);
-	// populate_observed_twist(&observed_twist_msg);
+	populate_observed_twist(&observed_twist_msg);
+	
 	// Publish message
 	if(rcl_publish(&encoder_publisher, &observed_twist_msg, NULL)){
 		uart_log(LEVEL_WARN,"Encoder publish failed!");
@@ -45,6 +40,8 @@ void check_connectivity(rcl_timer_t *timer, int64_t last_call_time){
 	gpio_put(LED_PIN, ok);
 	if (!ok){
 		drive_mode = dm_halt;
+		uart_log(LEVEL_ERROR, "Disconnected from uROS!");
+		die();
 	}
 	watchdog_update();
 }
@@ -61,14 +58,22 @@ rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *su
 
 void core1task(){
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
+	multicore_lockout_victim_init();
 	while(true){
 		watchdog_update();
 		drive_mode = drive_mode_from_ros();
 		switch(drive_mode){
 			case dm_raw:
+			{
 				set_motor_power(&drivetrain_left, 25);
 				set_motor_power(&drivetrain_right, 25);
+				update_motor_encoders(&drivetrain_left);
+				update_motor_encoders(&drivetrain_right);
+				char velocity_dbg[30];
+				snprintf(velocity_dbg, 30, "Velocities: (%f, %f)",drivetrain_left.velocity, drivetrain_right.velocity);
+				uart_log(LEVEL_DEBUG, velocity_dbg);
 				break;
+			}
 			case dm_halt:
 				set_motor_power(&drivetrain_left, 0);
 				set_motor_power(&drivetrain_right, 0);
@@ -200,8 +205,5 @@ int main()
 	uart_log(LEVEL_ERROR, "Executor exited! Emergency Stop.");
 	gpio_put(LED_PIN, 0);
 	// wait to be killed by watchdog
-    while(1) {
-    	kill_all_actuators();
-    	uart_log(LEVEL_ERROR,"KILL ME");
-    }
+    die();
 }
