@@ -86,12 +86,12 @@ bool uart_getline(char *target){
 	}
 	char newchar = uart_getc(uart0);
 	if (recv_idx >= UART_READBUFF_SIZE-2) {
-		uart_send("UART RX FULL! Flushing...\n");
+		uart_log(LEVEL_WARN,"UART RX FULL! Flushing...");
 		recv_idx = 0;
 		return false;
 	}
 	recbuff[recv_idx] = newchar;
-	if (newchar == '\n'){
+	if (newchar == '\r' || newchar == '\n'){
 		// message over
 		recbuff[recv_idx+1] = '\0'; // null terminate 
 		memcpy(target, recbuff, recv_idx+2);

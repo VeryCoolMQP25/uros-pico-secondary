@@ -43,6 +43,9 @@ void calibrate_pid(char which, float k){
 	default:
 		break;
 	}
+	char dbg[24];
+	snprintf(dbg, 24, "set K%c to %f", which, k);
+	uart_log(LEVEL_DEBUG, dbg);
 }
 
 PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PIDMode pmode)

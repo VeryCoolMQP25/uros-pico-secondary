@@ -16,7 +16,7 @@
 #include "message_types.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-20.3"
+#define VERSION "B-20.6"
 
 // globals
 const char *namespace = "";
@@ -62,7 +62,6 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time){
 			case 'i':
 			case 'd':
 				calibrate_pid(recbuff[0], atoff(recbuff+1));
-				uart_log(LEVEL_DEBUG, "updated value.");
 				break;
 			default:
 				uart_log(LEVEL_WARN, "Unrecognized command!");
@@ -191,7 +190,7 @@ int main()
 	// --create timed events--
 	create_timer_callback(&executor, &support, 50, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
-	create_timer_callback(&executor, &support, 500, uart_input_handler);
+	create_timer_callback(&executor, &support, 300, uart_input_handler);
 	watchdog_update();
 
 	// --create publishers--
