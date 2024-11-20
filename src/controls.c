@@ -23,6 +23,27 @@ void pid_setup()
 	pid_v_right = init_pid_control(PID_DT_V_KP, PID_DT_V_KI, PID_DT_V_KD, PID_DT_TOL, pid_velocity);
 	pid_lift = init_pid_control(PID_LFT_KP, PID_LFT_KI, PID_LFT_KD, PID_LFT_TOL, pid_position);
 }
+/* change PID values in runtime
+*/
+void calibrate_pid(char which, float k){
+	switch (which)
+	{
+	case 'p':
+		pid_v_left.Kp = k;
+		pid_v_right.Kp = k;
+		break;
+	case 'i':
+		pid_v_left.Ki = k;
+		pid_v_right.Ki = k;
+		break;
+	case 'd':
+		pid_v_left.Kd = k;
+		pid_v_right.Kd = k;
+		break;
+	default:
+		break;
+	}
+}
 
 PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PIDMode pmode)
 {
@@ -134,13 +155,13 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	// if (printctr++ == 4){
-	// 	char debugbuff[110];
-	// 	snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
-	// 	motor->name, P, I, D, pid->target, motor->velocity, error, output);
-	// 	uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
-	// 	printctr = 0;
-	// }
+	if (printctr++ == 4){
+		char debugbuff[110];
+		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
+		motor->name, P, I, D, pid->target, motor->velocity, error, output);
+		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
+		printctr = 0;
+	}
 	pid->previous_error = error;
 	set_motor_power(motor, output);
 }

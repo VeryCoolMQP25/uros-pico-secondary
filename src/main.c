@@ -16,7 +16,7 @@
 #include "message_types.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-20.1"
+#define VERSION "B-20.3"
 
 // globals
 const char *namespace = "";
@@ -51,6 +51,24 @@ void check_connectivity(rcl_timer_t *timer, int64_t last_call_time)
 		die();
 	}
 	watchdog_update();
+}
+
+void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time){
+	static char recbuff[UART_READBUFF_SIZE];
+	if (uart_getline(recbuff)){
+		switch(recbuff[0]){
+			//intentional fallthroughs
+			case 'p':
+			case 'i':
+			case 'd':
+				calibrate_pid(recbuff[0], atoff(recbuff+1));
+				uart_log(LEVEL_DEBUG, "updated value.");
+				break;
+			default:
+				uart_log(LEVEL_WARN, "Unrecognized command!");
+				uart_log(LEVEL_DEBUG, recbuff);
+		}
+	}
 }
 
 // creates and returns a timer, configuring it to call specified callback. Returns timer handle
@@ -173,6 +191,7 @@ int main()
 	// --create timed events--
 	create_timer_callback(&executor, &support, 50, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
+	create_timer_callback(&executor, &support, 500, uart_input_handler);
 	watchdog_update();
 
 	// --create publishers--
