@@ -51,8 +51,8 @@ void twist_callback(const void *msgin) {
 void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg){
 	float v_l = drivetrain_left.velocity;
 	float v_r = drivetrain_right.velocity;
-	unsigned long messagetime = time_us_64();
 	float v_diff = v_l-v_r;
+	unsigned long messagetime = time_us_64();
 	msg->header.stamp.sec = messagetime/1000000;
 	msg->header.stamp.nanosec = messagetime % 1000000;
 	msg->twist.angular.z = v_diff/WHEELBASE_M;

@@ -15,6 +15,9 @@
 #include "pins.h"
 #include "message_types.h"
 
+//version numbering: <term>-<day>.ver
+#define VERSION "B-20.1"
+
 // globals
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
@@ -25,8 +28,8 @@ geometry_msgs__msg__TwistStamped observed_twist_msg;
 // callback to publish encoder data (processed into timestamped twists)
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time){
+	//mutate message
 	populate_observed_twist(&observed_twist_msg);
-	
 	// Publish message
 	if(rcl_publish(&encoder_publisher, &observed_twist_msg, NULL)){
 		uart_log(LEVEL_WARN,"Encoder publish failed!");
@@ -95,7 +98,11 @@ int main()
 {	
 	// init uart0 debugging iface
     uart_setup();
-    uart_log(LEVEL_DEBUG, "Started UART comms");
+    uart_log(LEVEL_INFO, "Started UART comms");
+	char *ver_str = malloc(40);
+	snprintf(ver_str, 40, "--Robot Software Version %s--", VERSION);
+	uart_log(LEVEL_INFO, ver_str);
+	free(ver_str);
     if (watchdog_caused_reboot()){
     	uart_log(LEVEL_WARN, "Rebooted by watchdog!");
     }
@@ -167,6 +174,8 @@ int main()
 	observed_twist_msg.header.frame_id.data = "base_link";
 	observed_twist_msg.header.frame_id.size = strlen(observed_twist_msg.header.frame_id.data);
 	observed_twist_msg.header.frame_id.capacity = observed_twist_msg.header.frame_id.size + 1;
+	observed_twist_msg.header.stamp.sec = 0.0;
+	observed_twist_msg.header.stamp.nanosec = 0.0;
 	observed_twist_msg.twist.linear.x = 0.0;
 	observed_twist_msg.twist.linear.y = 0.0;
 	observed_twist_msg.twist.linear.z = 0.0;
