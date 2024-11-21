@@ -50,6 +50,8 @@ void run_pid(Motor*, PIDController*);
 
 DriveMode drive_mode_from_ros();
 
+void lift_timeout_check();
+
 void die();
 
 #endif

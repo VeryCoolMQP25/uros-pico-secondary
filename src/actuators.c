@@ -82,8 +82,9 @@ void init_motor(char *name, int pin, Motor *motor_struct, bool (*killfunc)(void)
 	motor_struct->enc = NULL;
 	motor_struct->velocity = 0.0;
 	motor_struct->position = 0.0;
-	motor_struct->enabled = true;
+	motor_struct->enabled = false;
 	motor_struct->killfunc = killfunc;
+	pwm_power(motor_struct, true);
 }
 
 void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void))
@@ -140,7 +141,7 @@ void init_all_motors()
 	uart_log(LEVEL_DEBUG, "Starting motor init");
 	init_motor_with_encoder("DT_L", DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL);
 	init_motor_with_encoder("DT_R", DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL);
-	init_motor_with_encoder("LIFT", LIFT_PWM, &lift_motor, LIFT_ENCODER_A, LIFT_ENCODER_B, get_lift_hardstop);
+	init_motor("LIFT", LIFT_PWM, &lift_motor, get_lift_hardstop);
 	// initialize GPIO hardstop sensor
 	gpio_init(LIFT_LIMIT_PIN);
 	gpio_pull_up(LIFT_LIMIT_PIN);

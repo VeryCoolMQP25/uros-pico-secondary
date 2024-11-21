@@ -16,7 +16,7 @@
 #include "message_types.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-20.8"
+#define VERSION "B-21.2"
 
 // globals
 const char *namespace = "";
@@ -53,23 +53,27 @@ void check_connectivity(rcl_timer_t *timer, int64_t last_call_time)
 	watchdog_update();
 }
 
-void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time){
+void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time)
+{
 	static char recbuff[UART_READBUFF_SIZE];
-	if (uart_getline(recbuff)){
-		switch(recbuff[0]){
-			//intentional fallthroughs
-			case 'p':
-			case 'i':
-			case 'd':
-				if (strlen(recbuff)<2){
-					uart_log(LEVEL_WARN, "Bad PID command! ignoring...");
-					return;
-				}
-				calibrate_pid(recbuff[0], atoff(recbuff+1));
-				break;
-			default:
-				uart_log(LEVEL_WARN, "Unrecognized command!");
-				uart_log(LEVEL_DEBUG, recbuff);
+	if (uart_getline(recbuff))
+	{
+		switch (recbuff[0])
+		{
+		// intentional fallthroughs
+		case 'p':
+		case 'i':
+		case 'd':
+			if (strlen(recbuff) < 2)
+			{
+				uart_log(LEVEL_WARN, "Bad PID command! ignoring...");
+				return;
+			}
+			calibrate_pid(recbuff[0], atoff(recbuff + 1));
+			break;
+		default:
+			uart_log(LEVEL_WARN, "Unrecognized command!");
+			uart_log(LEVEL_DEBUG, recbuff);
 		}
 	}
 }
@@ -88,10 +92,12 @@ void core1task()
 {
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
 	multicore_lockout_victim_init();
+	int motor_kill_ctr = 0;
 	while (true)
 	{
 		watchdog_update();
 		drive_mode = drive_mode_from_ros();
+		lift_timeout_check();
 		switch (drive_mode)
 		{
 		case dm_raw:
@@ -103,16 +109,28 @@ void core1task()
 			char velocity_dbg[30];
 			snprintf(velocity_dbg, 30, "Velocities: (%f, %f)", drivetrain_left.velocity, drivetrain_right.velocity);
 			uart_log(LEVEL_DEBUG, velocity_dbg);
+			motor_kill_ctr = 0;
 			break;
 		}
 		case dm_halt:
-			set_motor_power(&drivetrain_left, 0);
-			set_motor_power(&drivetrain_right, 0);
-			pwm_power(&drivetrain_left, false);
-			pwm_power(&drivetrain_right, false);
+			if (motor_kill_ctr++ < 500)
+			{
+				set_motor_power(&drivetrain_left, 0);
+				set_motor_power(&drivetrain_right, 0);
+			}
+			else
+			{
+				pwm_power(&drivetrain_left, false);
+				pwm_power(&drivetrain_right, false);
+				if(motor_kill_ctr == 500){
+					uart_log(LEVEL_INFO, "Disabling drivetrain.");
+				}
+			}
+
 			break;
 		case dm_twist:
 			do_drivetrain_pid_v();
+			motor_kill_ctr = 0;
 			break;
 		default:
 			uart_log(LEVEL_WARN, "Invalid drive state!");
@@ -136,6 +154,8 @@ int main()
 	if (watchdog_caused_reboot())
 	{
 		uart_log(LEVEL_WARN, "Rebooted by watchdog!");
+		// in case of unclean boot, make sure actuators are off
+		kill_all_actuators();
 	}
 	else
 	{
@@ -143,8 +163,6 @@ int main()
 	}
 	uart_log(LEVEL_INFO, "Starting watchdog...");
 	watchdog_enable(300, 1);
-	// in case of unclean boot, make sure actuators are off
-	kill_all_actuators();
 	// init USB serial comms
 	rmw_uros_set_custom_transport(
 		true,
@@ -177,7 +195,8 @@ int main()
 		{
 			uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing!");
 			// wait for watchdog to reset board
-			while (1);
+			while (1)
+				;
 		}
 	}
 
@@ -190,12 +209,12 @@ int main()
 	allocator = rcl_get_default_allocator();
 	rclc_support_init(&support, 0, NULL, &allocator);
 	rclc_node_init_default(&node, "pico_node", namespace, &support);
-	rclc_executor_init(&executor, &support.context, 4, &allocator);
+	rclc_executor_init(&executor, &support.context, 5, &allocator);
 
 	// --create timed events--
 	create_timer_callback(&executor, &support, 50, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
-	create_timer_callback(&executor, &support, 300, uart_input_handler);
+	create_timer_callback(&executor, &support, 1000, uart_input_handler);
 	watchdog_update();
 
 	// --create publishers--

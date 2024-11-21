@@ -89,7 +89,8 @@ void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg)
 void raw_lift_callback(const void *msgin)
 {
 	const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
-	set_lift_power((int)(msg->data * 100.0));
+	int pow = (int)(msg->data * 100.0);
+	set_lift_power(pow);
 	last_lift_msg = time_us_64();
 }
 
@@ -100,6 +101,7 @@ void set_lift_power(int pwr)
 		pwr = 0;
 		uart_log(LEVEL_INFO, "Halted downward lift motion due to limit sw");
 	}
+	pwm_power(&lift_motor, true);
 	set_motor_power(&lift_motor, pwr);
 }
 
@@ -123,13 +125,14 @@ void run_pid(Motor *motor, PIDController *pid)
 	case pid_velocity:
 		error = pid->target - motor->velocity;
 		pid->integral += error * delta_time_s;
+		// reset integral when stopping
 		if (fabs(error) < pid->tolerance && fabs(pid->target) < 2.0*pid->tolerance){{
 			pid->integral = 0.0;
 		}}
-		if (pid->integral > PID_DT_KI_CAP)
+		if (pid->integral > PID_DT_I_CAP)
 		{
 			uart_log(LEVEL_INFO, "Capping integral");
-			pid->integral = PID_DT_KI_CAP;
+			pid->integral = PID_DT_I_CAP;
 		}
 		break;
 	case pid_position:
@@ -185,6 +188,20 @@ DriveMode drive_mode_from_ros()
 	}
 	last = dm_twist;
 	return dm_twist;
+}
+
+void lift_timeout_check(){
+	static bool doPrint = true;
+	if (time_us_64() - last_lift_msg > 500000){
+		pwm_power(&lift_motor, false);
+		if (doPrint){
+			uart_log(LEVEL_INFO, "disabling lift");
+			doPrint = false;
+		}
+	}
+	else if (!doPrint){
+		doPrint = true;
+	}
 }
 
 void die()

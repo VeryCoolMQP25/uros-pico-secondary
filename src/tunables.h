@@ -8,11 +8,7 @@
 #define PID_DT_V_KI	0.5
 #define PID_DT_V_KD	0.001
 #define PID_DT_TOL	0.06
-#define PID_DT_KI_CAP	3.0
-//old:
-// #define PID_DT_V_KP	0.8
-// #define PID_DT_V_KI	0.95
-// #define PID_DT_V_KD	0.001
+#define PID_DT_I_CAP	3.0
 
 #define PID_LFT_KP	10.0
 #define PID_LFT_KI	0.1
