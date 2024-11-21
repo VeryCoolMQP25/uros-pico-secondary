@@ -115,24 +115,21 @@ void run_pid(Motor *motor, PIDController *pid)
 	update_motor_encoders(motor);
 	uint64_t curtime = time_us_64();
 	float delta_time_s = (curtime - pid->last_tick_us) / 1000000.0;
+	float delta_time_s_safe = (delta_time_s > 1e-6) ? delta_time_s : 1e-6;
 	pid->last_tick_us = curtime;
 	float error;
 	switch (pid->mode)
 	{
 	case pid_velocity:
 		error = pid->target - motor->velocity;
-		if (fabs(error) > pid->tolerance)
-		{
-			pid->integral += error * delta_time_s;
-		}
-		else
-		{
-			pid->integral = 0; // Reset to avoid windup
-		}
+		pid->integral += error * delta_time_s;
+		if (fabs(error) < pid->tolerance && fabs(pid->target) < 2.0*pid->tolerance){{
+			pid->integral = 0.0;
+		}}
 		if (pid->integral > PID_DT_KI_CAP)
 		{
-			uart_log(LEVEL_WARN, "Reset integral");
-			pid->integral = 0;
+			uart_log(LEVEL_INFO, "Capping integral");
+			pid->integral = PID_DT_KI_CAP;
 		}
 		break;
 	case pid_position:
@@ -146,7 +143,7 @@ void run_pid(Motor *motor, PIDController *pid)
 
 	float P = pid->Kp * error;
 	float I = pid->Ki * pid->integral;
-	float D = pid->Kd * ((error - pid->previous_error) / delta_time_s);
+	float D = pid->Kd * ((error - pid->previous_error) / delta_time_s_safe);
 
 	// PID output
 	int output = 100 * (P + I + D);
@@ -158,13 +155,13 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	if (printctr++ == 4){
-		char debugbuff[110];
-		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
-		motor->name, P, I, D, pid->target, motor->velocity, error, output);
-		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
-		printctr = 0;
-	}
+	// if (printctr++ == 4){
+	// 	char debugbuff[110];
+	// 	snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
+	// 	motor->name, P, I, D, pid->target, motor->velocity, error, output);
+	// 	uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
+	// 	printctr = 0;
+	// }
 	pid->previous_error = error;
 	set_motor_power(motor, output);
 }
@@ -177,8 +174,8 @@ DriveMode drive_mode_from_ros()
 		if (last != dm_halt)
 		{
 			uart_log(LEVEL_WARN, "Drivetrain timeout exceeded!!");
-			char asdf[50];
-			snprintf(asdf, 50, "L: %f, R: %f", drivetrain_left.position, drivetrain_right.position);
+			char asdf[64];
+			snprintf(asdf, 64, "Dist. Since last reset: L: %f, R: %f", drivetrain_left.position, drivetrain_right.position);
 			uart_log(LEVEL_DEBUG, asdf);
 			drivetrain_left.position = 0.0;
 			drivetrain_right.position = 0.0;

@@ -36,6 +36,7 @@ typedef struct {
 	Encoder *enc;
 	float velocity;
 	float position;
+	bool enabled;
 	bool (*killfunc)(void);
 	
 } Motor;
@@ -50,5 +51,5 @@ void kill_all_actuators();
 
 void update_motor_encoders(Motor*);
 bool get_lift_hardstop();
-
+void pwm_power(Motor *motor, bool enable);
 #endif

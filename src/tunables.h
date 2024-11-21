@@ -4,11 +4,11 @@
 // distance between front wheels in meters
 #define WHEELBASE_M 0.51
 
-#define PID_DT_V_KP	0.4
-#define PID_DT_V_KI	1.6
-#define PID_DT_V_KD	0.003
-#define PID_DT_TOL	0.001
-#define PID_DT_KI_CAP	0.35
+#define PID_DT_V_KP	0.62
+#define PID_DT_V_KI	0.5
+#define PID_DT_V_KD	0.001
+#define PID_DT_TOL	0.06
+#define PID_DT_KI_CAP	3.0
 //old:
 // #define PID_DT_V_KP	0.8
 // #define PID_DT_V_KI	0.95

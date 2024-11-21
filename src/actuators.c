@@ -82,6 +82,7 @@ void init_motor(char *name, int pin, Motor *motor_struct, bool (*killfunc)(void)
 	motor_struct->enc = NULL;
 	motor_struct->velocity = 0.0;
 	motor_struct->position = 0.0;
+	motor_struct->enabled = true;
 	motor_struct->killfunc = killfunc;
 }
 
@@ -99,6 +100,8 @@ void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_p
 // accepts integer power level [-100, 100]
 bool set_motor_power(Motor *motor, int power)
 {
+	//make sure motor is on
+	pwm_power(motor, true);
 	bool ok = true;
 	if (abs(power) > MOTOR_POWER_MAX)
 	{
@@ -176,4 +179,13 @@ void update_motor_encoders(Motor *mot)
 bool get_lift_hardstop()
 {
 	return !gpio_get(LIFT_LIMIT_PIN);
+}
+
+// halt actual PWM signal
+void pwm_power(Motor *motor, bool enable){
+	if (enable == motor->enabled){
+		return;
+	}
+	pwm_set_enabled(motor->slice_num, enable);
+	motor->enabled = enable;
 }

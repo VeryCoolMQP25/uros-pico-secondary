@@ -16,7 +16,7 @@
 #include "message_types.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-20.6"
+#define VERSION "B-20.8"
 
 // globals
 const char *namespace = "";
@@ -61,6 +61,10 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time){
 			case 'p':
 			case 'i':
 			case 'd':
+				if (strlen(recbuff)<2){
+					uart_log(LEVEL_WARN, "Bad PID command! ignoring...");
+					return;
+				}
 				calibrate_pid(recbuff[0], atoff(recbuff+1));
 				break;
 			default:
@@ -104,6 +108,8 @@ void core1task()
 		case dm_halt:
 			set_motor_power(&drivetrain_left, 0);
 			set_motor_power(&drivetrain_right, 0);
+			pwm_power(&drivetrain_left, false);
+			pwm_power(&drivetrain_right, false);
 			break;
 		case dm_twist:
 			do_drivetrain_pid_v();
@@ -171,8 +177,7 @@ int main()
 		{
 			uart_log(LEVEL_ERROR, "Cannot contact USB Serial Agent! Bailing!");
 			// wait for watchdog to reset board
-			while (1)
-				;
+			while (1);
 		}
 	}
 
