@@ -98,6 +98,7 @@ void core1task()
 		watchdog_update();
 		drive_mode = drive_mode_from_ros();
 		lift_timeout_check();
+		update_motor_encoders();
 		switch (drive_mode)
 		{
 		case dm_raw:

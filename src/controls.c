@@ -114,7 +114,6 @@ void do_drivetrain_pid_v()
 void run_pid(Motor *motor, PIDController *pid)
 {
 	static unsigned short printctr = 0;
-	update_motor_encoders(motor);
 	uint64_t curtime = time_us_64();
 	float delta_time_s = (curtime - pid->last_tick_us) / 1000000.0;
 	float delta_time_s_safe = (delta_time_s > 1e-6) ? delta_time_s : 1e-6;
@@ -158,13 +157,13 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	// if (printctr++ == 4){
-	// 	char debugbuff[110];
-	// 	snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\ttgt: %f, act: %f, (%f) | out: %d",
-	// 	motor->name, P, I, D, pid->target, motor->velocity, error, output);
-	// 	uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
-	// 	printctr = 0;
-	// }
+	if (printctr++ == 4){
+		char debugbuff[110];
+		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\ttgt: %f, err: %f\t\tPower: %d%%",
+		motor->name, P, I, D, pid->target, error, output);
+		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
+		printctr = 0;
+	}
 	pid->previous_error = error;
 	set_motor_power(motor, output);
 }
@@ -178,7 +177,7 @@ DriveMode drive_mode_from_ros()
 		{
 			uart_log(LEVEL_WARN, "Drivetrain timeout exceeded!!");
 			char asdf[64];
-			snprintf(asdf, 64, "Dist. Since last reset: L: %f, R: %f", drivetrain_left.position, drivetrain_right.position);
+			snprintf(asdf, 64, "Dist. Since last timeout: L: %f, R: %f", drivetrain_left.position, drivetrain_right.position);
 			uart_log(LEVEL_DEBUG, asdf);
 			drivetrain_left.position = 0.0;
 			drivetrain_right.position = 0.0;
@@ -190,6 +189,7 @@ DriveMode drive_mode_from_ros()
 	return dm_twist;
 }
 
+// check if previous lift command was more than 500ms ago, and de-init lift PWM signaling
 void lift_timeout_check(){
 	static bool doPrint = true;
 	if (time_us_64() - last_lift_msg > 500000){

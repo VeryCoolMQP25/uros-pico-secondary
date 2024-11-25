@@ -156,7 +156,7 @@ void kill_all_actuators()
 	set_motor_power(&lift_motor, 0);
 }
 
-void update_motor_encoders(Motor *mot)
+void update_motor_encoder(Motor *mot)
 {
 	Encoder *encoder = mot->enc;
 	// skip function if encoder did not init
@@ -175,6 +175,12 @@ void update_motor_encoders(Motor *mot)
 	float velocity = pulse_per_sec / DT_ENCODER_PPM;
 	mot->velocity = velocity;
 	mot->position += (velocity * (delta_time_us)) / 1000000.0;
+}
+
+void update_motor_encoders(){
+	update_motor_encoder(&drivetrain_left);
+	update_motor_encoder(&drivetrain_right);
+	// TODO: lift encoder; when added
 }
 
 bool get_lift_hardstop()
