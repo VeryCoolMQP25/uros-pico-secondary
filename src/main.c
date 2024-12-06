@@ -4,7 +4,7 @@
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <rmw_microros/rmw_microros.h>
-
+#include <math.h>
 #include "hardware/watchdog.h"
 #include "pico/stdlib.h"
 #include "pico/malloc.h"
@@ -14,9 +14,10 @@
 #include "controls.h"
 #include "pins.h"
 #include "message_types.h"
+#include "nav.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-21.2"
+#define VERSION "B-12.5.1"
 
 // globals
 const char *namespace = "";
@@ -29,6 +30,10 @@ geometry_msgs__msg__TwistStamped observed_twist_msg;
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time)
 {
+	char distBuff[100];
+	float theta = (180.0/3.1415)*((drivetrain_left.position-drivetrain_right.position)/0.51);
+	snprintf(distBuff, 100, "L: %f R: %f θ: %f",drivetrain_left.position, drivetrain_right.position, theta);
+	uart_log(LEVEL_DEBUG, distBuff);
 	// mutate message
 	populate_observed_twist(&observed_twist_msg);
 	// Publish message
@@ -70,6 +75,11 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time)
 				return;
 			}
 			calibrate_pid(recbuff[0], atoff(recbuff + 1));
+			break;
+		case 'R':
+			uart_log(LEVEL_INFO, "Reset encoders");
+			drivetrain_left.position = 0;
+			drivetrain_right.position = 0;
 			break;
 		default:
 			uart_log(LEVEL_WARN, "Unrecognized command!");
@@ -137,7 +147,7 @@ void core1task()
 			uart_log(LEVEL_WARN, "Invalid drive state!");
 			drive_mode = dm_halt;
 		}
-		sleep_ms(4);
+		sleep_ms(1);
 	}
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();
@@ -213,7 +223,7 @@ int main()
 	rclc_executor_init(&executor, &support.context, 5, &allocator);
 
 	// --create timed events--
-	create_timer_callback(&executor, &support, 50, publish_encoder);
+	create_timer_callback(&executor, &support, 15, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
 	create_timer_callback(&executor, &support, 1000, uart_input_handler);
 	watchdog_update();

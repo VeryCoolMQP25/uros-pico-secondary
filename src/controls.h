@@ -36,6 +36,8 @@ void calibrate_pid(char, float);
 
 PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PIDMode pmode);
 
+void update_motor_encoders();
+
 void twist_callback(const void*);
 
 void raw_lift_callback(const void*);

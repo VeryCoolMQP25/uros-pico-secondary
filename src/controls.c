@@ -8,6 +8,7 @@
 #include "controls.h"
 #include "tunables.h"
 #include "message_types.h"
+#include "nav.h"
 
 // globals
 static PIDController pid_v_left;
@@ -16,6 +17,7 @@ static PIDController pid_lift;
 static DriveMode drive_mode_global = dm_halt;
 unsigned long last_twist_msg = 0;
 unsigned long last_lift_msg = 0;
+bool do_pid_debug = false;
 
 void pid_setup()
 {
@@ -41,8 +43,9 @@ void calibrate_pid(char which, float k){
 		pid_v_right.Kd = k;
 		break;
 	default:
-		break;
+		return;
 	}
+	do_pid_debug = true;
 	char dbg[24];
 	snprintf(dbg, 24, "set K%c to %f", which, k);
 	uart_log(LEVEL_DEBUG, dbg);
@@ -63,6 +66,13 @@ PIDController init_pid_control(float Kp, float Ki, float Kd, float tolerance, PI
 	return controller;
 }
 
+void update_motor_encoders(){
+	update_motor_encoder(&drivetrain_left);
+	update_motor_encoder(&drivetrain_right);
+	update_odometry();
+	// TODO: lift encoder; when added
+}
+
 void twist_callback(const void *msgin)
 {
 	const geometry_msgs__msg__Twist *msg = (const geometry_msgs__msg__Twist *)msgin;
@@ -78,7 +88,7 @@ void populate_observed_twist(geometry_msgs__msg__TwistStamped *msg)
 {
 	float v_l = drivetrain_left.velocity;
 	float v_r = drivetrain_right.velocity;
-	float v_diff = v_l - v_r;
+	float v_diff = v_r - v_l;
 	unsigned long messagetime = time_us_64();
 	msg->header.stamp.sec = messagetime / 1000000;
 	msg->header.stamp.nanosec = messagetime % 1000000;
@@ -157,7 +167,7 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	if (printctr++ == 4){
+	if (do_pid_debug && printctr++ == 4){
 		char debugbuff[110];
 		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\ttgt: %f, err: %f\t\tPower: %d%%",
 		motor->name, P, I, D, pid->target, error, output);

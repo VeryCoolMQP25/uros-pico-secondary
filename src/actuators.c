@@ -174,13 +174,7 @@ void update_motor_encoder(Motor *mot)
 	float pulse_per_sec = (1000000.0 * (float)dist_delta_pulse) / (float)delta_time_us;
 	float velocity = pulse_per_sec / DT_ENCODER_PPM;
 	mot->velocity = velocity;
-	mot->position += (velocity * (delta_time_us)) / 1000000.0;
-}
-
-void update_motor_encoders(){
-	update_motor_encoder(&drivetrain_left);
-	update_motor_encoder(&drivetrain_right);
-	// TODO: lift encoder; when added
+	mot->position = raw/DT_ENCODER_PPM;
 }
 
 bool get_lift_hardstop()

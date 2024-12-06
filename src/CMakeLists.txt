@@ -4,6 +4,7 @@ add_executable(${NAME}
         pico_ros_usb.c
         actuators.c
         controls.c
+        nav.c
         )
 
 # generate h file from pio description.
