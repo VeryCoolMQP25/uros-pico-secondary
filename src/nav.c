@@ -7,19 +7,21 @@
 #include "uart_logging.h"
 #include "controls.h"
 #include "tunables.h"
-#include "nav.c"
+#include "nav.h"
 
-OdomState *ods_a = malloc(sizeof(OdomState));
-OdomState *ods_b = malloc(sizeof(OdomState));
-OdomState *ods_cur = ods_a;
+OdomState *ods_a;
+OdomState *ods_b;
+OdomState *ods_cur;
 
+void init_odometry(nav_msgs__msg__Odometry *msg){
+    ods_a = malloc(sizeof(OdomState));
+    ods_b = malloc(sizeof(OdomState));
+    ods_cur = ods_a;
+}
 
 void populate_odometry(nav_msgs__msg__Odometry *msg){
-	unsigned long messagetime = time_us_64();
-	msg->header.stamp.sec = messagetime / 1000000;
-	msg->header.stamp.nanosec = messagetime % 1000000;
-	msg->header.frame_id = "odom";
-	msg->child_frame_id = "base_link";
+	msg->header.stamp.sec = ods_cur->timestamp / 1000000;
+	msg->header.stamp.nanosec = ods_cur->timestamp % 1000000;
 
 	// Pose
 	msg->pose.pose.position.x = ods_cur->pos_x;
@@ -40,19 +42,18 @@ void populate_odometry(nav_msgs__msg__Odometry *msg){
 // update odometry, swap between two structs so all data updates are thread safe
 void update_odometry(){
     // manipulate alternate ODS struct
-    OdomState ods_working;
+    OdomState *ods_working = ods_a;
     if(ods_cur == ods_a){
         ods_working = ods_b;
     }
-    else {
-        ods_working = ods_a;
-    }
-    if (ods_working == NULL){
-        uart_log(LEVEL_ERROR, "Odometry state null ptr!");
-        return;
-    }
     // calculate odometry
-    
+    ods_working->timestamp = time_us_64();
+    double dt = ((float)(ods_working->timestamp - ods_cur->timestamp))/1000000;
+    double v_linear = (drivetrain_left.velocity + drivetrain_right.velocity)/2;
+    double d_theta = (drivetrain_right.velocity - drivetrain_left.velocity)/WHEELBASE_M;
+    ods_working->pos_x = ods_cur->pos_x + v_linear*cos(d_theta)*dt;
+    ods_working->pos_y = ods_cur->pos_y + v_linear*sin(d_theta)*dt;
+    ods_working->yaw = ods_cur->yaw + d_theta;
 
     // set current struct to the one we just updated
     ods_cur = ods_working;

@@ -24,20 +24,16 @@ const char *namespace = "";
 DriveMode drive_mode = dm_halt;
 
 /// support for encoder publisher
-rcl_publisher_t encoder_publisher;
-geometry_msgs__msg__TwistStamped observed_twist_msg;
+rcl_publisher_t odometry_publisher;
+nav_msgs__msg__Odometry odometry_message;
 // callback to publish encoder data (processed into timestamped twists)
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time)
 {
-	char distBuff[100];
-	float theta = (180.0/3.1415)*((drivetrain_left.position-drivetrain_right.position)/0.51);
-	snprintf(distBuff, 100, "L: %f R: %f θ: %f",drivetrain_left.position, drivetrain_right.position, theta);
-	uart_log(LEVEL_DEBUG, distBuff);
-	// mutate message
-	populate_observed_twist(&observed_twist_msg);
+	//fill in up-to-date values for odom
+	populate_odometry(&odometry_message);
 	// Publish message
-	if (rcl_publish(&encoder_publisher, &observed_twist_msg, NULL))
+	if (rcl_publish(&odometry_publisher, &odometry_message, NULL))
 	{
 		uart_log(LEVEL_WARN, "Encoder publish failed!");
 	}
@@ -223,29 +219,48 @@ int main()
 	rclc_executor_init(&executor, &support.context, 5, &allocator);
 
 	// --create timed events--
-	create_timer_callback(&executor, &support, 15, publish_encoder);
+	create_timer_callback(&executor, &support, 20, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
 	create_timer_callback(&executor, &support, 1000, uart_input_handler);
 	watchdog_update();
 
 	// --create publishers--
 	rclc_publisher_init_default(
-		&encoder_publisher,
+		&odometry_publisher,
 		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, TwistStamped),
-		"twist_observed");
+		ROSIDL_GET_MSG_TYPE_SUPPORT(nav_msgs, msg, Odometry),
+		"odom");
 	// setup static components of message
-	observed_twist_msg.header.frame_id.data = "base_link";
-	observed_twist_msg.header.frame_id.size = strlen(observed_twist_msg.header.frame_id.data);
-	observed_twist_msg.header.frame_id.capacity = observed_twist_msg.header.frame_id.size + 1;
-	observed_twist_msg.header.stamp.sec = 0.0;
-	observed_twist_msg.header.stamp.nanosec = 0.0;
-	observed_twist_msg.twist.linear.x = 0.0;
-	observed_twist_msg.twist.linear.y = 0.0;
-	observed_twist_msg.twist.linear.z = 0.0;
-	observed_twist_msg.twist.angular.x = 0.0;
-	observed_twist_msg.twist.angular.y = 0.0;
-	observed_twist_msg.twist.angular.z = 0.0;
+	odometry_message.header.stamp.sec = 0;  // Set seconds part of the timestamp (replace with actual time)
+	odometry_message.header.stamp.nanosec = 0;  // Set nanoseconds part of the timestamp (replace with actual time)
+	odometry_message.header.frame_id.data = "odom";  // Set the frame of reference for the odometry
+	odometry_message.header.frame_id.size = strlen(odometry_message.header.frame_id.data);
+	odometry_message.header.frame_id.capacity = odometry_message.header.frame_id.size + 1;
+	odometry_message.child_frame_id.data = "base_link";  // The child frame (typically the robot base or robot link)
+	odometry_message.child_frame_id.size = strlen(odometry_message.child_frame_id.data);
+	odometry_message.child_frame_id.capacity = odometry_message.child_frame_id.size + 1;
+
+
+	// Initialize position (pose)
+	odometry_message.pose.pose.position.x = 0.0;  // Initial X position
+	odometry_message.pose.pose.position.y = 0.0;  // Initial Y position
+	odometry_message.pose.pose.position.z = 0.0;  // Initial Z position
+
+	// Initialize orientation (quaternion)
+	odometry_message.pose.pose.orientation.x = 0.0;  // X component of the quaternion
+	odometry_message.pose.pose.orientation.y = 0.0;  // Y component of the quaternion
+	odometry_message.pose.pose.orientation.z = 0.0;  // Z component of the quaternion
+	odometry_message.pose.pose.orientation.w = 1.0;  // W component of the quaternion (identity quaternion)
+
+	// Initialize linear velocity (twist)
+	odometry_message.twist.twist.linear.x = 0.0;  // Linear velocity in X direction (m/s)
+	odometry_message.twist.twist.linear.y = 0.0;  // Linear velocity in Y direction (m/s)
+	odometry_message.twist.twist.linear.z = 0.0;  // Linear velocity in Z direction (m/s)
+
+	// Initialize angular velocity (twist)
+	odometry_message.twist.twist.angular.x = 0.0;  // Angular velocity around X axis (rad/s)
+	odometry_message.twist.twist.angular.y = 0.0;  // Angular velocity around Y axis (rad/s)
+	odometry_message.twist.twist.angular.z = 0.0;  // Angular velocity around Z axis (rad/s)
 
 	// --create subscribers--
 	// twist command subscriber
@@ -271,6 +286,7 @@ int main()
 	// -- general inits --
 	init_all_motors();
 	pid_setup();
+	init_odometry();
 	uart_log(LEVEL_DEBUG, "Finished init, starting exec");
 
 	multicore_launch_core1(core1task);
