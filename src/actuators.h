@@ -26,6 +26,7 @@ typedef struct {
 	uint sm; 
 	uint prev_count;
 	uint64_t prev_time_us;
+	uint ppm;
 } Encoder;
 
 typedef struct {
@@ -37,8 +38,7 @@ typedef struct {
 	float velocity;
 	float position;
 	bool enabled;
-	bool (*killfunc)(void);
-	
+	bool (*killfunc)(void);	
 } Motor;
 
 extern Motor drivetrain_left;

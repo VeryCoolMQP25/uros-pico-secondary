@@ -73,9 +73,7 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time)
 			calibrate_pid(recbuff[0], atoff(recbuff + 1));
 			break;
 		case 'R':
-			uart_log(LEVEL_INFO, "Reset encoders");
-			drivetrain_left.position = 0;
-			drivetrain_right.position = 0;
+			reset_odometry();
 			break;
 		default:
 			uart_log(LEVEL_WARN, "Unrecognized command!");
@@ -219,9 +217,9 @@ int main()
 	rclc_executor_init(&executor, &support.context, 5, &allocator);
 
 	// --create timed events--
-	create_timer_callback(&executor, &support, 20, publish_encoder);
+	create_timer_callback(&executor, &support, 10, publish_encoder);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
-	create_timer_callback(&executor, &support, 1000, uart_input_handler);
+	create_timer_callback(&executor, &support, 800, uart_input_handler);
 	watchdog_update();
 
 	// --create publishers--

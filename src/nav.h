@@ -12,4 +12,5 @@ typedef struct {
 void init_odometry();
 void populate_odometry(nav_msgs__msg__Odometry *msg);
 void update_odometry();
+void reset_odometry();
 #endif
