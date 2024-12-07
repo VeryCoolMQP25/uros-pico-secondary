@@ -17,6 +17,7 @@ target_link_libraries(${NAME}
      hardware_pwm
      hardware_pio
      pico_multicore
+     tf2_messages
 	)
 	
 target_include_directories(${NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})

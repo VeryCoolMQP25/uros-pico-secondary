@@ -16,7 +16,7 @@ set(_rosidl_adapter_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT rosidl_adapter_FIND_QUIETLY)
-  message(STATUS "Found rosidl_adapter: 3.1.5 (${rosidl_adapter_DIR})")
+  message(STATUS "Found rosidl_adapter: 3.1.6 (${rosidl_adapter_DIR})")
 endif()
 
 # warn when using a deprecated package

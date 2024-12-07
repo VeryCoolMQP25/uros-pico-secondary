@@ -1,1 +1,0 @@
-/home/jake/Documents/MQP/uros-pico-controller/uros_ws/build/micro_ros_msgs/rosidl_generator_cpp/micro_ros_msgs/msg/detail/graph__builder.hpp

@@ -16,7 +16,7 @@ set(_rosidl_cmake_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT rosidl_cmake_FIND_QUIETLY)
-  message(STATUS "Found rosidl_cmake: 3.1.5 (${rosidl_cmake_DIR})")
+  message(STATUS "Found rosidl_cmake: 3.1.6 (${rosidl_cmake_DIR})")
 endif()
 
 # warn when using a deprecated package

@@ -1,1 +1,0 @@
-/home/jake/Documents/MQP/uros-pico-controller/uros_ws/src/uros/micro_ros_msgs/msg/Graph.msg

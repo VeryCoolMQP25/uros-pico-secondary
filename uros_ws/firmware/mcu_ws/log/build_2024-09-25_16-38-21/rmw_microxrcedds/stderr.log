@@ -1,9 +1,0 @@
-PICO_GCC_TRIPLE defaulted to arm-none-eabi
-PICO_GCC_TRIPLE defaulted to arm-none-eabi
-CMake Warning at /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:116 (message):
-  Package 'rcutils' exports library 'dl' which couldn't be found
-Call Stack (most recent call first):
-  /home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)
-  CMakeLists.txt:27 (find_package)
-
-

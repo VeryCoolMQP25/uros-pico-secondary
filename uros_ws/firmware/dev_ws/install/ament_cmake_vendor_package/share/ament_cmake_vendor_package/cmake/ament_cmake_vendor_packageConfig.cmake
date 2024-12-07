@@ -16,7 +16,7 @@ set(_ament_cmake_vendor_package_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT ament_cmake_vendor_package_FIND_QUIETLY)
-  message(STATUS "Found ament_cmake_vendor_package: 1.3.10 (${ament_cmake_vendor_package_DIR})")
+  message(STATUS "Found ament_cmake_vendor_package: 1.3.11 (${ament_cmake_vendor_package_DIR})")
 endif()
 
 # warn when using a deprecated package

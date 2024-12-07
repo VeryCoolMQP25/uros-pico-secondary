@@ -12,8 +12,8 @@ set_target_properties(yaml PROPERTIES
   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libyaml.a"
   )
 
-list(APPEND _IMPORT_CHECK_TARGETS yaml )
-list(APPEND _IMPORT_CHECK_FILES_FOR_yaml "${_IMPORT_PREFIX}/lib/libyaml.a" )
+list(APPEND _cmake_import_check_targets yaml )
+list(APPEND _cmake_import_check_files_for_yaml "${_IMPORT_PREFIX}/lib/libyaml.a" )
 
 # Commands beyond this point should not need to know the version.
 set(CMAKE_IMPORT_FILE_VERSION)

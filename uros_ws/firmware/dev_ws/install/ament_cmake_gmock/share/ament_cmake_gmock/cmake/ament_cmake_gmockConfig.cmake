@@ -16,7 +16,7 @@ set(_ament_cmake_gmock_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT ament_cmake_gmock_FIND_QUIETLY)
-  message(STATUS "Found ament_cmake_gmock: 1.3.10 (${ament_cmake_gmock_DIR})")
+  message(STATUS "Found ament_cmake_gmock: 1.3.11 (${ament_cmake_gmock_DIR})")
 endif()
 
 # warn when using a deprecated package

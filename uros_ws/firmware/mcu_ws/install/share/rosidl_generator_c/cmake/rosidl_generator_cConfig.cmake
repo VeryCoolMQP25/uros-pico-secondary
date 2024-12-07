@@ -16,7 +16,7 @@ set(_rosidl_generator_c_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT rosidl_generator_c_FIND_QUIETLY)
-  message(STATUS "Found rosidl_generator_c: 3.1.5 (${rosidl_generator_c_DIR})")
+  message(STATUS "Found rosidl_generator_c: 3.1.6 (${rosidl_generator_c_DIR})")
 endif()
 
 # warn when using a deprecated package

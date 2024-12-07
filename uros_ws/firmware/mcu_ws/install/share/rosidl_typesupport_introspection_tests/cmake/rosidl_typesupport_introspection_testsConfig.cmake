@@ -16,7 +16,7 @@ set(_rosidl_typesupport_introspection_tests_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT rosidl_typesupport_introspection_tests_FIND_QUIETLY)
-  message(STATUS "Found rosidl_typesupport_introspection_tests: 3.1.5 (${rosidl_typesupport_introspection_tests_DIR})")
+  message(STATUS "Found rosidl_typesupport_introspection_tests: 3.1.6 (${rosidl_typesupport_introspection_tests_DIR})")
 endif()
 
 # warn when using a deprecated package
