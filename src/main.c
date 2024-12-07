@@ -26,26 +26,16 @@ DriveMode drive_mode = dm_halt;
 /// support for encoder publisher
 rcl_publisher_t odometry_publisher;
 nav_msgs__msg__Odometry odometry_message;
-rcl_publisher_t tf_publisher;
-geometry_msgs__msg__TransformStamped tf_message;
 // callback to publish encoder data (processed into timestamped twists)
 
 void publish_encoder(rcl_timer_t *timer, int64_t last_call_time)
 {
 	//fill in up-to-date values for odom
 	populate_odometry(&odometry_message);
-	populate_transform(&tf_message, &odometry_message);
 	// Publish messages
 	if (rcl_publish(&odometry_publisher, &odometry_message, NULL))
 	{
 		uart_log(LEVEL_WARN, "Odom publish failed!");
-	}
-	tf2_msgs__msg__TFMessage transform;
-	transform.transforms.size = 1;  // One transform
-	transform.transforms.data = &tf_message;
-	if (rcl_publish(&tf_publisher, &transform, NULL))
-	{
-		uart_log(LEVEL_WARN, "TF publish failed!");
 	}
 }
 
@@ -238,14 +228,8 @@ int main()
 		&node,
 		ROSIDL_GET_MSG_TYPE_SUPPORT(nav_msgs, msg, Odometry),
 		"odom");
-	rclc_publisher_init_default(
-		&tf_publisher,
-		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(tf2_msgs, msg, TFMessage),
-		"/tf");
 	// setup static components of message
 	init_odom_message(&odometry_message);
-	init_tf_message(&tf_message);
 
 	// --create subscribers--
 	// twist command subscriber
