@@ -8,6 +8,7 @@
 #include "controls.h"
 #include "tunables.h"
 #include "nav.h"
+#include "haw/MPU6050.h"
 
 OdomState *ods_a;
 OdomState *ods_b;
@@ -18,6 +19,17 @@ void init_odometry(){
     ods_b = malloc(sizeof(OdomState));
     reset_odometry();
     ods_cur = ods_a;
+	// init IMU
+	gpio_init(I2C_SDA);
+    gpio_init(I2C_SCL);
+    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C_SDA);
+    gpio_pull_up(I2C_SCL);
+
+    // Pass in the I2C driver (Important for dual-core operations). The second parameter is the address,
+    // which can change if you connect pin A0 to GND or to VCC.
+    mpu6050_t mpu6050 = mpu6050_init(i2c_default, MPU6050_ADDRESS_A0_VCC);
 }
 
 void populate_odometry(nav_msgs__msg__Odometry *msg){

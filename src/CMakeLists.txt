@@ -17,6 +17,7 @@ target_link_libraries(${NAME}
      hardware_pwm
      hardware_pio
      pico_multicore
+     haw_mpu6050
 	)
 	
 target_include_directories(${NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})

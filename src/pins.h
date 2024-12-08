@@ -7,8 +7,8 @@
 #define UART_RX_PIN 		1
 //#define UNASSIGNED		2
 //#define UNASSIGNED		3
-//#define UNASSIGNED		4
-//#define UNASSIGNED		5
+#define I2C_SDA     		4
+#define I2C_SCL		        5
 #define DT_R_ENCODER_A		6
 #define DT_R_ENCODER_B		7
 #define DT_L_ENCODER_A		8
