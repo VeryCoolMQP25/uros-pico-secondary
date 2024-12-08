@@ -103,6 +103,10 @@ void core1task()
 		drive_mode = drive_mode_from_ros();
 		lift_timeout_check();
 		update_motor_encoders();
+		if (!gpio_get(ESTOP_PIN)){
+			uart_log(LEVEL_WARN, "Disabled by external pin!");
+			drive_mode = dm_halt;
+		}
 		switch (drive_mode)
 		{
 		case dm_raw:
@@ -180,6 +184,10 @@ int main()
 	// setup on-board status LED
 	gpio_init(LED_PIN);
 	gpio_set_dir(LED_PIN, GPIO_OUT);
+	// setup external E-Stop input
+	gpio_init(ESTOP_PIN);
+	gpio_set_dir(ESTOP_PIN, GPIO_IN);
+	gpio_pull_up(ESTOP_PIN);
 
 	uart_log(LEVEL_INFO, "Waiting for agent...");
 
@@ -214,7 +222,7 @@ int main()
 	allocator = rcl_get_default_allocator();
 	rclc_support_init(&support, 0, NULL, &allocator);
 	rclc_node_init_default(&node, "pico_node", namespace, &support);
-	rclc_executor_init(&executor, &support.context, 6, &allocator);
+	rclc_executor_init(&executor, &support.context, 5, &allocator);
 
 	// --create timed events--
 	create_timer_callback(&executor, &support, 10, publish_encoder);

@@ -19,7 +19,7 @@
 #define LIFT_ENCODER_B		13
 #define DT_L_PWM			14
 #define DT_R_PWM			15
-//#define UNASSIGNED		16
+#define ESTOP_PIN   		16
 //#define UNASSIGNED		17
 //#define UNASSIGNED		18
 //#define UNASSIGNED		19
