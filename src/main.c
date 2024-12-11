@@ -103,10 +103,6 @@ void core1task()
 		drive_mode = drive_mode_from_ros();
 		lift_timeout_check();
 		update_motor_encoders();
-		if (!gpio_get(ESTOP_PIN)){
-			uart_log(LEVEL_WARN, "Disabled by external pin!");
-			drive_mode = dm_halt;
-		}
 		switch (drive_mode)
 		{
 		case dm_raw:
@@ -122,6 +118,7 @@ void core1task()
 			break;
 		}
 		case dm_halt:
+			gpio_put(RSL_PIN, 1);
 			if (motor_kill_ctr++ < 500)
 			{
 				set_motor_power(&drivetrain_left, 0);
@@ -138,6 +135,7 @@ void core1task()
 
 			break;
 		case dm_twist:
+			gpio_put(RSL_PIN, 0);
 			do_drivetrain_pid_v();
 			motor_kill_ctr = 0;
 			break;
@@ -185,9 +183,9 @@ int main()
 	gpio_init(LED_PIN);
 	gpio_set_dir(LED_PIN, GPIO_OUT);
 	// setup external E-Stop input
-	gpio_init(ESTOP_PIN);
-	gpio_set_dir(ESTOP_PIN, GPIO_IN);
-	gpio_pull_up(ESTOP_PIN);
+	gpio_init(RSL_PIN);
+	gpio_set_dir(RSL_PIN, GPIO_OUT);
+	gpio_put(RSL_PIN, 1);
 
 	uart_log(LEVEL_INFO, "Waiting for agent...");
 

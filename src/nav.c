@@ -13,23 +13,52 @@
 OdomState *ods_a;
 OdomState *ods_b;
 OdomState *ods_cur;
+// mpu6050_t mpu6050;
+// bool imu = true;
+// mpu6050_vectorf_t *accel;
+// mpu6050_vectorf_t *gyro;
+// float imu_yaw = 0.0;
+
+// void init_imu(){
+// 	gpio_init(I2C_SDA);
+//     gpio_init(I2C_SCL);
+//     gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
+//     gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
+//     gpio_pull_up(I2C_SDA);
+//     gpio_pull_up(I2C_SCL);
+
+//     // Pass in the I2C driver (Important for dual-core operations). The second parameter is the address,
+//     // which can change if you connect pin A0 to GND or to VCC.
+//     mpu6050 = mpu6050_init(i2c_default, MPU6050_ADDRESS_A0_VCC);
+// 	int imu_fail_ctr = 0;
+// 	while (!mpu6050_begin(&mpu6050)) {
+// 		uart_log(LEVEL_WARN, "BLOCKING: Waiting for IMU...");
+// 		sleep_ms(100);
+// 		if (imu_fail_ctr++ >= 8){
+// 			uart_log(LEVEL_ERROR, "Failed to init IMU!");
+// 			imu = false;
+// 			return;
+// 		}
+// 	}
+// 	// Set scale of gyroscope
+// 	mpu6050_set_scale(&mpu6050, MPU6050_SCALE_250DPS);
+// 	// Set range of accelerometer
+// 	mpu6050_set_range(&mpu6050, MPU6050_RANGE_4G);
+
+// 	// Disable temperature, enable gyroscope and accelerometer readings
+// 	mpu6050_set_temperature_measuring(&mpu6050, false);
+// 	mpu6050_set_gyroscope_measuring(&mpu6050, true);
+// 	mpu6050_set_accelerometer_measuring(&mpu6050, true);
+// 	imu = true;
+// 	update_imu();
+// 	uart_log(LEVEL_INFO,"MPU6050 Initialized");
+// }
 
 void init_odometry(){
     ods_a = malloc(sizeof(OdomState));
     ods_b = malloc(sizeof(OdomState));
     reset_odometry();
     ods_cur = ods_a;
-	// init IMU
-	gpio_init(I2C_SDA);
-    gpio_init(I2C_SCL);
-    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
-    gpio_pull_up(I2C_SDA);
-    gpio_pull_up(I2C_SCL);
-
-    // Pass in the I2C driver (Important for dual-core operations). The second parameter is the address,
-    // which can change if you connect pin A0 to GND or to VCC.
-    mpu6050_t mpu6050 = mpu6050_init(i2c_default, MPU6050_ADDRESS_A0_VCC);
 }
 
 void populate_odometry(nav_msgs__msg__Odometry *msg){
@@ -75,6 +104,14 @@ void update_odometry(){
     // set current struct to the one we just updated
     ods_cur = ods_working;
 }
+
+// void update_imu(){
+// 	if (imu){
+// 		mpu6050_event(&mpu6050);
+// 		accel = mpu6050_get_accelerometer(&mpu6050);
+// 		gyro = mpu6050_get_gyroscope(&mpu6050);
+// 	}
+// }
 
 void reset_odometry(){
     ods_a->pos_x = 0.0;

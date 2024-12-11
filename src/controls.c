@@ -168,7 +168,8 @@ void run_pid(Motor *motor, PIDController *pid)
 DriveMode drive_mode_from_ros()
 {
 	static DriveMode last = dm_halt;
-	if (time_us_64() - last_twist_msg > DRIVETRAIN_TIMEOUT)
+	// disable timeout if in PID debug mode
+	if (time_us_64() - last_twist_msg > DRIVETRAIN_TIMEOUT && !do_pid_debug)
 	{
 		if (last != dm_halt)
 		{

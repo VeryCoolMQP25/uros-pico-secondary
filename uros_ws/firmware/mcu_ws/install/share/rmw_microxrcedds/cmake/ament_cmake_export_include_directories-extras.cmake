@@ -1,6 +1,6 @@
 # generated from ament_cmake_export_include_directories/cmake/ament_cmake_export_include_directories-extras.cmake.in
 
-set(_exported_include_dirs "/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include")
+set(_exported_include_dirs "/home/jake/MQP/uros-pico-controller/uros_ws/firmware/mcu_ws/install/include")
 
 # append include directories to rmw_microxrcedds_INCLUDE_DIRS
 # warn about not existing paths

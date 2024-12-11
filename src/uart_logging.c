@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <rcl/rcl.h>
-
+#define UART_COLOR
 
 mutex_t uart_mutex;
 
@@ -28,6 +28,7 @@ static void uart_log_internal(LogLevel level, char *message){
 	char out[UART_DEBUG_MAXLEN];
 	char *levelstr;
 	switch (level){
+		#ifdef UART_COLOR
 		case LEVEL_DEBUG: {
 			levelstr = "\033[32mDEBUG\033[0m";
 			break;
@@ -44,6 +45,24 @@ static void uart_log_internal(LogLevel level, char *message){
 		    levelstr = "\033[31mERROR\033[0m";
 		    break;
 		}
+		#else
+		case LEVEL_DEBUG: {
+			levelstr = "DEBUG";
+			break;
+		}
+		case LEVEL_INFO: {
+		    levelstr = "INFO";
+		    break;
+		}
+		case LEVEL_WARN: {
+		    levelstr = "WARN";
+		    break;
+		}
+		case LEVEL_ERROR: {
+		    levelstr = "ERROR";
+		    break;
+		}
+		#endif
 		default: {
 		    levelstr = "UNKNOWN";
 		}

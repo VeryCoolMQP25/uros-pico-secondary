@@ -1,11 +1,10 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
-#define DRIVETRAIN_TIMEOUT 200000 //microseconds
-
 #include "pins.h"
 #include "actuators.h"
 #include "message_types.h"
+#include "tunables.h"
 
 typedef enum {
 	dm_raw,

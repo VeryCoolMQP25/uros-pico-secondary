@@ -2,7 +2,7 @@
 
 # since this file is sourced use either the provided AMENT_CURRENT_PREFIX
 # or fall back to the destination set at configure time
-: ${AMENT_CURRENT_PREFIX:="/home/jake/Documents/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cmake_pyflakes"}
+: ${AMENT_CURRENT_PREFIX:="/home/jake/MQP/uros-pico-controller/uros_ws/firmware/dev_ws/install/ament_cmake_pyflakes"}
 if [ ! -d "$AMENT_CURRENT_PREFIX" ]; then
   if [ -z "$COLCON_CURRENT_PREFIX" ]; then
     echo "The compile time prefix path '$AMENT_CURRENT_PREFIX' doesn't " \
