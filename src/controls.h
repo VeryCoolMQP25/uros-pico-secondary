@@ -43,13 +43,16 @@ void raw_lift_callback(const void*);
 
 void set_lift_power(int pwr);
 
-void do_drivetrain_pid_v();
+void set_pid(bool);
+
+bool do_drivetrain_pid_v(struct repeating_timer*);
 
 void run_pid(Motor*, PIDController*);
 
 DriveMode drive_mode_from_ros();
-
 void lift_timeout_check();
+
+void set_rsl(unsigned char);
 
 void die();
 

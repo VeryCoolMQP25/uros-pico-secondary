@@ -97,6 +97,10 @@ void core1task()
 	uart_log(LEVEL_DEBUG, "Started core 1 task");
 	multicore_lockout_victim_init();
 	int motor_kill_ctr = 0;
+	alarm_pool_t *pid_pool = malloc(sizeof(alarm_id_t));
+	pid_pool = alarm_pool_create_with_unused_hardware_alarm(1);
+	repeating_timer_t *pid_timer = malloc(sizeof(repeating_timer_t));
+	alarm_pool_add_repeating_timer_ms(pid_pool, 20, do_drivetrain_pid_v, NULL, pid_timer);
 	while (true)
 	{
 		watchdog_update();
@@ -107,6 +111,7 @@ void core1task()
 		{
 		case dm_raw:
 		{
+			set_pid(false);
 			set_motor_power(&drivetrain_left, 25);
 			set_motor_power(&drivetrain_right, 25);
 			update_motor_encoders(&drivetrain_left);
@@ -118,7 +123,7 @@ void core1task()
 			break;
 		}
 		case dm_halt:
-			gpio_put(RSL_PIN, 1);
+			set_pid(false);
 			if (motor_kill_ctr++ < 500)
 			{
 				set_motor_power(&drivetrain_left, 0);
@@ -135,15 +140,14 @@ void core1task()
 
 			break;
 		case dm_twist:
-			gpio_put(RSL_PIN, 0);
-			do_drivetrain_pid_v();
+			set_pid(true);
 			motor_kill_ctr = 0;
 			break;
 		default:
 			uart_log(LEVEL_WARN, "Invalid drive state!");
 			drive_mode = dm_halt;
 		}
-		sleep_ms(1);
+		// sleep_ms(1);
 	}
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();

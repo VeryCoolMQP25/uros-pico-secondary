@@ -80,9 +80,11 @@ void populate_odometry(nav_msgs__msg__Odometry *msg){
 	float v_diff = v_r - v_l;
 	msg->twist.twist.angular.z = v_diff / WHEELBASE_M;
 	msg->twist.twist.linear.x = (v_l + v_r) / 2;
+	#ifdef YAW_DBG
     char debugbuff[25];
     snprintf(debugbuff, 25, "yaw: %f deg.", yaw*(180.0/3.1415));
     uart_log(LEVEL_DEBUG, debugbuff);
+	#endif
 }
 
 // update odometry, swap between two structs so all data updates are thread safe

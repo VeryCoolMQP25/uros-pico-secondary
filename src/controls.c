@@ -18,6 +18,7 @@ static DriveMode drive_mode_global = dm_halt;
 unsigned long last_twist_msg = 0;
 unsigned long last_lift_msg = 0;
 bool do_pid_debug = false;
+bool do_pid = false;
 
 void pid_setup()
 {
@@ -102,10 +103,17 @@ void set_lift_power(int pwr)
 	set_motor_power(&lift_motor, pwr);
 }
 
-void do_drivetrain_pid_v()
+void set_pid(bool setpoint){
+	do_pid = setpoint;
+	set_rsl(!setpoint);
+}
+
+bool do_drivetrain_pid_v(__unused struct repeating_timer *tmr)
 {
-	run_pid(&drivetrain_left, &pid_v_left);
-	run_pid(&drivetrain_right, &pid_v_right);
+	if (do_pid){
+		run_pid(&drivetrain_left, &pid_v_left);
+		run_pid(&drivetrain_right, &pid_v_right);
+	}
 }
 
 void run_pid(Motor *motor, PIDController *pid)
@@ -127,7 +135,9 @@ void run_pid(Motor *motor, PIDController *pid)
 		}}
 		if (pid->integral > PID_DT_I_CAP)
 		{
-			uart_log(LEVEL_INFO, "Capping integral");
+			if (printctr > 5){
+				uart_log_nonblocking(LEVEL_INFO, "Capping integral");
+			}
 			pid->integral = PID_DT_I_CAP;
 		}
 		break;
@@ -154,10 +164,10 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	if (do_pid_debug && printctr++ == 4){
+	if (do_pid_debug && printctr++ == 6){
 		char debugbuff[110];
-		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\ttgt: %f, err: %f\t\tPower: %d%%",
-		motor->name, P, I, D, pid->target, error, output);
+		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\terr: %f\t\tPwr: %d%%",
+		motor->name, P, I, D, error, output);
 		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
 		printctr = 0;
 	}
@@ -202,6 +212,15 @@ void lift_timeout_check(){
 	}
 }
 
+// prevent repeated setting of same val
+void set_rsl(unsigned char value){
+	static unsigned char prev = 1;
+	if (value != prev){
+		gpio_put(RSL_PIN, value);
+		prev = value;
+	}
+}
+
 void die()
 {
 	// kill drivtrain control core (prevent WDT updates)
@@ -212,3 +231,4 @@ void die()
 		uart_log(LEVEL_ERROR, "KILL ME");
 	}
 }
+
