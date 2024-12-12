@@ -100,7 +100,12 @@ void core1task()
 	alarm_pool_t *pid_pool = malloc(sizeof(alarm_id_t));
 	pid_pool = alarm_pool_create_with_unused_hardware_alarm(1);
 	repeating_timer_t *pid_timer = malloc(sizeof(repeating_timer_t));
-	alarm_pool_add_repeating_timer_ms(pid_pool, 20, do_drivetrain_pid_v, NULL, pid_timer);
+	if (!alarm_pool_add_repeating_timer_ms(pid_pool, 20, do_drivetrain_pid_v, NULL, pid_timer)){
+		uart_log(LEVEL_ERROR, "Cannot init PID timer!!");
+	}
+	else {
+		uart_log(LEVEL_INFO, "Started recurring PID interrupt timer");
+	}
 	while (true)
 	{
 		watchdog_update();
@@ -147,8 +152,9 @@ void core1task()
 			uart_log(LEVEL_WARN, "Invalid drive state!");
 			drive_mode = dm_halt;
 		}
-		// sleep_ms(1);
+		sleep_ms(1);
 	}
+	alarm_pool_destroy(pid_pool); // kill PID timer
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
 	kill_all_actuators();
 }
