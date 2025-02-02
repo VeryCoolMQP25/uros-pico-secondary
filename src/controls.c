@@ -165,7 +165,7 @@ void run_pid(Motor *motor, PIDController *pid)
 	{
 		output = -100;
 	}
-	if (do_pid_debug && printctr++ == 6){
+	if (do_pid_debug && printctr++ == 4){
 		char debugbuff[110];
 		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\terr: %f\t\tPwr: %d%%",
 		motor->name, P, I, D, error, output);

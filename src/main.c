@@ -152,7 +152,7 @@ void core1task()
 			uart_log(LEVEL_WARN, "Invalid drive state!");
 			drive_mode = dm_halt;
 		}
-		sleep_ms(1);
+		sleep_us(500);
 	}
 	alarm_pool_destroy(pid_pool); // kill PID timer
 	uart_log(LEVEL_ERROR, "Exiting core1 task!");
