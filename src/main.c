@@ -192,10 +192,10 @@ int main()
 	// setup on-board status LED
 	gpio_init(LED_PIN);
 	gpio_set_dir(LED_PIN, GPIO_OUT);
-	// setup external E-Stop input
+	// setup external RSL control
 	gpio_init(RSL_PIN);
 	gpio_set_dir(RSL_PIN, GPIO_OUT);
-	gpio_put(RSL_PIN, 1);
+	gpio_put(RSL_PIN, 0);
 
 	uart_log(LEVEL_INFO, "Waiting for agent...");
 

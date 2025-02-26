@@ -114,7 +114,7 @@ bool do_drivetrain_pid_v(__unused struct repeating_timer *tmr)
 		run_pid(&drivetrain_left, &pid_v_left);
 		run_pid(&drivetrain_right, &pid_v_right);
 	}
-	return true; // instruct timer to keep repeating 
+	return true; // instruct timer to keep repeating
 }
 
 void run_pid(Motor *motor, PIDController *pid)
@@ -217,7 +217,7 @@ void lift_timeout_check(){
 void set_rsl(unsigned char value){
 	static unsigned char prev = 1;
 	if (value != prev){
-		gpio_put(RSL_PIN, value);
+		gpio_put(RSL_PIN, !value);
 		prev = value;
 	}
 }
@@ -232,4 +232,3 @@ void die()
 		uart_log(LEVEL_ERROR, "KILL ME");
 	}
 }
-

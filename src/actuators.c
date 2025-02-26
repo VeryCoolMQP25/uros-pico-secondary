@@ -10,6 +10,7 @@
 Motor drivetrain_left;
 Motor drivetrain_right;
 Motor lift_motor;
+Servo button_pusher_horiz;
 
 // return index of next unallocated PIO state machine
 static int get_next_sm()
@@ -98,6 +99,25 @@ void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_p
 	}
 }
 
+void init_servo(Servo *servo_struct, int pin)
+{
+	servo_struct->pin_num = pin;
+	gpio_init(pin);
+	gpio_set_dir(pin, GPIO_OUT);
+	gpio_put(pin, 0);
+	uint slice = pwm_gpio_to_slice_num(pin);
+	servo_struct->slice_num = slice;
+	float div = clock_get_hz(clk_sys) / (SERVO_PWM_FREQ * (TALON_PWM_WRAP - 1)); // should be ~25
+	pwm_config config = pwm_get_default_config();
+	pwm_config_set_clkdiv(&config, div);
+	pwm_config_set_wrap(&config, TALON_PWM_WRAP);
+	// set PWM to neutral before start
+	pwm_set_gpio_level(pin, TALON_DEADCTR);
+	motor_struct->curpower = 0;
+	// init and start PWM channel
+	pwm_init(slice, &config, true);
+}
+
 // sets the power level of a motor via PWM.
 // accepts integer power level [-100, 100]
 bool set_motor_power(Motor *motor, int power)
@@ -132,6 +152,8 @@ bool set_motor_power(Motor *motor, int power)
 	motor->curpower = power;
 	return ok;
 }
+
+
 
 void init_all_motors()
 {

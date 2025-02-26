@@ -21,9 +21,22 @@
 #define TALON_FULL_REV 4945
 #define TALON_DEADCTR  7565
 
+/* Servo PWM signaling:
+* 50Hz signal
+* 20ms period
+* 500us = full "forward"
+* 1500us = center of the deadband range (off)
+* 2500us = full "reverse"
+*/
+#define SERVO_PWM_FREQ 50
+#define SERVO_PWM_WRAP 19999
+#define SERVO_FULL_FWD 1000
+#define SERVO_FULL_REV 2500
+#define SERVO_DEADCTR  1500
+
 typedef struct {
 	PIO pio;
-	uint sm; 
+	uint sm;
 	uint prev_count;
 	uint64_t prev_time_us;
 	uint ppm;
@@ -38,12 +51,19 @@ typedef struct {
 	float velocity;
 	float position;
 	bool enabled;
-	bool (*killfunc)(void);	
+	bool (*killfunc)(void);
 } Motor;
+
+typedef struct {
+    uint pin_num;
+    uint slice_num;
+    uint position;
+} Servo;
 
 extern Motor drivetrain_left;
 extern Motor drivetrain_right;
 extern Motor lift_motor;
+extern Servo button_pusher_horiz;
 
 void init_all_motors();
 bool set_motor_power(Motor*, int);
