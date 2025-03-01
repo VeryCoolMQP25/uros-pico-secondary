@@ -73,7 +73,7 @@ void init_all_motors();
 bool set_motor_power(Motor*, int);
 void kill_all_actuators();
 
-void init_servo(Servo *servo_struct);
+void init_servo(Servo *servo_struct, uint pin_num);
 void set_servo_position(Servo *servo_struct, uint position);
 
 void update_motor_encoder(Motor*);

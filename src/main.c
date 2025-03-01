@@ -17,7 +17,8 @@
 #include "nav.h"
 
 // version numbering: <term>-<day>.ver
-#define VERSION "B-12.6.3"
+#define VERSION "B-53.1.1"
+#define RCL_CONTEXT_COUNT 6
 
 // globals
 const char *namespace = "";
@@ -238,7 +239,7 @@ int main()
 	allocator = rcl_get_default_allocator();
 	rclc_support_init(&support, 0, NULL, &allocator);
 	rclc_node_init_default(&node, "pico_node", namespace, &support);
-	rclc_executor_init(&executor, &support.context, 5, &allocator);
+	rclc_executor_init(&executor, &support.context, RCL_CONTEXT_COUNT, &allocator);
 
 	// --create timed events--
 	create_timer_callback(&executor, &support, 10, publish_encoder);
@@ -275,6 +276,16 @@ int main()
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
 		"lift_raw");
 	rclc_executor_add_subscription(&executor, &lift_subscriber, &lift_msg, &raw_lift_callback, ON_NEW_DATA);
+	watchdog_update();
+	// Servo command subscriber
+	rcl_subscription_t servo_subscriber;
+	std_msgs__msg__Int8 servo_msg;
+	rclc_subscription_init_default(
+		&servo_subscriber,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int8),
+		"servo_degrees");
+	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
 	watchdog_update();
 	// -- general inits --
 	init_all_motors();

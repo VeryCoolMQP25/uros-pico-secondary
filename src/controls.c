@@ -1,3 +1,4 @@
+#include <complex.h>
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
@@ -92,6 +93,13 @@ void raw_lift_callback(const void *msgin)
 	last_lift_msg = time_us_64();
 }
 
+void pusher_servo_callback(const void *msgin)
+{
+    const std_msgs__msg__Int8 *msg = (const std_msgs__msg__Int8 *)msgin;
+    uint8_t command_angle = msg->data;
+    set_servo_position(&button_pusher_horiz, command_angle);
+}
+
 void set_lift_power(int pwr)
 {
 	if (get_lift_hardstop() && pwr < 0)
@@ -151,12 +159,12 @@ void run_pid(Motor *motor, PIDController *pid)
 		return;
 	}
 
-	float P = pid->Kp * error;
-	float I = pid->Ki * pid->integral;
-	float D = pid->Kd * ((error - pid->previous_error) / delta_time_s_safe);
+	float cur_P = pid->Kp * error;
+	float cur_I = pid->Ki * pid->integral;
+	float cur_D = pid->Kd * ((error - pid->previous_error) / delta_time_s_safe);
 
 	// PID output
-	int output = 100 * (P + I + D);
+	int output = 100 * (cur_P + cur_I + cur_D);
 	if (output > 100)
 	{
 		output = 100;
@@ -168,7 +176,7 @@ void run_pid(Motor *motor, PIDController *pid)
 	if (do_pid_debug && printctr++ == 4){
 		char debugbuff[110];
 		snprintf(debugbuff, 110, "[%s] P:%f, I:%f, D:%f\t\terr: %f\t\tPwr: %d%%",
-		motor->name, P, I, D, error, output);
+		motor->name, cur_P, cur_I, cur_D, error, output);
 		uart_log_nonblocking(LEVEL_DEBUG, debugbuff);
 		printctr = 0;
 	}

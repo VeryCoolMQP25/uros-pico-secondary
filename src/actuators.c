@@ -4,6 +4,7 @@
 #include "hardware/pio.h"
 #include "hardware/timer.h"
 #include "actuators.h"
+#include "pins.h"
 #include "uart_logging.h"
 #include "tunables.h"
 
@@ -100,7 +101,7 @@ void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_p
 	}
 }
 
-void init_servo(Servo *servo_struct, int pin)
+void init_servo(Servo *servo_struct, uint pin)
 {
 	servo_struct->pin_num = pin;
 	gpio_init(pin);
@@ -119,14 +120,14 @@ void init_servo(Servo *servo_struct, int pin)
 	pwm_init(slice, &config, true);
 }
 
-void set_servo_position(Servo *servo_struct, int position)
+void set_servo_position(Servo *servo_struct, uint position)
 {
-	if (position < SERVO_MIN_POS || position > SERVO_MAX_POS)
+	if (position < SERVO_MIN_POS_DEG || position > SERVO_MAX_POS_DEG)
 	{
 		uart_log(LEVEL_WARN, "Invalid servo position commanded");
 		return;
 	}
-	uint setpoint = SERVO_DEADCTR + (position - SERVO_MIN_POS) * (SERVO_PWM_WRAP - SERVO_DEADCTR * 2) / (SERVO_FULL_FWD - SERVO_FULL_REV);
+	uint setpoint = SERVO_DEADCTR + (position - SERVO_MIN_POS_DEG) * (SERVO_PWM_WRAP - SERVO_DEADCTR * 2) / (SERVO_FULL_FWD - SERVO_FULL_REV);
 	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
 	servo_struct->position = position;
 }
@@ -178,7 +179,7 @@ void init_all_motors()
 	init_motor_with_encoder("DT_L", DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL, DT_ENCODER_PPM_L, -1);
 	init_motor_with_encoder("DT_R", DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL, DT_ENCODER_PPM_R, 1);
 	init_motor("LIFT", LIFT_PWM, &lift_motor, get_lift_hardstop);
-	init_servo(&button_pusher_horiz);
+	init_servo(&button_pusher_horiz, SERVO_PWM);
 	// initialize GPIO hardstop sensor
 	gpio_init(LIFT_LIMIT_PIN);
 	gpio_pull_up(LIFT_LIMIT_PIN);
