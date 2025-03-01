@@ -41,6 +41,8 @@ void twist_callback(const void*);
 
 void raw_lift_callback(const void*);
 
+void pusher_servo_callback(const void*);
+
 void set_lift_power(int pwr);
 
 void set_pid(bool);
