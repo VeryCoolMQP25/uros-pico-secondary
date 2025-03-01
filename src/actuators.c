@@ -30,7 +30,7 @@ static int get_next_sm()
 	return -1;
 }
 
-static Encoder *init_encoder(uint pinA, uint pinB, uint ppm)
+static Encoder *init_encoder(uint pinA, uint pinB, uint ppm, int direction)
 {
 	if (abs(pinA - pinB) != 1)
 	{
@@ -61,6 +61,7 @@ static Encoder *init_encoder(uint pinA, uint pinB, uint ppm)
 	snprintf(asdf, 40, "Encoder on pin (%d, %d) allocated SM %d", pinA, pinB, sm_idx);
 	uart_log(LEVEL_DEBUG, asdf);
 	enc->ppm = ppm;
+	enc->direction = direction;
 	return enc;
 }
 
@@ -89,10 +90,10 @@ void init_motor(char *name, int pin, Motor *motor_struct, bool (*killfunc)(void)
 	pwm_power(motor_struct, true);
 }
 
-void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void), int ppm)
+void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void), int ppm, int direction)
 {
 	init_motor(name, pin, motor_struct, killfunc);
-	motor_struct->enc = init_encoder(enc_pin_A, enc_pin_B, ppm);
+	motor_struct->enc = init_encoder(enc_pin_A, enc_pin_B, ppm, direction);
 	if (motor_struct->enc == NULL)
 	{
 		uart_log(LEVEL_ERROR, "Could not init encoder!");
@@ -107,15 +108,27 @@ void init_servo(Servo *servo_struct, int pin)
 	gpio_put(pin, 0);
 	uint slice = pwm_gpio_to_slice_num(pin);
 	servo_struct->slice_num = slice;
-	float div = clock_get_hz(clk_sys) / (SERVO_PWM_FREQ * (TALON_PWM_WRAP - 1)); // should be ~25
+	float div = clock_get_hz(clk_sys) / (SERVO_PWM_FREQ * (SERVO_PWM_WRAP - 1)); // should be ~25
 	pwm_config config = pwm_get_default_config();
 	pwm_config_set_clkdiv(&config, div);
-	pwm_config_set_wrap(&config, TALON_PWM_WRAP);
+	pwm_config_set_wrap(&config, SERVO_PWM_WRAP);
 	// set PWM to neutral before start
-	pwm_set_gpio_level(pin, TALON_DEADCTR);
-	motor_struct->curpower = 0;
+	pwm_set_gpio_level(pin, SERVO_DEADCTR);
+	servo_struct->position = 90;
 	// init and start PWM channel
 	pwm_init(slice, &config, true);
+}
+
+void set_servo_position(Servo *servo_struct, int position)
+{
+	if (position < SERVO_MIN_POS || position > SERVO_MAX_POS)
+	{
+		uart_log(LEVEL_WARN, "Invalid servo position commanded");
+		return;
+	}
+	uint setpoint = SERVO_DEADCTR + (position - SERVO_MIN_POS) * (SERVO_PWM_WRAP - SERVO_DEADCTR * 2) / (SERVO_FULL_FWD - SERVO_FULL_REV);
+	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
+	servo_struct->position = position;
 }
 
 // sets the power level of a motor via PWM.
@@ -162,9 +175,10 @@ void init_all_motors()
 	pio_add_program(pio0, &quadrature_encoder_program);
 	pio_add_program(pio1, &quadrature_encoder_program);
 	uart_log(LEVEL_DEBUG, "Starting motor init");
-	init_motor_with_encoder("DT_L", DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL, DT_ENCODER_PPM_L);
-	init_motor_with_encoder("DT_R", DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL, DT_ENCODER_PPM_R);
+	init_motor_with_encoder("DT_L", DT_L_PWM, &drivetrain_left, DT_L_ENCODER_A, DT_L_ENCODER_B, NULL, DT_ENCODER_PPM_L, -1);
+	init_motor_with_encoder("DT_R", DT_R_PWM, &drivetrain_right, DT_R_ENCODER_A, DT_R_ENCODER_B, NULL, DT_ENCODER_PPM_R, 1);
 	init_motor("LIFT", LIFT_PWM, &lift_motor, get_lift_hardstop);
+	init_servo(&button_pusher_horiz);
 	// initialize GPIO hardstop sensor
 	gpio_init(LIFT_LIMIT_PIN);
 	gpio_pull_up(LIFT_LIMIT_PIN);
@@ -188,7 +202,7 @@ void update_motor_encoder(Motor *mot)
 		uart_log(LEVEL_WARN, "Encoder is NULL!!");
 		return;
 	}
-	int32_t raw = quadrature_encoder_get_count(encoder->pio, encoder->sm);
+	int32_t raw = quadrature_encoder_get_count(encoder->pio, encoder->sm)*encoder->direction;
 	int32_t dist_delta_pulse = raw - encoder->prev_count;
 	uint64_t curtime = time_us_64();
 	uint64_t delta_time_us = curtime - encoder->prev_time_us;
@@ -197,7 +211,7 @@ void update_motor_encoder(Motor *mot)
 	float pulse_per_sec = (1000000.0 * (float)dist_delta_pulse) / (float)delta_time_us;
 	float velocity = pulse_per_sec / encoder->ppm;
 	mot->velocity = velocity;
-	mot->position = (float)raw/ encoder->ppm;
+	mot->position = (float)raw / encoder->ppm;
 }
 
 bool get_lift_hardstop()

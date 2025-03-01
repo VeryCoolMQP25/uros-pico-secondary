@@ -22,6 +22,7 @@
 // globals
 const char *namespace = "";
 DriveMode drive_mode = dm_halt;
+uint8_t do_encoder_debug = 0;
 
 /// support for encoder publisher
 rcl_publisher_t odometry_publisher;
@@ -36,6 +37,12 @@ void publish_encoder(rcl_timer_t *timer, int64_t last_call_time)
 	if (rcl_publish(&odometry_publisher, &odometry_message, NULL))
 	{
 		uart_log(LEVEL_WARN, "Odom publish failed!");
+	}
+	if (do_encoder_debug)
+	{
+	   char encoderbuff[100];
+		snprintf(encoderbuff, sizeof(encoderbuff), "Encoder data: %f %f\n", drivetrain_left.position, drivetrain_right.position);
+		uart_log(LEVEL_DEBUG, encoderbuff);
 	}
 }
 
@@ -74,6 +81,7 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time)
 			break;
 		case 'R':
 			reset_odometry();
+			do_encoder_debug = 1;
 			break;
 		default:
 			uart_log(LEVEL_WARN, "Unrecognized command!");
