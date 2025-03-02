@@ -84,6 +84,18 @@ void uart_input_handler(rcl_timer_t *timer, int64_t last_call_time)
 			reset_odometry();
 			do_encoder_debug = 1;
 			break;
+		case 's':
+		  if (strlen(recbuff) < 2)
+			{
+				uart_log(LEVEL_WARN, "Bad servo command! ignoring...");
+				return;
+			}
+				int cmd = atoi(recbuff+1);
+				set_servo_position(&button_pusher_horiz, cmd);
+				char servoinfobuff[60];
+				snprintf(servoinfobuff, sizeof(servoinfobuff), "Commanding %d deg", cmd);
+				uart_log(LEVEL_INFO, servoinfobuff);
+			break;
 		default:
 			uart_log(LEVEL_WARN, "Unrecognized command!");
 			uart_log(LEVEL_DEBUG, recbuff);

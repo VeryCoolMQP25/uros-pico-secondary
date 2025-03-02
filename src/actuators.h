@@ -30,10 +30,9 @@
 * 2500us = full "reverse"
 */
 #define SERVO_PWM_FREQ     50
-#define SERVO_PWM_WRAP     19999
-#define SERVO_FULL_FWD     1000
-#define SERVO_FULL_REV     2500
-#define SERVO_DEADCTR      1500
+#define SERVO_PWM_WRAP     24999
+#define SERVO_MIN_PWM      1250  // Servo 1000µs in counter ticks (1000 * 25000 / 20000)
+#define SERVO_MAX_PWM      3125
 #define SERVO_MIN_POS_DEG  0
 #define SERVO_MAX_POS_DEG  180
 

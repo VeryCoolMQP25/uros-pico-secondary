@@ -89,6 +89,9 @@ void init_motor(char *name, int pin, Motor *motor_struct, bool (*killfunc)(void)
 	motor_struct->enabled = false;
 	motor_struct->killfunc = killfunc;
 	pwm_power(motor_struct, true);
+	char debugbuff[100];
+	snprintf(debugbuff, sizeof(debugbuff), "initialized motor %s with pin %d, slice %d", name, pin, slice);
+	uart_log(LEVEL_INFO, debugbuff);
 }
 
 void init_motor_with_encoder(char *name, int pin, Motor *motor_struct, int enc_pin_A, int enc_pin_B, bool (*killfunc)(void), int ppm, int direction)
@@ -109,15 +112,16 @@ void init_servo(Servo *servo_struct, uint pin)
 	gpio_put(pin, 0);
 	uint slice = pwm_gpio_to_slice_num(pin);
 	servo_struct->slice_num = slice;
-	float div = clock_get_hz(clk_sys) / (SERVO_PWM_FREQ * (SERVO_PWM_WRAP - 1)); // should be ~25
 	pwm_config config = pwm_get_default_config();
-	pwm_config_set_clkdiv(&config, div);
+	pwm_config_set_clkdiv(&config, 100.0f);
 	pwm_config_set_wrap(&config, SERVO_PWM_WRAP);
 	// set PWM to neutral before start
-	pwm_set_gpio_level(pin, SERVO_DEADCTR);
-	servo_struct->position = 90;
 	// init and start PWM channel
 	pwm_init(slice, &config, true);
+	char debugbuff[60];
+	snprintf(debugbuff, sizeof(debugbuff), "initialized servo with pin %d, slice %d", pin, slice);
+	uart_log(LEVEL_INFO, debugbuff);
+	set_servo_position(servo_struct, 90);
 }
 
 void set_servo_position(Servo *servo_struct, uint position)
@@ -127,7 +131,8 @@ void set_servo_position(Servo *servo_struct, uint position)
 		uart_log(LEVEL_WARN, "Invalid servo position commanded");
 		return;
 	}
-	uint setpoint = SERVO_DEADCTR + (position - SERVO_MIN_POS_DEG) * (SERVO_PWM_WRAP - SERVO_DEADCTR * 2) / (SERVO_FULL_FWD - SERVO_FULL_REV);
+	pwm_set_enabled(servo_struct->slice_num, 1);
+	uint setpoint = SERVO_MIN_PWM + (position - SERVO_MIN_POS_DEG) * (SERVO_MAX_PWM - SERVO_MIN_PWM) / (SERVO_MAX_POS_DEG - SERVO_MIN_POS_DEG);
 	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
 	servo_struct->position = position;
 }
