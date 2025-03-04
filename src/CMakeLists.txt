@@ -3,8 +3,6 @@ add_executable(${NAME}
         uart_logging.c
         pico_ros_usb.c
         actuators.c
-        controls.c
-        nav.c
         )
 
 # generate h file from pio description.
@@ -15,8 +13,6 @@ target_link_libraries(${NAME}
 	 pico_stdlib
      micro_ros
      hardware_pwm
-     hardware_pio
-     pico_multicore
      haw_mpu6050
 	)
 	

@@ -2,8 +2,7 @@
 #ifndef MESSAGE_TYPES_H
 #define MESSAGE_TYPES_H
 
-#include <geometry_msgs/msg/twist.h>
-#include <nav_msgs/msg/odometry.h>
+#include <sensor_msgs/msg/range.h>
 #include <std_msgs/msg/float32.h>
 #include <std_msgs/msg/int8.h>
 
