@@ -18,8 +18,8 @@
 //#define UNASSIGNED		12
 //#define UNASSIGNED		13
 //#define UNASSIGNED		14
-//#define UNASSIGNED		15
-#define SERVO_PWM	      	16
+#define SERVO_PWM	      	15
+//#define UNASSIGNED		16
 //#define UNASSIGNED		17
 //#define UNASSIGNED		18
 //#define UNASSIGNED		19

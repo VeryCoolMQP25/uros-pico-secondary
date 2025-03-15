@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <rcl/rcl.h>
-#define UART_COLOR
+// #define UART_COLOR
 
 mutex_t uart_mutex;
 

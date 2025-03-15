@@ -15,7 +15,7 @@
 #include "message_types.h"
 #include "sensors.h"
 
-#define RCL_CONTEXT_COUNT 2
+#define RCL_CONTEXT_COUNT 4
 
 // globals
 const char *namespace = "";
@@ -166,7 +166,7 @@ int main()
 		&height_publisher,
 		&node,
 		ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Range),
-		"odom");
+		"height");
 	// Servo command subscriber
 	rcl_subscription_t servo_subscriber;
 	std_msgs__msg__Int8 servo_msg;

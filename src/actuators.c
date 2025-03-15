@@ -40,6 +40,9 @@ void set_servo_position(Servo *servo_struct, uint position)
 	uint setpoint = SERVO_MIN_PWM + (position - SERVO_MIN_POS_DEG) * (SERVO_MAX_PWM - SERVO_MIN_PWM) / (SERVO_MAX_POS_DEG - SERVO_MIN_POS_DEG);
 	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
 	servo_struct->position = position;
+	char debugbuff[100];
+	snprintf(debugbuff, 100, "Setting servo to: %d deg. (setpoint %d)",position, setpoint);
+	uart_log(LEVEL_DEBUG, debugbuff);
 }
 
 void pusher_servo_callback(const void *msgin){

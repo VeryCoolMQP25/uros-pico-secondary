@@ -39,7 +39,8 @@
     "files.associations": {
         "message_types.h": "c",
         "twist_stamped.h": "c",
-        "watchdog.h": "c"
+        "watchdog.h": "c",
+        "uart_logging.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
