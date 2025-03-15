@@ -3,6 +3,7 @@ add_executable(${NAME}
         uart_logging.c
         pico_ros_usb.c
         actuators.c
+        sensors.c
         )
 
 # Pull in our pico_stdlib which pulls in commonly used features
@@ -11,6 +12,7 @@ target_link_libraries(${NAME}
      micro_ros
      hardware_adc
      hardware_pwm
+     pico_multicore
      	)
 	
 target_include_directories(${NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})

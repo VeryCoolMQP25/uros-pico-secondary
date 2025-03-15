@@ -13,11 +13,21 @@
 #include "actuators.h"
 #include "pins.h"
 #include "message_types.h"
+#include "sensors.h"
 
 #define RCL_CONTEXT_COUNT 2
 
 // globals
 const char *namespace = "";
+
+
+void die()
+{
+	while (1)
+	{
+	  uart_log(LEVEL_ERROR, "KILL ME");
+	}
+}
 
 // checks if we have comms with serial agent
 void check_connectivity(rcl_timer_t *timer, int64_t last_call_time)
@@ -146,7 +156,7 @@ int main()
 	rclc_executor_init(&executor, &support.context, RCL_CONTEXT_COUNT, &allocator);
 
 	// --create timed events--
-	create_timer_callback(&executor, &support, 10, publish_range);
+	create_timer_callback(&executor, &support, 20, publish_range);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
 	create_timer_callback(&executor, &support, 800, uart_input_handler);
 	watchdog_update();
@@ -166,10 +176,12 @@ int main()
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int8),
 		"servo_degrees");
 	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
+	prepare_lift_height(&height_message);
 	watchdog_update();
 	// -- general inits --
 
 	uart_log(LEVEL_DEBUG, "Finished init, starting exec");
+	multicore_launch_core1(height_monitor_c1);
 
 	rclc_executor_spin(&executor);
 	uart_log(LEVEL_ERROR, "Executor exited!");

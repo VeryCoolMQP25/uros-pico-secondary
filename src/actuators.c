@@ -5,7 +5,7 @@
 #include "actuators.h"
 #include "pins.h"
 #include "uart_logging.h"
-#include "tunables.h"
+#include "message_types.h"
 
 Servo button_pusher_horiz;
 
@@ -40,4 +40,9 @@ void set_servo_position(Servo *servo_struct, uint position)
 	uint setpoint = SERVO_MIN_PWM + (position - SERVO_MIN_POS_DEG) * (SERVO_MAX_PWM - SERVO_MIN_PWM) / (SERVO_MAX_POS_DEG - SERVO_MIN_POS_DEG);
 	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
 	servo_struct->position = position;
+}
+
+void pusher_servo_callback(const void *msgin){
+	const std_msgs__msg__Int8 *msg = (const std_msgs__msg__Int8 *)msgin;
+	set_servo_position(&button_pusher_horiz, msg->data);
 }
