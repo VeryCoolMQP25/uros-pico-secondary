@@ -16,8 +16,8 @@
 #define PWM_FREQUENCY 50
 #define MIN_PULSE_WIDTH 500   // 500us
 #define MAX_PULSE_WIDTH 2500  // 2500us
-#define SERVO_RANGE 180       // Servo angle range (0-180 degrees)
-
+#define SERVO_RANGE 180.0f       // Servo angle range (0-180 degrees)
+#define SERVO_PWM_WRAP     24999
 
 typedef struct {
     uint pin_num;
@@ -29,6 +29,6 @@ typedef struct {
 extern Servo button_pusher_horiz;
 
 void init_servo(Servo *servo_struct, uint pin_num);
-void set_servo_position(Servo *servo_struct, uint position);
+void set_servo_position(Servo *servo_struct, float position);
 void pusher_servo_callback(const void *msgin);
 #endif
