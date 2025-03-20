@@ -18,7 +18,7 @@ float servo_angle_convert(int angle){
 			angle = -90;
 		}
 	}
-	return ((float)angle+95.0)/SERVO_RANGE;
+	return (95.0-(float)angle)/SERVO_RANGE;
 }
 
 void init_servo(Servo *servo_struct, uint pin)
