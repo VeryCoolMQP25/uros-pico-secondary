@@ -154,7 +154,7 @@ int main()
 	rclc_support_init(&support, 0, NULL, &allocator);
 	rclc_node_init_default(&node, "lift_pico", namespace, &support);
 	rclc_executor_init(&executor, &support.context, RCL_CONTEXT_COUNT, &allocator);
-
+	init_servo(&button_pusher_horiz, SERVO_PWM);
 	// --create timed events--
 	create_timer_callback(&executor, &support, 20, publish_range);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
@@ -169,11 +169,11 @@ int main()
 		"height");
 	// Servo command subscriber
 	rcl_subscription_t servo_subscriber;
-	std_msgs__msg__Int8 servo_msg;
+	std_msgs__msg__Int16 servo_msg;
 	rclc_subscription_init_default(
 		&servo_subscriber,
 		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int8),
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
 		"servo_degrees");
 	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
 	prepare_lift_height(&height_message);

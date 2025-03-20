@@ -13,18 +13,17 @@
 * 1500us = center of the deadband range (off)
 * 2500us = full "reverse"
 */
-#define SERVO_PWM_FREQ     50
-#define SERVO_PWM_WRAP     24999
-#define SERVO_MIN_PWM      1250  // Servo 1000µs in counter ticks (1000 * 25000 / 20000)
-#define SERVO_MAX_PWM      3125
-#define SERVO_MIN_POS_DEG  0
-#define SERVO_MAX_POS_DEG  180
+#define PWM_FREQUENCY 50
+#define MIN_PULSE_WIDTH 500   // 500us
+#define MAX_PULSE_WIDTH 2500  // 2500us
+#define SERVO_RANGE 180       // Servo angle range (0-180 degrees)
 
 
 typedef struct {
     uint pin_num;
     uint slice_num;
     uint position;
+    uint wrap;
 } Servo;
 
 extern Servo button_pusher_horiz;

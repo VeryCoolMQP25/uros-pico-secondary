@@ -5,7 +5,7 @@
 #include "pico/sync.h"
 #include "math.h"
 #define RR_LEN  6
-#define ADC_TO_M_CAL 1350.0f
+#define ADC_TO_M_CAL 0.0007721693f
 float cur_range;
 critical_section_t range_crit;
 
@@ -24,7 +24,7 @@ void prepare_lift_height(sensor_msgs__msg__Range *height_message){
 
 float get_cur_reading(){
     uint16_t val = adc_read();
-    return ((float)val) / ADC_TO_M_CAL;
+    return ((float)val)*ADC_TO_M_CAL;
 }
 
 //task executed on core 1

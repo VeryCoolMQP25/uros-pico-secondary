@@ -12,14 +12,17 @@ Servo button_pusher_horiz;
 void init_servo(Servo *servo_struct, uint pin)
 {
 	servo_struct->pin_num = pin;
-	gpio_init(pin);
-	gpio_set_dir(pin, GPIO_OUT);
-	gpio_put(pin, 0);
+	gpio_set_function(pin, GPIO_FUNC_PWM);
 	uint slice = pwm_gpio_to_slice_num(pin);
 	servo_struct->slice_num = slice;
+
+	float clkdiv = clock_get_hz(clk_sys) / (50.0f * 4096.0f);  // 4096 ticks per period
 	pwm_config config = pwm_get_default_config();
-	pwm_config_set_clkdiv(&config, 100.0f);
-	pwm_config_set_wrap(&config, SERVO_PWM_WRAP);
+    pwm_config_set_wrap(&config, 4095);
+    pwm_config_set_clkdiv(&config, clkdiv); // Set clock divider for accurate frequency
+
+    pwm_set_enabled(slice, true);
+	servo_struct->wrap = 4095;
 	// set PWM to neutral before start
 	// init and start PWM channel
 	pwm_init(slice, &config, true);
@@ -29,23 +32,32 @@ void init_servo(Servo *servo_struct, uint pin)
 	set_servo_position(servo_struct, 90);
 }
 
+uint servo_angle_convert(int angle){
+	// 0 degrees commanded = 43 degrees actual
+	if (abs(angle) > 45){
+		uart_log(LEVEL_INFO, "Servo angle commanded out of range, correcting");
+		if (angle > 0){
+			angle = 45;
+		} else {
+			angle = -45;
+		}
+	}
+	return angle + 43;
+}
+
 void set_servo_position(Servo *servo_struct, uint position)
 {
-	if (position < SERVO_MIN_POS_DEG || position > SERVO_MAX_POS_DEG)
-	{
-		uart_log(LEVEL_WARN, "Invalid servo position commanded");
-		return;
-	}
-	pwm_set_enabled(servo_struct->slice_num, 1);
-	uint setpoint = SERVO_MIN_PWM + (position - SERVO_MIN_POS_DEG) * (SERVO_MAX_PWM - SERVO_MIN_PWM) / (SERVO_MAX_POS_DEG - SERVO_MIN_POS_DEG);
-	pwm_set_gpio_level(servo_struct->pin_num, setpoint);
-	servo_struct->position = position;
-	char debugbuff[100];
-	snprintf(debugbuff, 100, "Setting servo to: %d deg. (setpoint %d)",position, setpoint);
-	uart_log(LEVEL_DEBUG, debugbuff);
+    pwm_set_enabled(servo_struct->slice_num, 1);
+	float pulse_width = MIN_PULSE_WIDTH + ((MAX_PULSE_WIDTH - MIN_PULSE_WIDTH) * (position / (float)SERVO_RANGE));
+    uint32_t level = (pulse_width * servo_struct->wrap) / 20000;  // Scale to wrap value
+    pwm_set_gpio_level(servo_struct->pin_num, level);
+    servo_struct->position = position;
+    char debugbuff[100];
+    snprintf(debugbuff, 100, "Setting servo to: %d deg. (setpoint %d)", position, level);
+    uart_log(LEVEL_DEBUG, debugbuff);
 }
 
 void pusher_servo_callback(const void *msgin){
-	const std_msgs__msg__Int8 *msg = (const std_msgs__msg__Int8 *)msgin;
-	set_servo_position(&button_pusher_horiz, msg->data);
+	const std_msgs__msg__Int16 *msg = (const std_msgs__msg__Int16 *)msgin;
+	set_servo_position(&button_pusher_horiz, servo_angle_convert(msg->data));
 }
