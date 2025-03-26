@@ -54,6 +54,7 @@ void publish_range(rcl_timer_t *timer, int64_t last_call_time)
 	{
 		uart_log(LEVEL_WARN, "Height reading publish failed!");
 	}
+
 }
 
 // creates and returns a timer, configuring it to call specified callback. Returns timer handle

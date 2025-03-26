@@ -6,6 +6,7 @@
 #include "math.h"
 #define RR_LEN  6
 #define ADC_TO_M_CAL 0.0007721693f
+#define HEIGHT_DEBUG
 float cur_range;
 critical_section_t range_crit;
 
@@ -24,6 +25,11 @@ void prepare_lift_height(sensor_msgs__msg__Range *height_message){
 
 float get_cur_reading(){
     uint16_t val = adc_read();
+    #ifdef HEIGHT_DEBUG
+        char heightmessagebuff[60];
+        snprintf(heightmessagebuff, 60, "Raw height: %d", val);
+        uart_log(LEVEL_DEBUG, heightmessagebuff);
+	#endif
     return ((float)val)*ADC_TO_M_CAL;
 }
 
