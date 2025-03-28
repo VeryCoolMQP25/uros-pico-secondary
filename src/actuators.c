@@ -52,7 +52,18 @@ void set_servo_position(Servo *servo_struct, float position)
 	uart_log(LEVEL_DEBUG, debugbuff);
 }
 
+void stop_servo(){
+	pwm_set_enabled(button_pusher_horiz.slice_num, 0);
+}
+
 void pusher_servo_callback(const void *msgin){
+	static long last_time = 0;
+	long cur_time = time_us_64();
+	// rate limit the servo command to 20
+	if (cur_time - last_time < 50000){
+		return;
+	}
+	last_time = cur_time;
 	const std_msgs__msg__Int16 *msg = (const std_msgs__msg__Int16 *)msgin;
 	set_servo_position(&button_pusher_horiz, servo_angle_convert(msg->data));
 }
