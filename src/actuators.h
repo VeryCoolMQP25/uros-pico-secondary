@@ -30,5 +30,6 @@ extern Servo button_pusher_horiz;
 
 void init_servo(Servo *servo_struct, uint pin_num);
 void set_servo_position(Servo *servo_struct, float position);
+void stop_servo();
 void pusher_servo_callback(const void *msgin);
 #endif

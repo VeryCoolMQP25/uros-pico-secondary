@@ -25,6 +25,7 @@ void die()
 {
 	while (1)
 	{
+		stop_servo();
 	  uart_log(LEVEL_ERROR, "KILL ME");
 	}
 }
@@ -131,16 +132,9 @@ int main()
 	rclc_executor_init(&executor, &support.context, RCL_CONTEXT_COUNT, &allocator);
 	init_servo(&button_pusher_horiz, SERVO_PWM);
 	// --create timed events--
-	create_timer_callback(&executor, &support, 20, publish_range);
 	create_timer_callback(&executor, &support, 200, check_connectivity);
 	watchdog_update();
 
-	// --create publishers--
-	rclc_publisher_init_default(
-		&height_publisher,
-		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Range),
-		"height");
 	// Servo command subscriber
 	rcl_subscription_t servo_subscriber;
 	std_msgs__msg__Int16 servo_msg;
@@ -148,14 +142,12 @@ int main()
 		&servo_subscriber,
 		&node,
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
-		"servo_degrees");
+		"/servo_degrees");
 	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
-	prepare_lift_height(&height_message);
 	watchdog_update();
 	// -- general inits --
 
 	uart_log(LEVEL_DEBUG, "Finished init, starting exec");
-	multicore_launch_core1(height_monitor_c1);
 
 	rclc_executor_spin(&executor);
 	uart_log(LEVEL_ERROR, "Executor exited!");
