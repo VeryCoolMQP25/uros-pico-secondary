@@ -15,7 +15,7 @@
 #include "message_types.h"
 #include "sensors.h"
 
-#define RCL_CONTEXT_COUNT 2
+#define RCL_CONTEXT_COUNT 3 // servo angle, lift height, check conn timer, button is pressed 
 
 // globals
 const char *namespace = "";
@@ -142,7 +142,7 @@ int main()
 		&servo_subscriber,
 		&node,
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
-		"/button_angle");
+		"/servo_degrees");
 	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
 	watchdog_update();
 	// -- general inits --
