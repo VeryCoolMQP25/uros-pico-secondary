@@ -15,7 +15,7 @@
 #include "message_types.h"
 #include "sensors.h"
 
-#define RCL_CONTEXT_COUNT 3
+#define RCL_CONTEXT_COUNT 3 // servo angle, lift height, check conn timer, button is pressed 
 
 // globals
 const char *namespace = "";
