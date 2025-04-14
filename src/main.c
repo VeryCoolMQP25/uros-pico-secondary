@@ -15,7 +15,7 @@
 #include "message_types.h"
 #include "sensors.h"
 
-#define RCL_CONTEXT_COUNT 4 // servo angle, lift height, check conn timer, button_press_checker_timer
+#define RCL_CONTEXT_COUNT 4 // servo angle,  check conn timer, button_press_checker_timer
 
 // globals
 const char *namespace = "";
@@ -44,19 +44,19 @@ void check_connectivity(rcl_timer_t *timer, int64_t last_call_time)
 	watchdog_update();
 }
 
-rcl_publisher_t height_publisher;
-sensor_msgs__msg__Range height_message;
-void publish_range(rcl_timer_t *timer, int64_t last_call_time)
-{
-	//fill in up-to-date values for odom
-	update_lift_height(&height_message);
-	// Publish messages
-	if (rcl_publish(&height_publisher, &height_message, NULL))
-	{
-		uart_log(LEVEL_WARN, "Height reading publish failed!");
-	}
+// rcl_publisher_t height_publisher;
+// sensor_msgs__msg__Range height_message;
+// void publish_range(rcl_timer_t *timer, int64_t last_call_time)
+// {
+// 	//fill in up-to-date values for odom
+// 	update_lift_height(&height_message);
+// 	// Publish messages
+// 	if (rcl_publish(&height_publisher, &height_message, NULL))
+// 	{
+// 		uart_log(LEVEL_WARN, "Height reading publish failed!");
+// 	}
 
-}
+// }
 
 rcl_publisher_t limit_switch_publisher;
 std_msgs__msg__Bool limit_switch_message;
@@ -156,7 +156,7 @@ int main()
 	init_servo(&button_pusher_horiz, SERVO_PWM);
 	// --create timed events--
 	create_timer_callback(&executor, &support, 200, check_connectivity);
-	create_timer_callback(&executor, &support, 20, publish_range);
+	// create_timer_callback(&executor, &support, 20, publish_range);
 	create_timer_callback(&executor, &support, 20, publish_limit_switch);
 	watchdog_update();
 
@@ -181,15 +181,15 @@ int main()
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
 		"/servo/step_degrees");
 	rclc_executor_add_subscription(&executor, &servo_subscriber_step, &servo_msg_step, &pusher_servo_callback_step, ON_NEW_DATA);
-	prepare_lift_height(&height_message);
+	// prepare_lift_height(&height_message);
 	watchdog_update();
 
 		// --create publishers--
-	rclc_publisher_init_default(
-		&height_publisher,
-		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Range),
-		"height");
+	// rclc_publisher_init_default(
+	// 	&height_publisher,
+	// 	&node,
+	// 	ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Range),
+	// 	"height");
 	rclc_publisher_init_default(
 		&limit_switch_publisher,
 		&node,
@@ -199,7 +199,7 @@ int main()
 	// -- general inits --
 
 	uart_log(LEVEL_DEBUG, "Finished init, starting exec");
-	multicore_launch_core1(height_monitor_c1);
+	// multicore_launch_core1(height_monitor_c1);
 	rclc_executor_spin(&executor);
 	uart_log(LEVEL_ERROR, "Executor exited!");
 	gpio_put(LED_PIN, 0);
