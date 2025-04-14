@@ -5,7 +5,7 @@
 
 #define UART_TX_PIN			0
 #define UART_RX_PIN 		1
-//#define UNASSIGNED		2
+#define BUTTON_LIMIT_PIN	2
 //#define UNASSIGNED		3
 #define I2C_SDA     		4
 #define I2C_SCL		        5

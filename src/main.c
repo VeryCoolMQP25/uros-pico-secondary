@@ -15,7 +15,7 @@
 #include "message_types.h"
 #include "sensors.h"
 
-#define RCL_CONTEXT_COUNT 2 // servo angle, lift height, check conn timer, button is pressed 
+#define RCL_CONTEXT_COUNT 4 // servo angle, lift height, check conn timer, button_press_checker_timer
 
 // globals
 const char *namespace = "";
@@ -58,6 +58,26 @@ void publish_range(rcl_timer_t *timer, int64_t last_call_time)
 
 }
 
+rcl_publisher_t limit_switch_publisher;
+std_msgs__msg__Bool limit_switch_message;
+
+void publish_limit_switch(rcl_timer_t *timer, int64_t last_call_time)
+{
+	// button is active low
+	bool state = !gpio_get(BUTTON_LIMIT_PIN);
+	// skip if state is unchanged
+	if (state == limit_switch_message.data)
+	{
+		return;
+	}
+	limit_switch_message.data = state;
+	// Publish messages
+	if (rcl_publish(&limit_switch_publisher, &limit_switch_message, NULL))
+	{
+		uart_log(LEVEL_WARN, "Limit switch publish failed!");
+	}
+}
+
 // creates and returns a timer, configuring it to call specified callback. Returns timer handle
 rcl_timer_t *create_timer_callback(rclc_executor_t *executor, rclc_support_t *support, uint period_ms, rcl_timer_callback_t cb)
 {
@@ -94,7 +114,10 @@ int main()
 
 	// setup on-board status LED
 	gpio_init(LED_PIN);
+	gpio_init(BUTTON_LIMIT_PIN);
 	gpio_set_dir(LED_PIN, GPIO_OUT);
+	gpio_set_dir(BUTTON_LIMIT_PIN, GPIO_IN);
+	gpio_pull_up(BUTTON_LIMIT_PIN);
 
 	uart_log(LEVEL_INFO, "Waiting for agent...");
 
@@ -133,22 +156,50 @@ int main()
 	init_servo(&button_pusher_horiz, SERVO_PWM);
 	// --create timed events--
 	create_timer_callback(&executor, &support, 200, check_connectivity);
+	create_timer_callback(&executor, &support, 20, publish_range);
+	create_timer_callback(&executor, &support, 20, publish_limit_switch);
 	watchdog_update();
 
 	// Servo command subscriber
-	rcl_subscription_t servo_subscriber;
-	std_msgs__msg__Int16 servo_msg;
+	// /servo/degrees
+	// /servo/step_degrees
+	rcl_subscription_t servo_subscriber_absolute;
+	std_msgs__msg__Int16 servo_msg_absolute;
 	rclc_subscription_init_default(
-		&servo_subscriber,
+		&servo_subscriber_absolute,
 		&node,
 		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
-		"/servo_degrees");
-	rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &pusher_servo_callback, ON_NEW_DATA);
+		"/servo/degrees");
+
+	rclc_executor_add_subscription(&executor, &servo_subscriber_absolute, &servo_msg_absolute, &pusher_servo_callback_absolute, ON_NEW_DATA);
+
+	rcl_subscription_t servo_subscriber_step;
+	std_msgs__msg__Int16 servo_msg_step;
+	rclc_subscription_init_default(
+		&servo_subscriber_step,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16),
+		"/servo/step_degrees");
+	rclc_executor_add_subscription(&executor, &servo_subscriber_step, &servo_msg_step, &pusher_servo_callback_step, ON_NEW_DATA);
+	prepare_lift_height(&height_message);
 	watchdog_update();
+
+		// --create publishers--
+	rclc_publisher_init_default(
+		&height_publisher,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Range),
+		"height");
+	rclc_publisher_init_default(
+		&limit_switch_publisher,
+		&node,
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool),
+		"limit_switch");
+		limit_switch_message.data = false;
 	// -- general inits --
 
 	uart_log(LEVEL_DEBUG, "Finished init, starting exec");
-
+	multicore_launch_core1(height_monitor_c1);
 	rclc_executor_spin(&executor);
 	uart_log(LEVEL_ERROR, "Executor exited!");
 	gpio_put(LED_PIN, 0);

@@ -29,7 +29,8 @@ typedef struct {
 extern Servo button_pusher_horiz;
 
 void init_servo(Servo *servo_struct, uint pin_num);
-void set_servo_position(Servo *servo_struct, float position);
+void set_servo_position(Servo *servo_struct, int position);
 void stop_servo();
-void pusher_servo_callback(const void *msgin);
+void pusher_servo_callback_absolute(const void *msgin);
+void pusher_servo_callback_step(const void *msgin);
 #endif

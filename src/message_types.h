@@ -5,5 +5,6 @@
 #include <sensor_msgs/msg/range.h>
 #include <std_msgs/msg/float32.h>
 #include <std_msgs/msg/int16.h>
+#include <std_msgs/msg/bool.h>
 
 #endif // MESSAGE_TYPES_H
